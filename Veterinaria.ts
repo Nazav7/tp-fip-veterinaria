@@ -1,28 +1,14 @@
-
-export class Red {
-    nombre = "Juan";
-
-}
-
-export class Cliente {
-    nombre = "Cliente";
-
-}
-
-export class Paciente {
-    nombre = "Cliente";
-
-}
-
 export class Veterinaria {
-    nombre: string;
-    id: number;
-    clientes: Cliente[];
-    pacientes: Paciente[]
+    private id: number;
+    private nombre: string;
+    private direccion: string;
+    private clientes: Cliente[];
+    private pacientes: Paciente[]
 
-    constructor(nombre: string) {
+    constructor(nombre: string, direccion: string) {
+        this.id = 0;
         this.nombre = nombre;
-        this.id = 0
+        this.direccion = direccion;
     }
 
     //Métodos
@@ -91,6 +77,10 @@ export class Veterinaria {
 
     getId(): number {
         return this.id;
+    }
+
+    getDireccion(): string {
+        return this.direccion;
     }
 
     getClientes(): Cliente[] {

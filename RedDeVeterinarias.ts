@@ -10,9 +10,11 @@ export class RedDeVeterinarias {
     proveedores: Proveedor[];
 
 
-    constructor(nombre: string) {
-        this.nombre = nombre;
-        this.id = 0
+    constructor() {
+        this.veterinarias = []
+        this.proveedores = []
+        this.clientes = []
+        this.pacientes = []
     }
 
 
@@ -27,28 +29,50 @@ export class RedDeVeterinarias {
     }
 
 
-    agregarProveedor(proveedor: Proveedor) {
-        if (proveedor != undefined && !this.proveedores.includes(proveedor)) {
-            this.proveedores.push(proveedor);
+    // agregarProveedor(proveedor: Proveedor) {
+    //     if (proveedor != undefined && !this.proveedores.includes(proveedor)) {
+    //         this.proveedores.push(proveedor);
+    //         console.log('El proveedor ha sido agregado');
+    //     } else {
+    //         console.log('No se puede agregar proveedor');
+    //     }
+    // }
+
+    agregarProveedor(nombre: string, telefono: number) {
+        const proveedor = this.proveedores.find(p => p.getNombre() === nombre && p.getTelefono() === telefono);
+        if (!proveedor) {
+            const nuevoProveedor = new Proveedor(nombre, telefono);
+            this.proveedores.push(nuevoProveedor);
             console.log('El proveedor ha sido agregado');
         } else {
-            console.log('No se puede agregar proveedor');
+            console.log('No se puede agregar proveedor porque ya existe');
         }
     }
 
 
-    eliminarProveedor(proveedor: Proveedor) {
-        if (proveedor != undefined && this.proveedores.includes(proveedor)) {
+    // eliminarProveedor(proveedor: Proveedor) {
+    //     if (proveedor != undefined && this.proveedores.includes(proveedor)) {
+    //         const index = this.proveedores.indexOf(proveedor);
+    //         this.proveedores.splice(index, 1);
+    //         console.log('El proveedor ha sido eliminado')
+    //     } else {
+    //         console.log('El proveedor no se encuentra en la base de datos')
+    //     }
+    // }
+
+    eliminarProveedor(nombre: string, telefono: number) {
+        const proveedor = this.proveedores.find(p => p.getNombre() === nombre && p.getTelefono() === telefono);
+        if (proveedor) {
             const index = this.proveedores.indexOf(proveedor);
             this.proveedores.splice(index, 1);
-            console.log('El proveedor ha sido eliminado')
+            console.log('El proveedor ha sido eliminado');
         } else {
-            console.log('El proveedor no se encuentra en la base de datos')
+            console.log('El proveedor no se encuentra en la base de datos');
         }
     }
 
 
-    eliminarVeterinaria(paciente: Veterinaria) {
+    eliminarVeterinaria(veterinaria: Veterinaria) {
         if (veterinaria != undefined && this.veterinarias.includes(veterinaria)) {
             const index = this.veterinarias.indexOf(veterinaria);
             this.veterinarias.splice(index, 1);
@@ -70,16 +94,26 @@ export class RedDeVeterinarias {
     }
 
 
-    modificarProveedor(proveedor: Proveedor, proveedorModificado: Proveedor) {
-        if (proveedor != undefined && this.proveedores.includes(proveedor)) {
-            const index = this.proveedores.indexOf(proveedor);
-            this.proveedores[index] = proveedorModificado;
-            console.log('El proveedor ha sido modificado')
+    // modificarProveedor(proveedor: Proveedor, proveedorModificado: Proveedor) {
+    //     if (proveedor != undefined && this.proveedores.includes(proveedor)) {
+    //         const index = this.proveedores.indexOf(proveedor);
+    //         this.proveedores[index] = proveedorModificado;
+    //         console.log('El proveedor ha sido modificado')
+    //     } else {
+    //         console.log('No se puede modificar proveedor')
+    //     }
+    // }
+
+    modificarProveedor(id: number, nuevoNombre: string, nuevoTelefono: number) {
+        const proveedor = this.proveedores.find(p => p.getId() === id);
+        if (proveedor) {
+            proveedor.setNombre(nuevoNombre)
+            proveedor.setTelefono(nuevoTelefono);
+            console.log('El proveedor ha sido modificado');
         } else {
-            console.log('No se puede modificar proveedor')
+            console.log('No se encontró ID');
         }
     }
-
 
     //Getters
     getClientes(): Cliente[] {
@@ -120,6 +154,31 @@ export class RedDeVeterinarias {
 
     setProveedores(nuevaLista: Proveedor[]): void {
         this.proveedores = [...nuevaLista]
+    }
+
+    //listar
+    listarVeterinarias() {
+        this.veterinarias.forEach(veterinaria => {
+            console.log(`${veterinaria.getId()}, ${veterinaria.getNombre()}, ${veterinaria.getDireccion()}`);
+        });
+    }
+
+    listarClientes() {
+        this.clientes.forEach(cliente => {
+            console.log(`${cliente.getId()}, ${cliente.getNombre()}, ${cliente.getTelefono()}, ${cliente.getEsVip()}`);
+        });
+    }
+
+    listarPacientes() {
+        this.pacientes.forEach(paciente => {
+            console.log(`${paciente.getId()}, ${paciente.getNombre()}, ${paciente.getEspecie()}`);
+        });
+    }
+
+    listarProveedores() {
+        this.proveedores.forEach(proveedor => {
+            console.log(`${proveedor.getId()}, ${proveedor.getNombre()}, ${proveedor.getTelefono()}`);
+        });
     }
 }
 
