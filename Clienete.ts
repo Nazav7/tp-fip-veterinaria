@@ -1,9 +1,9 @@
 export class Cliente {
-    id: number;
-    nombre: string;
-    telefono: string;
-    visitas: number;
-    esVIP: boolean;
+    private id: number;
+    private nombre: string;
+    private telefono: string;
+    private visitas: number;
+    private esVIP: boolean;
 
     constructor(id: number, nombre: string, telefono: string) {
         this.id = id;
@@ -27,4 +27,42 @@ export class Cliente {
     darDeBaja(): void {
         console.log(`Cliente ${this.nombre} ha sido dado de baja.`);
     }
+
+    // getters & setters
+    public getId(): number {
+        return this.id;
+    }
+    public setId(id: number) {
+        this.id = id;
+    }
+
+    public getNombre(): string {
+        return this.nombre;
+    }
+    public setNombre(nombre: string
+    ) {
+        this.nombre = nombre;
+    }
+
+    public getTelefono(): string {
+        return this.telefono;
+    }
+    public setTelefono(telefono: string) {
+        this.telefono = telefono;
+    }
+
+    public getVisitas(): number {
+        return this.visitas;
+    }
+    public setVisitas(visitas: number) {
+        this.visitas = visitas;
+    }
+
+    public getEsVIP(): boolean {
+        return this.esVIP;
+    }
+    public setEsVIP(esVIP: boolean) {
+        this.esVIP = esVIP;
+    }
+
 }
