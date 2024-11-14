@@ -1,5 +1,13 @@
 import * as fs from 'fs';
 
+///URLS///
+const url_cliente = '../bbdd/clientes.txt';
+const url_pacientes = '../bbdd/pacientes.txt';
+const url_proveedores = '../bbdd/proveedores.txt';
+const url_sucursales = '../bbdd/sucursales.txt';
+
+
+//////////////////LEER ARCHIVO TXT COMO BASE DE DATOS Y CONVERTIRLO EN JASON////////////////////////
 function leerTXT(ruta:string):any []{
 try{
     const archivoTexto = fs.readFileSync(ruta, 'utf8');
@@ -60,11 +68,37 @@ try{
 
 //TEST DE CODIGO//
 
-let clientes = leerTXT('../bbdd/clientes.txt');
+/* 
+
+let clientes = leerTXT(url_cliente);
 console.log(clientes);
-let pacientes = leerTXT('../bbdd/pacientes.txt');
+let pacientes = leerTXT(url_pacientes);
 console.log(clientes);
-let proveedores = leerTXT('../bbdd/proveedores.txt');
+let proveedores = leerTXT(url_proveedores);
 console.log(clientes);
-let sucursales = leerTXT('../bbdd/sucursales.txt');
+let sucursales = leerTXT(url_sucursales);
 console.log(clientes);
+
+*/
+
+
+///////////////////GENERAR ID AUTOMATICO////////////////////////////
+function generarID(url){
+  let max_id = 0;
+  const arreglo = leerTXT(url);
+        for(const elemento of arreglo){
+          const id = parseInt(elemento.ID);
+          if(id > max_id){
+            max_id = id;
+          }
+        }
+        return max_id + 1;
+  }
+
+//TEST DE CODIGO//
+/*
+
+let id = generarID(url_cliente);
+console.log(id);
+
+*/
