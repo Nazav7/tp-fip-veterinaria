@@ -1,28 +1,28 @@
+import { generarID } from "./Clases/utils";
 
 export class Red {
     nombre = "Juan";
-
 }
 
 export class Cliente {
     nombre = "Cliente";
-
 }
 
 export class Paciente {
     nombre = "Cliente";
-
 }
 
 export class Veterinaria {
-    nombre: string;
-    id: number;
-    clientes: Cliente[];
-    pacientes: Paciente[]
+    private id: number;
+    private nombre: string;
+    private direccion: string;
+    private clientes: Cliente[];
+    private pacientes: Paciente[]
 
-    constructor(nombre: string) {
+    constructor(nombre: string, direccion:string) {
+        this.id=generarID('../bbdd/sucursales.txt');
         this.nombre = nombre;
-        this.id = 0
+        this.direccion = direccion;
     }
 
     //Métodos
@@ -88,36 +88,24 @@ export class Veterinaria {
     getNombre(): string {
         return this.nombre;
     }
-
     getId(): number {
         return this.id;
     }
-
     getClientes(): Cliente[] {
         return [...this.clientes];
     }
-
     getPacientes(): Paciente[] {
         return [...this.pacientes]
     }
 
-    //Getters
+    //Setters
     setNombre(nuevoNombre: string): void {
         this.nombre = nuevoNombre;
     }
-
-    setId(nuevoId: number): void {
-        this.id = nuevoId;
-    }
-
     setClientes(nuevaLista: Cliente[]): void {
         this.clientes = [...nuevaLista];
     }
-
     setPacientes(nuevaLista: Paciente[]): void {
         this.pacientes = [...nuevaLista]
     }
 }
-
-
-
