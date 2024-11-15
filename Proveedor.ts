@@ -1,13 +1,14 @@
+import { generarID } from "./Clases/utils";
+
 export class Proveedor {
-    private id: number;
     private nombre: string;
     private telefono: string;
-    
+    private id: number;
+
     constructor(nombre: string, telefono: string) {
-        this.id = 0
         this.nombre = nombre;
         this.telefono = telefono;
-        
+        this.id = generarID('../bbdd/proveedores.txt');
     }
 
     //Getters
