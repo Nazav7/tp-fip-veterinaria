@@ -1,9 +1,9 @@
 export class Proveedor {
     private id: number;
     private nombre: string;
-    private telefono: number;
+    private telefono: string;
     
-    constructor(nombre: string, telefono: number) {
+    constructor(nombre: string, telefono: string) {
         this.id = 0
         this.nombre = nombre;
         this.telefono = telefono;
@@ -15,7 +15,7 @@ export class Proveedor {
         return this.nombre;
     }
 
-    getTelefono(): number{
+    getTelefono(): string{
         return this.telefono;
     }
 
@@ -28,7 +28,7 @@ export class Proveedor {
         this.nombre = nuevoNombre;
     }
 
-    setTelefono(nuevoTelefono: number): void{
+    setTelefono(nuevoTelefono: string): void{
         this.telefono = nuevoTelefono;
     }
 
