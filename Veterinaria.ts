@@ -8,10 +8,11 @@ export class Veterinaria {
     private clientes: Cliente[];
     private pacientes: Paciente[]
 
-    constructor(nombre: string, direccion: string) {
-        this.id = 0;
+    constructor(nombre: string, direccion:string) {
+        this.id=generarID('../bbdd/sucursales.txt');
         this.nombre = nombre;
         this.direccion = direccion;
+    
     }
 
     //Métodos
