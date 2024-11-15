@@ -1,5 +1,6 @@
 import {Cliente} from "./Cliente";
 import {Paciente} from "./Paciente";
+import { generarID } from "./Clases/utils";
 
 export class Veterinaria {
     private id: number;
