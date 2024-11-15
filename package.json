@@ -1,0 +1,12 @@
+{
+  "name": "tp-fip-veterinaria",
+  "version": "1.0.0",
+  "description": "Trabajo en grupo de la materia FIP de Cepit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
