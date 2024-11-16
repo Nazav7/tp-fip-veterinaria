@@ -10,76 +10,81 @@ export class RedDeVeterinarias {
     proveedores: Proveedor[];
 
 
-    constructor(nombre: string) {
-        this.nombre = nombre;
-        this.id = 0
+    constructor() {
+        this.veterinarias = []
+        this.proveedores = []
+        this.clientes = []
+        this.pacientes = []
     }
 
 
     //Métodos
-    agregarVeterinaria(veterinaria: Veterinaria) {
-        if (veterinaria != undefined && !this.veterinarias.includes(veterinaria)) {
-            this.veterinarias.push(veterinaria);
-            console.log('Veterinaria ha sido agregada');
+
+    agregarVeterinaria(nombre: string, direccion: string) {
+        const veterinaria = this.veterinarias.find(v => v.getNombre() === nombre && v.getDireccion() === direccion);
+        if (!veterinaria) {
+            const nuevaVeterinaria = new Veterinaria(nombre, direccion);
+            this.veterinarias.push(nuevaVeterinaria);
+            console.log('La veterinaria ha sido agregada');
         } else {
-            console.log('No se puede agregar veterinaria');
+            console.log('No se puede agregar veterinaria porque ya existe');
         }
     }
 
-
-    agregarProveedor(proveedor: Proveedor) {
-        if (proveedor != undefined && !this.proveedores.includes(proveedor)) {
-            this.proveedores.push(proveedor);
+    agregarProveedor(nombre: string, telefono: string) {
+        const proveedor = this.proveedores.find(p => p.getNombre() === nombre && p.getTelefono() === telefono);
+        if (!proveedor) {
+            const nuevoProveedor = new Proveedor(nombre, telefono);
+            this.proveedores.push(nuevoProveedor);
             console.log('El proveedor ha sido agregado');
         } else {
-            console.log('No se puede agregar proveedor');
+            console.log('No se puede agregar proveedor porque ya existe');
         }
     }
 
-
-    eliminarProveedor(proveedor: Proveedor) {
-        if (proveedor != undefined && this.proveedores.includes(proveedor)) {
+    eliminarProveedor(nombre: string, telefono: string) {
+        const proveedor = this.proveedores.find(p => p.getNombre() === nombre && p.getTelefono() === telefono);
+        if (proveedor) {
             const index = this.proveedores.indexOf(proveedor);
             this.proveedores.splice(index, 1);
-            console.log('El proveedor ha sido eliminado')
+            console.log('El proveedor ha sido eliminado');
         } else {
-            console.log('El proveedor no se encuentra en la base de datos')
+            console.log('El proveedor no se encuentra en la base de datos');
         }
     }
 
-
-    eliminarVeterinaria(paciente: Veterinaria) {
-        if (veterinaria != undefined && this.veterinarias.includes(veterinaria)) {
+    eliminarVeterinaria(nombre: string, direccion: string) {
+        const veterinaria = this.veterinarias.find(p => p.getNombre() === nombre && p.getDireccion() === direccion);
+        if (veterinaria) {
             const index = this.veterinarias.indexOf(veterinaria);
             this.veterinarias.splice(index, 1);
-            console.log('La veterinaria ha sido eliminado')
+            console.log('La veterinaria ha sido eliminada');
         } else {
-            console.log('La veterinaria no se encuentra en la base de datos')
+            console.log('La veterinaria no se encuentra en la base de datos');
         }
     }
 
-
-    modificarVeterinaria(veterinaria: Veterinaria, veterinariaModificado: Veterinaria) {
-        if (veterinaria != undefined && this.veterinarias.includes(veterinaria)) {
-            const index = this.veterinarias.indexOf(veterinaria);
-            this.veterinarias[index] = veterinariaModificado;
-            console.log('La veterinaria ha sido modificada')
+    modificarVeterinaria(id: number, nuevoNombre: string, nuevaDireccion: string) {
+        const veterinaria = this.veterinarias.find(v => v.getId() === id);
+        if (veterinaria) {
+            veterinaria.setNombre(nuevoNombre)
+            veterinaria.setDireccion(nuevaDireccion);
+            console.log('La veterinaria ha sido modificada');
         } else {
-            console.log('No se puede modificar veterinaria')
+            console.log('No se encontró ID');
         }
     }
 
-
-    modificarProveedor(proveedor: Proveedor, proveedorModificado: Proveedor) {
-        if (proveedor != undefined && this.proveedores.includes(proveedor)) {
-            const index = this.proveedores.indexOf(proveedor);
-            this.proveedores[index] = proveedorModificado;
-            console.log('El proveedor ha sido modificado')
+    modificarProveedor(id: number, nuevoNombre: string, nuevoTelefono: string) {
+        const proveedor = this.proveedores.find(p => p.getId() === id);
+        if (proveedor) {
+            proveedor.setNombre(nuevoNombre)
+            proveedor.setTelefono(nuevoTelefono);
+            console.log('El proveedor ha sido modificado');
         } else {
-            console.log('No se puede modificar proveedor')
+            console.log('No se encontró ID');
         }
     }
-
 
     //Getters
     getClientes(): Cliente[] {
@@ -120,6 +125,31 @@ export class RedDeVeterinarias {
 
     setProveedores(nuevaLista: Proveedor[]): void {
         this.proveedores = [...nuevaLista]
+    }
+
+    //listar
+    listarVeterinarias() {
+        this.veterinarias.forEach(veterinaria => {
+            console.log(`${veterinaria.getId()}, ${veterinaria.getNombre()}, ${veterinaria.getDireccion()}`);
+        });
+    }
+
+    listarClientes() {
+        this.clientes.forEach(cliente => {
+            console.log(`${cliente.getId()}, ${cliente.getNombre()}, ${cliente.getTelefono()}, ${cliente.getEsVip()}`);
+        });
+    }
+
+    listarPacientes() {
+        this.pacientes.forEach(paciente => {
+            console.log(`${paciente.getId()}, ${paciente.getNombre()}, ${paciente.getEspecie()}`);
+        });
+    }
+
+    listarProveedores() {
+        this.proveedores.forEach(proveedor => {
+            console.log(`${proveedor.getId()}, ${proveedor.getNombre()}, ${proveedor.getTelefono()}`);
+        });
     }
 }
 
