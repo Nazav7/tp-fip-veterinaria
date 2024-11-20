@@ -8,7 +8,7 @@ export class Proveedor {
     constructor(nombre: string, telefono: number) {
         this.nombre = nombre;
         this.telefono = telefono;
-        this.id = generarID('../bbdd/proveedores.txt');
+        this.id = generarID('./bbdd/proveedores.txt');
     }
 
     //Getters

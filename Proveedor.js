@@ -6,7 +6,7 @@ var Proveedor = /** @class */ (function () {
     function Proveedor(nombre, telefono) {
         this.nombre = nombre;
         this.telefono = telefono;
-        this.id = (0, utils_1.generarID)('../bbdd/proveedores.txt');
+        this.id = (0, utils_1.generarID)('./bbdd/proveedores.txt');
     }
     //Getters
     Proveedor.prototype.getNombre = function () {
