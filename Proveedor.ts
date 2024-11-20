@@ -1,32 +1,26 @@
-import { generarID } from "./Clases/utils";
+import { generarIDAleatorio } from "./generarId";
 
 export class Proveedor {
-    private nombre: string;
-    private telefono: string;
     private id: number;
-
-<<<<<<< HEAD
+    private nombre: string;
+    private telefono: number;
+    
     constructor(nombre: string, telefono: number) {
-=======
-    constructor(nombre: string, telefono: string) {
->>>>>>> Naza
+        this.id = generarIDAleatorio();
         this.nombre = nombre;
         this.telefono = telefono;
-        this.id = generarID('../bbdd/proveedores.txt');
+        
     }
 
     //Getters
     getNombre(): string{
         return this.nombre;
     }
-<<<<<<< HEAD
-    getTelefono(): number{
-=======
 
-    getTelefono(): string{
->>>>>>> Naza
+    getTelefono(): number{
         return this.telefono;
     }
+
     getId(): number{
         return this.id
     }
@@ -35,13 +29,13 @@ export class Proveedor {
     setNombre(nuevoNombre: string): void{
         this.nombre = nuevoNombre;
     }
-<<<<<<< HEAD
-    setTelefono(nuevoTelefono: number): void{
-=======
 
-    setTelefono(nuevoTelefono: string): void{
->>>>>>> Naza
+    setTelefono(nuevoTelefono: number): void{
         this.telefono = nuevoTelefono;
+    }
+
+    setId(nuevoId: number): void{
+        this.id = nuevoId;
     }
 
 }

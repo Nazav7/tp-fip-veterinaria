@@ -1,12 +1,15 @@
 {
-  "name": "tp-fip-veterinaria",
+  "name": "entregablecasinoprogramacion",
   "version": "1.0.0",
-  "description": "Trabajo en grupo de la materia FIP de Cepit",
+  "description": "equipo de 5 integrantes para realizar un proyecto de casino online",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc && node dist/main.js",
+    "dev": "ts-node src/main.ts"
   },
-  "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }

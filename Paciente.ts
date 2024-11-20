@@ -1,19 +1,40 @@
-import { generarID } from "./Clases/utils";
-
+import { Cliente } from "./Cliente";
+import { generarIDAleatorio } from "./generarId";
 
 export class Paciente {
     private id: number;
     private nombre: string;
     private especie: string;
-    private idDueno: number;
+    private idDuenio?: number;
+    private duenios: Cliente[] = []
 
-
-
-    constructor(nombre: string, especie: string, idDueno: number) {
-        this.id = generarID('../bbdd/pacientes.txt');
+    constructor(nombre: string, especie: string) {
         this.nombre = nombre;
-        this.especie = especie;
-        this.idDueno = idDueno;
+        this.especie = this.validarEspecie(especie);
+        this.id = generarIDAleatorio();
+    }
+
+    validarEspecie(especie: string){
+        if (especie === "perro" || especie === "gato") {
+            return especie
+        } else{
+            return "exótica"
+        }
+    }
+
+    asignarID(id: number){
+        if (id > 0 &&  this.duenios?.find(duenio => duenio.getId() == id )) {
+                this.idDuenio = id;
+            } else {
+                console.log("No se encontró un cliente con ese ID.");
+            }
+    }
+
+    agregarDuenio(duenio: Cliente) {
+        if (duenio != undefined) {
+            this.duenios.push(duenio);
+
+        }
     }
 
     modificarDatos(nombre: string, especie: string): void {
@@ -42,11 +63,11 @@ export class Paciente {
     public setEspecie(especie: string) {
         this.especie = especie;
     }
-    public getIdDueno(): number {
-        return this.idDueno;
+    public getIdDuenio(): number | undefined {
+        return this.idDuenio;
     }
-    public setIdDueno(idDueno: number) {
-        this.idDueno = idDueno;
+    public setIdDuenio(idDuenio: number) {
+        this.idDuenio = idDuenio;
     }
     public getId(){
         return this.id;

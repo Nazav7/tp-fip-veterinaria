@@ -1,22 +1,6 @@
-<<<<<<< HEAD
-import { generarID } from "./Clases/utils";
-
-export class Red {
-    nombre = "Juan";
-}
-
-export class Cliente {
-    nombre = "Cliente";
-}
-
-export class Paciente {
-    nombre = "Cliente";
-}
-=======
-import {Cliente} from "./Cliente";
-import {Paciente} from "./Paciente";
-import { generarID } from "./Clases/utils";
->>>>>>> Naza
+import { Cliente } from "./Cliente";
+import { Paciente } from "./Paciente";
+import { generarIDAleatorio } from "./generarId";
 
 export class Veterinaria {
     private id: number;
@@ -25,19 +9,17 @@ export class Veterinaria {
     private clientes: Cliente[];
     private pacientes: Paciente[]
 
-    constructor(nombre: string, direccion:string) {
-        this.id=generarID('../bbdd/sucursales.txt');
+    constructor(nombre: string, direccion: string) {
+        this.id = generarIDAleatorio();
         this.nombre = nombre;
         this.direccion = direccion;
-<<<<<<< HEAD
-=======
-    
->>>>>>> Naza
+        this.clientes = [];
+        this.pacientes = [];
     }
 
     //Métodos
 
-    agregarCliente(nombre: string, telefono: string) {
+    agregarClienteConsola(nombre: string, telefono: number) {
         const cliente = this.clientes.find(c => c.getNombre() === nombre && c.getTelefono() === telefono);
         if (!cliente) {
             const nuevoCliente = new Cliente(nombre, telefono);
@@ -47,11 +29,21 @@ export class Veterinaria {
             console.log('No se puede agregar cliente porque ya existe');
         }
     }
-    
-    agregarPaciente(nombre: string, especie: string) {
+
+    verificarIdYAgregarPacienteConsola(id: number, nombre: string, especie: string) {
+        const cliente = this.clientes.find(c => c.getId() === id)
+        if (cliente) {
+            this.agregarPacienteConsola(id, nombre, especie)
+        } else {
+            console.log('El ID no esta registrado')
+        }
+    }
+
+    agregarPacienteConsola(idDuenio: number, nombre: string, especie: string) {
         const paciente = this.pacientes.find(p => p.getNombre() === nombre && p.getEspecie() === especie);
         if (!paciente) {
             const nuevoPaciente = new Paciente(nombre, especie);
+            nuevoPaciente.setIdDuenio(idDuenio)
             this.pacientes.push(nuevoPaciente);
             console.log('El paciente ha sido agregado');
         } else {
@@ -59,9 +51,9 @@ export class Veterinaria {
         }
     }
 
-    
-    eliminarCliente(nombre: string, telefono: string) {
-        const cliente = this.clientes.find(c => c.getNombre() === nombre && c.getTelefono() === telefono);
+
+    eliminarClienteConsola(id: number) {
+        const cliente = this.clientes.find(c => c.getId() === id);
         if (cliente) {
             const index = this.clientes.indexOf(cliente);
             this.clientes.splice(index, 1);
@@ -70,9 +62,9 @@ export class Veterinaria {
             console.log('El cliente no se encuentra en la base de datos');
         }
     }
-    
-    eliminarPaciente(nombre: string, especie: string) {
-        const paciente = this.pacientes.find(p => p.getNombre() === nombre && p.getEspecie() === especie);
+
+    eliminarPacienteConsola(id: number) {
+        const paciente = this.pacientes.find(p => p.getId() === id);
         if (paciente) {
             const index = this.pacientes.indexOf(paciente);
             this.pacientes.splice(index, 1);
@@ -83,8 +75,8 @@ export class Veterinaria {
     }
 
 
-    modificarCliente(nombre: string, telefono: string) {
-        const cliente = this.clientes.find(c => c.nombre === nombre && c.telefono === telefono);
+    modificarClienteConsola(id: number, nombre: string, telefono: number) {
+        const cliente = this.clientes.find(c => c.getId() === id);
         if (cliente) {
             cliente.setNombre(nombre);
             cliente.setTelefono(telefono);
@@ -93,9 +85,9 @@ export class Veterinaria {
             console.log('No se encontró cliente');
         }
     }
-    
-    modificarPaciente(nombre: string, especie: string) {
-        const paciente = this.pacientes.find(p => p.nombre === nombre && p.especie === especie);
+
+    modificarPacienteConsola(id: number, nombre: string, especie: string) {
+        const paciente = this.pacientes.find(p => p.getId() === id);
         if (paciente) {
             paciente.setNombre(nombre);
             paciente.setEspecie(especie);
@@ -109,43 +101,108 @@ export class Veterinaria {
     getNombre(): string {
         return this.nombre;
     }
+
     getId(): number {
         return this.id;
     }
-<<<<<<< HEAD
-=======
 
     getDireccion(): string {
         return this.direccion;
     }
 
->>>>>>> Naza
     getClientes(): Cliente[] {
         return [...this.clientes];
     }
+
     getPacientes(): Paciente[] {
         return [...this.pacientes]
     }
 
-    //Setters
+    //Getters
     setNombre(nuevoNombre: string): void {
         this.nombre = nuevoNombre;
     }
+
+    setId(nuevoId: number): void {
+        this.id = nuevoId;
+    }
+
     setClientes(nuevaLista: Cliente[]): void {
         this.clientes = [...nuevaLista];
     }
+
     setPacientes(nuevaLista: Paciente[]): void {
         this.pacientes = [...nuevaLista]
     }
-<<<<<<< HEAD
-}
-=======
 
     setDireccion(nuevaDireccion: string): void {
         this.direccion = nuevaDireccion;
     }
+
+    agregarCliente(cliente: Cliente) {
+        if (cliente != undefined && !this.clientes.includes(cliente)) {
+            this.clientes.push(cliente);
+
+        }
+    }
+
+    agregarPaciente(paciente: Paciente) {
+        if (paciente != undefined && !this.pacientes.includes(paciente)) {
+            this.pacientes.push(paciente);
+
+        }
+    }
+
+    eliminarCliente(cliente: Cliente) {
+        if (cliente != undefined && this.clientes.includes(cliente)) {
+            const index = this.clientes.indexOf(cliente);
+            this.clientes.splice(index, 1);
+
+        }
+    }
+
+    eliminarPaciente(paciente: Paciente) {
+        if (paciente != undefined && this.pacientes.includes(paciente)) {
+            const index = this.pacientes.indexOf(paciente);
+            this.pacientes.splice(index, 1);
+
+        }
+    }
+
+    modificarCliente(cliente: Cliente, clienteModificado: Cliente) {
+        if (cliente != undefined && this.clientes.includes(cliente)) {
+            const index = this.clientes.indexOf(cliente);
+            this.clientes[index] = clienteModificado;
+        }
+    }
+
+    modificarPaciente(paciente: Paciente, pacienteModificado: Paciente) {
+        if (paciente != undefined && this.pacientes.includes(paciente)) {
+            const index = this.pacientes.indexOf(paciente);
+            this.pacientes[index] = pacienteModificado;
+
+        }
+    }
+
+    listarClientes() {
+        this.clientes.forEach(cliente => {
+            console.log(`${cliente.getId()}, ${cliente.getNombre()}, ${cliente.getTelefono()}, ${cliente.getEsVIP()}`);
+        });
+    }
+
+    listarPacientes() {
+        this.pacientes.forEach(paciente => {
+            console.log(`${paciente.getId()}, ${paciente.getIdDuenio()}, ${paciente.getNombre()}, ${paciente.getEspecie()}`);
+        });
+    }
+
+    registrarVisita(id: number): void {
+        const cliente = this.clientes.find(cliente => cliente.getId() === id)
+        if(cliente){
+        const visitas : number = cliente.getVisitas()
+        cliente.setVisitas(visitas + 1)
+        if(cliente.getVisitas() >= 5){
+            cliente.setEsVIP(true)
+        }
+    }}
 }
-
-
-
->>>>>>> Naza
