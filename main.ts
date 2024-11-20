@@ -4,6 +4,7 @@ import { Veterinaria } from "./Veterinaria";
 import { Cliente } from "./Cliente";
 import { Paciente } from "./Paciente";
 import { Proveedor } from "./Proveedor";
+import { leerTXT } from './Clases/utils';
 
 const redDeVeterinaria = new RedDeVeterinarias()
 const veterinarias = [
@@ -74,6 +75,7 @@ function menuRedDeVeterinarias() {
 function menuSucursal() {
     //Antes el usuario deberia ingresar su ID de veterinaria y se debe buscar su ID
     //let opcion: number = rls.questionInt("Ingrese su ID: ");
+    console.log("\n");
     console.log("1. Clientes")
     console.log("2. Pacientes")
     console.log("-------------------------")
@@ -100,6 +102,7 @@ function menuSucursal() {
 }
 
 function proveedores() {
+    console.log("\n");
     console.log("PROVEEDORES")
     console.log("-------------------------")
     redDeVeterinaria.listarProveedores();
@@ -115,18 +118,18 @@ function proveedores() {
     switch (opcion) {
         case 1:
             const nombre1: string = rls.question("Ingrese el nombre del proveedor: ");
-            const telefono1: string = rls.question("Ingrese el telefono del proveedor: ");
+            const telefono1: number = rls.question("Ingrese el telefono del proveedor: ");
             redDeVeterinaria.agregarProveedor(nombre1, telefono1)
             break;
         case 2:
             const nombre2: string = rls.question("Ingrese el nombre del proveedor: ");
-            const telefono2: string = rls.question("Ingrese el telefono del proveedor: ");
+            const telefono2: number = rls.question("Ingrese el telefono del proveedor: ");
             redDeVeterinaria.eliminarProveedor(nombre2, telefono2)
             break;
         case 3:
             const id3: number = rls.question("Ingrese ID: ");
             const nombre3: string = rls.question("Ingrese nuevo nombre ");
-            const telefono3: string = rls.question("Ingrese nuevo telefono: ");
+            const telefono3: number = rls.question("Ingrese nuevo telefono: ");
             redDeVeterinaria.modificarProveedor(id3, nombre3, telefono3)
             break;
         case 9:
@@ -141,6 +144,7 @@ function proveedores() {
 }
 
 function sucursales() {
+    console.log("\n");
     console.log("SUCURSALES DE VETERINARIAS")
     console.log("-------------------------")
     redDeVeterinaria.listarVeterinarias();
@@ -182,6 +186,7 @@ function sucursales() {
 }
 
 function clientes() {
+    console.log("\n");
     console.log("CLIENTES")
     console.log("-------------------------")
     redDeVeterinaria.listarClientes();
@@ -193,12 +198,12 @@ function clientes() {
     console.log("-------------------------")
     console.log("9. Atrás")
     console.log("0. Salir")
-    let opcion: number = rls.questionInt("Ingrese una opción: ");
+    let opcion: number = rls.questionInt("Ingrese una opcion: ");
 
     switch (opcion) {
         case 1:
             const nombre1: string = rls.question("Ingrese el nombre del cliente: ");
-            const telefono1: string = rls.question("Ingrese el telefono del cliente: ");
+            const telefono1: number = rls.question("Ingrese el telefono del cliente: ");
             veterinarias.forEach(veterinaria => {
                 veterinaria.agregarCliente(nombre1, telefono1);
             });
@@ -206,21 +211,35 @@ function clientes() {
             break;
         case 2:
             const nombre2: string = rls.question("Ingrese el nombre del cliente: ");
-            const telefono2: string = rls.question("Ingrese el telefono del cliente: ");
+            const telefono2: number = rls.question("Ingrese el telefono del cliente: ");
             veterinarias.forEach(veterinaria => {
-                veterinaria.eliminarCliente(nombre1, telefono1);
+                veterinaria.eliminarCliente(nombre1, telefono2);
             });
             break;
         case 3:
             const id3: number = rls.question("Ingrese ID: ");
             const nombre3: string = rls.question("Ingrese el nuevo nombre del cliente: ");
-            const telefono3: string = rls.question("Ingrese el nuevo telefono del cliente: ");
+            const telefono3: number = rls.question("Ingrese el nuevo telefono del cliente: ");
             veterinarias.forEach(veterinaria => {
-                veterinaria.modificarCliente(nombre1, telefono1);
+                veterinaria.modificarCliente(nombre1, telefono3);
             });
             break;
-        case 4:
-            break;
+            case 4:
+                const idClienteInput = rls.question("Ingrese ID de cliente: ");
+                const id_cliente = parseInt(idClienteInput, 10);
+                if (!isNaN(id_cliente) && id_cliente > 0) {
+                    const clientes = leerTXT('./bbdd/clientes.txt');
+                    const clienteEncontrado = clientes.find(cliente => parseInt(cliente.ID, 10) === id_cliente); // Busca por ID
+                    if (clienteEncontrado) {
+                        console.log("Se registra la visita del cliente");
+                    } else {
+                        console.log("El ID ingresado no corresponde a un cliente registrado.");
+                    }
+                } else {
+                    console.log("ID inválido. Debe ser un número mayor a 0.");
+                }
+                clientes();
+                break;
         case 9:
             menuRedDeVeterinarias();
             break;
@@ -233,6 +252,7 @@ function clientes() {
 }
 
 function pacientes() {
+    console.log("\n");
     console.log("PACIENTES")
     console.log("-------------------------")
     redDeVeterinaria.listarPacientes();
@@ -249,8 +269,9 @@ function pacientes() {
         case 1:
             const nombre1: string = rls.question("Ingrese el nombre del paciente: ");
             const especie1: string = rls.question("Ingrese la especie del paciente: ");
+            const id_duenio_1 : number = rls.question("Ingrese el ID del dueño del paciente: ");
             veterinarias.forEach(veterinaria => {
-                veterinaria.agregarPaciente(nombre1, especie1);
+                veterinaria.agregarPaciente(nombre1, especie1, id_duenio_1);
             });
             break;
         case 2:

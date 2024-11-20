@@ -4,7 +4,7 @@ exports.Cliente = void 0;
 var utils_1 = require("./Clases/utils");
 var Cliente = /** @class */ (function () {
     function Cliente(nombre, telefono) {
-        this.id = (0, utils_1.generarID)('../bbdd/clientes.txt');
+        this.id = (0, utils_1.generarID)('./bbdd/clientes.txt');
         this.nombre = nombre;
         this.telefono = telefono;
         this.visitas = 1;

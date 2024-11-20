@@ -99,7 +99,7 @@ var RedDeVeterinarias = /** @class */ (function () {
     RedDeVeterinarias.prototype.getProveedor = function () {
         return __spreadArray([], this.proveedores, true);
     };
-    //Getters
+    //Setters
     RedDeVeterinarias.prototype.setClientes = function (nuevaLista) {
         this.clientes = __spreadArray([], nuevaLista, true);
     };
@@ -120,7 +120,7 @@ var RedDeVeterinarias = /** @class */ (function () {
     };
     RedDeVeterinarias.prototype.listarClientes = function () {
         this.clientes.forEach(function (cliente) {
-            console.log("".concat(cliente.getId(), ", ").concat(cliente.getNombre(), ", ").concat(cliente.getTelefono(), ", ").concat(cliente.getEsVip()));
+            console.log("".concat(cliente.getId(), ", ").concat(cliente.getNombre(), ", ").concat(cliente.getTelefono(), ", ").concat(cliente.getEsVIP()));
         });
     };
     RedDeVeterinarias.prototype.listarPacientes = function () {

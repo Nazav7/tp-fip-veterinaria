@@ -9,40 +9,24 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Veterinaria = exports.Paciente = exports.Cliente = exports.Red = void 0;
+exports.Veterinaria = void 0;
+var Cliente_1 = require("./Cliente");
+var Paciente_1 = require("./Paciente");
 var utils_1 = require("./Clases/utils");
-var Red = /** @class */ (function () {
-    function Red() {
-        this.nombre = "Juan";
-    }
-    return Red;
-}());
-exports.Red = Red;
-var Cliente = /** @class */ (function () {
-    function Cliente() {
-        this.nombre = "Cliente";
-    }
-    return Cliente;
-}());
-exports.Cliente = Cliente;
-var Paciente = /** @class */ (function () {
-    function Paciente() {
-        this.nombre = "Cliente";
-    }
-    return Paciente;
-}());
-exports.Paciente = Paciente;
 var Veterinaria = /** @class */ (function () {
     function Veterinaria(nombre, direccion) {
-        this.id = (0, utils_1.generarID)('../bbdd/sucursales.txt');
+        this.id = (0, utils_1.generarID)('./bbdd/sucursales.txt');
         this.nombre = nombre;
         this.direccion = direccion;
+        this.pacientes = [];
+        this.clientes = [];
     }
     //Métodos
     Veterinaria.prototype.agregarCliente = function (nombre, telefono) {
-        var cliente = this.clientes.find(function (c) { return c.getNombre() === nombre && c.getTelefono() === telefono; });
+        console.log(this.clientes);
+        var cliente = this.clientes.find(function (c) { return c.getNombre() == nombre && c.getTelefono() == telefono; });
         if (!cliente) {
-            var nuevoCliente = new Cliente(nombre, telefono);
+            var nuevoCliente = new Cliente_1.Cliente(nombre, telefono);
             this.clientes.push(nuevoCliente);
             console.log('El cliente ha sido agregado');
         }
@@ -50,10 +34,10 @@ var Veterinaria = /** @class */ (function () {
             console.log('No se puede agregar cliente porque ya existe');
         }
     };
-    Veterinaria.prototype.agregarPaciente = function (nombre, especie) {
+    Veterinaria.prototype.agregarPaciente = function (nombre, especie, id_duenio) {
         var paciente = this.pacientes.find(function (p) { return p.getNombre() === nombre && p.getEspecie() === especie; });
         if (!paciente) {
-            var nuevoPaciente = new Paciente(nombre, especie);
+            var nuevoPaciente = new Paciente_1.Paciente(nombre, especie, id_duenio);
             this.pacientes.push(nuevoPaciente);
             console.log('El paciente ha sido agregado');
         }
@@ -84,7 +68,7 @@ var Veterinaria = /** @class */ (function () {
         }
     };
     Veterinaria.prototype.modificarCliente = function (nombre, telefono) {
-        var cliente = this.clientes.find(function (c) { return c.nombre === nombre && c.telefono === telefono; });
+        var cliente = this.clientes.find(function (c) { return c.getNombre() === nombre && c.getTelefono() === telefono; });
         if (cliente) {
             cliente.setNombre(nombre);
             cliente.setTelefono(telefono);
@@ -95,7 +79,7 @@ var Veterinaria = /** @class */ (function () {
         }
     };
     Veterinaria.prototype.modificarPaciente = function (nombre, especie) {
-        var paciente = this.pacientes.find(function (p) { return p.nombre === nombre && p.especie === especie; });
+        var paciente = this.pacientes.find(function (p) { return p.getNombre() === nombre && p.getEspecie() === especie; });
         if (paciente) {
             paciente.setNombre(nombre);
             paciente.setEspecie(especie);
@@ -112,6 +96,9 @@ var Veterinaria = /** @class */ (function () {
     Veterinaria.prototype.getId = function () {
         return this.id;
     };
+    Veterinaria.prototype.getDireccion = function () {
+        return this.direccion;
+    };
     Veterinaria.prototype.getClientes = function () {
         return __spreadArray([], this.clientes, true);
     };
@@ -127,6 +114,9 @@ var Veterinaria = /** @class */ (function () {
     };
     Veterinaria.prototype.setPacientes = function (nuevaLista) {
         this.pacientes = __spreadArray([], nuevaLista, true);
+    };
+    Veterinaria.prototype.setDireccion = function (nuevaDireccion) {
+        this.direccion = nuevaDireccion;
     };
     return Veterinaria;
 }());

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var rls = require("readline-sync");
 var RedDeVeterinarias_1 = require("./RedDeVeterinarias");
 var Veterinaria_1 = require("./Veterinaria");
+var utils_1 = require("./Clases/utils");
 var redDeVeterinaria = new RedDeVeterinarias_1.RedDeVeterinarias();
 var veterinarias = [
     new Veterinaria_1.Veterinaria("Veterinaria Pepa", "Calle 1"),
@@ -66,6 +67,7 @@ function menuRedDeVeterinarias() {
 function menuSucursal() {
     //Antes el usuario deberia ingresar su ID de veterinaria y se debe buscar su ID
     //let opcion: number = rls.questionInt("Ingrese su ID: ");
+    console.log("\n");
     console.log("1. Clientes");
     console.log("2. Pacientes");
     console.log("-------------------------");
@@ -90,6 +92,7 @@ function menuSucursal() {
     }
 }
 function proveedores() {
+    console.log("\n");
     console.log("PROVEEDORES");
     console.log("-------------------------");
     redDeVeterinaria.listarProveedores();
@@ -129,6 +132,7 @@ function proveedores() {
     }
 }
 function sucursales() {
+    console.log("\n");
     console.log("SUCURSALES DE VETERINARIAS");
     console.log("-------------------------");
     redDeVeterinaria.listarVeterinarias();
@@ -168,6 +172,7 @@ function sucursales() {
     }
 }
 function clientes() {
+    console.log("\n");
     console.log("CLIENTES");
     console.log("-------------------------");
     redDeVeterinaria.listarClientes();
@@ -179,7 +184,7 @@ function clientes() {
     console.log("-------------------------");
     console.log("9. Atrás");
     console.log("0. Salir");
-    var opcion = rls.questionInt("Ingrese una opción: ");
+    var opcion = rls.questionInt("Ingrese una opcion: ");
     switch (opcion) {
         case 1:
             var nombre1_1 = rls.question("Ingrese el nombre del cliente: ");
@@ -190,20 +195,36 @@ function clientes() {
             break;
         case 2:
             var nombre2 = rls.question("Ingrese el nombre del cliente: ");
-            var telefono2 = rls.question("Ingrese el telefono del cliente: ");
+            var telefono2_1 = rls.question("Ingrese el telefono del cliente: ");
             veterinarias.forEach(function (veterinaria) {
-                veterinaria.eliminarCliente(nombre1_1, telefono1_1);
+                veterinaria.eliminarCliente(nombre1_1, telefono2_1);
             });
             break;
         case 3:
             var id3 = rls.question("Ingrese ID: ");
             var nombre3 = rls.question("Ingrese el nuevo nombre del cliente: ");
-            var telefono3 = rls.question("Ingrese el nuevo telefono del cliente: ");
+            var telefono3_1 = rls.question("Ingrese el nuevo telefono del cliente: ");
             veterinarias.forEach(function (veterinaria) {
-                veterinaria.modificarCliente(nombre1_1, telefono1_1);
+                veterinaria.modificarCliente(nombre1_1, telefono3_1);
             });
             break;
         case 4:
+            var idClienteInput = rls.question("Ingrese ID de cliente: ");
+            var id_cliente_1 = parseInt(idClienteInput, 10);
+            if (!isNaN(id_cliente_1) && id_cliente_1 > 0) {
+                var clientes_1 = (0, utils_1.leerTXT)('./bbdd/clientes.txt');
+                var clienteEncontrado = clientes_1.find(function (cliente) { return parseInt(cliente.ID, 10) === id_cliente_1; }); // Busca por ID
+                if (clienteEncontrado) {
+                    console.log("Se registra la visita del cliente");
+                }
+                else {
+                    console.log("El ID ingresado no corresponde a un cliente registrado.");
+                }
+            }
+            else {
+                console.log("ID inválido. Debe ser un número mayor a 0.");
+            }
+            clientes();
             break;
         case 9:
             menuRedDeVeterinarias();
@@ -216,6 +237,7 @@ function clientes() {
     }
 }
 function pacientes() {
+    console.log("\n");
     console.log("PACIENTES");
     console.log("-------------------------");
     redDeVeterinaria.listarPacientes();
@@ -231,8 +253,9 @@ function pacientes() {
         case 1:
             var nombre1_2 = rls.question("Ingrese el nombre del paciente: ");
             var especie1_1 = rls.question("Ingrese la especie del paciente: ");
+            var id_duenio_1_1 = rls.question("Ingrese el ID del dueño del paciente: ");
             veterinarias.forEach(function (veterinaria) {
-                veterinaria.agregarPaciente(nombre1_2, especie1_1);
+                veterinaria.agregarPaciente(nombre1_2, especie1_1, id_duenio_1_1);
             });
             break;
         case 2:

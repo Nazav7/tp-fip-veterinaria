@@ -1,22 +1,7 @@
-<<<<<<< HEAD
-import { generarID } from "./Clases/utils";
 
-export class Red {
-    nombre = "Juan";
-}
-
-export class Cliente {
-    nombre = "Cliente";
-}
-
-export class Paciente {
-    nombre = "Cliente";
-}
-=======
 import {Cliente} from "./Cliente";
 import {Paciente} from "./Paciente";
 import { generarID } from "./Clases/utils";
->>>>>>> Naza
 
 export class Veterinaria {
     private id: number;
@@ -26,19 +11,18 @@ export class Veterinaria {
     private pacientes: Paciente[]
 
     constructor(nombre: string, direccion:string) {
-        this.id=generarID('../bbdd/sucursales.txt');
+        this.id=generarID('./bbdd/sucursales.txt');
         this.nombre = nombre;
         this.direccion = direccion;
-<<<<<<< HEAD
-=======
-    
->>>>>>> Naza
+        this.pacientes = [];
+        this.clientes = [];
     }
 
     //Métodos
 
-    agregarCliente(nombre: string, telefono: string) {
-        const cliente = this.clientes.find(c => c.getNombre() === nombre && c.getTelefono() === telefono);
+    agregarCliente(nombre: string, telefono: number) {
+        console.log(this.clientes);
+        const cliente = this.clientes.find(c => c.getNombre() == nombre && c.getTelefono() == telefono);
         if (!cliente) {
             const nuevoCliente = new Cliente(nombre, telefono);
             this.clientes.push(nuevoCliente);
@@ -48,10 +32,10 @@ export class Veterinaria {
         }
     }
     
-    agregarPaciente(nombre: string, especie: string) {
+    agregarPaciente(nombre: string, especie: string, id_duenio:number) {
         const paciente = this.pacientes.find(p => p.getNombre() === nombre && p.getEspecie() === especie);
         if (!paciente) {
-            const nuevoPaciente = new Paciente(nombre, especie);
+            const nuevoPaciente = new Paciente(nombre, especie, id_duenio);
             this.pacientes.push(nuevoPaciente);
             console.log('El paciente ha sido agregado');
         } else {
@@ -60,7 +44,7 @@ export class Veterinaria {
     }
 
     
-    eliminarCliente(nombre: string, telefono: string) {
+    eliminarCliente(nombre: string, telefono: number) {
         const cliente = this.clientes.find(c => c.getNombre() === nombre && c.getTelefono() === telefono);
         if (cliente) {
             const index = this.clientes.indexOf(cliente);
@@ -83,8 +67,8 @@ export class Veterinaria {
     }
 
 
-    modificarCliente(nombre: string, telefono: string) {
-        const cliente = this.clientes.find(c => c.nombre === nombre && c.telefono === telefono);
+    modificarCliente(nombre: string, telefono: number) {
+        const cliente = this.clientes.find(c => c.getNombre() === nombre && c.getTelefono() === telefono);
         if (cliente) {
             cliente.setNombre(nombre);
             cliente.setTelefono(telefono);
@@ -95,7 +79,7 @@ export class Veterinaria {
     }
     
     modificarPaciente(nombre: string, especie: string) {
-        const paciente = this.pacientes.find(p => p.nombre === nombre && p.especie === especie);
+        const paciente = this.pacientes.find(p => p.getNombre() === nombre && p.getEspecie() === especie);
         if (paciente) {
             paciente.setNombre(nombre);
             paciente.setEspecie(especie);
@@ -112,14 +96,10 @@ export class Veterinaria {
     getId(): number {
         return this.id;
     }
-<<<<<<< HEAD
-=======
-
     getDireccion(): string {
         return this.direccion;
     }
 
->>>>>>> Naza
     getClientes(): Cliente[] {
         return [...this.clientes];
     }
@@ -137,15 +117,11 @@ export class Veterinaria {
     setPacientes(nuevaLista: Paciente[]): void {
         this.pacientes = [...nuevaLista]
     }
-<<<<<<< HEAD
-}
-=======
-
     setDireccion(nuevaDireccion: string): void {
         this.direccion = nuevaDireccion;
     }
+
 }
 
 
 
->>>>>>> Naza

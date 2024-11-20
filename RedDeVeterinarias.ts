@@ -31,7 +31,7 @@ export class RedDeVeterinarias {
         }
     }
 
-    agregarProveedor(nombre: string, telefono: string) {
+    agregarProveedor(nombre: string, telefono: number) {
         const proveedor = this.proveedores.find(p => p.getNombre() === nombre && p.getTelefono() === telefono);
         if (!proveedor) {
             const nuevoProveedor = new Proveedor(nombre, telefono);
@@ -42,7 +42,7 @@ export class RedDeVeterinarias {
         }
     }
 
-    eliminarProveedor(nombre: string, telefono: string) {
+    eliminarProveedor(nombre: string, telefono: number) {
         const proveedor = this.proveedores.find(p => p.getNombre() === nombre && p.getTelefono() === telefono);
         if (proveedor) {
             const index = this.proveedores.indexOf(proveedor);
@@ -75,7 +75,7 @@ export class RedDeVeterinarias {
         }
     }
 
-    modificarProveedor(id: number, nuevoNombre: string, nuevoTelefono: string) {
+    modificarProveedor(id: number, nuevoNombre: string, nuevoTelefono: number) {
         const proveedor = this.proveedores.find(p => p.getId() === id);
         if (proveedor) {
             proveedor.setNombre(nuevoNombre)
@@ -90,39 +90,26 @@ export class RedDeVeterinarias {
     getClientes(): Cliente[] {
         return [...this.clientes];
     }
-
-
     getPacientes(): Paciente[] {
         return [...this.pacientes]
     }
-
-
     getVeterinaria(): Veterinaria[] {
         return [...this.veterinarias];
     }
-
-
     getProveedor(): Proveedor[] {
         return [...this.proveedores]
     }
 
-
-    //Getters
+    //Setters
     setClientes(nuevaLista: Cliente[]): void {
         this.clientes = [...nuevaLista];
     }
-
-
     setPacientes(nuevaLista: Paciente[]): void {
         this.pacientes = [...nuevaLista]
     }
-
-
     setVeterinarias(nuevaLista: Veterinaria[]): void {
         this.veterinarias = [...nuevaLista];
     }
-
-
     setProveedores(nuevaLista: Proveedor[]): void {
         this.proveedores = [...nuevaLista]
     }
@@ -133,10 +120,9 @@ export class RedDeVeterinarias {
             console.log(`${veterinaria.getId()}, ${veterinaria.getNombre()}, ${veterinaria.getDireccion()}`);
         });
     }
-
     listarClientes() {
         this.clientes.forEach(cliente => {
-            console.log(`${cliente.getId()}, ${cliente.getNombre()}, ${cliente.getTelefono()}, ${cliente.getEsVip()}`);
+            console.log(`${cliente.getId()}, ${cliente.getNombre()}, ${cliente.getTelefono()}, ${cliente.getEsVIP()}`);
         });
     }
 
