@@ -1,44 +1,67 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Paciente = void 0;
-var utils_1 = require("./Clases/utils");
-var Paciente = /** @class */ (function () {
-    function Paciente(nombre, especie, idDueno) {
-        this.id = (0, utils_1.generarID)('../bbdd/pacientes.txt');
+const generarId_1 = require("./generarId");
+class Paciente {
+    id;
+    nombre;
+    especie;
+    idDuenio;
+    duenios = [];
+    constructor(nombre, especie) {
         this.nombre = nombre;
-        this.especie = especie;
-        this.idDueno = idDueno;
+        this.especie = this.validarEspecie(especie);
+        this.id = (0, generarId_1.generarIDAleatorio)();
     }
-    Paciente.prototype.modificarDatos = function (nombre, especie) {
+    validarEspecie(especie) {
+        if (especie === "perro" || especie === "gato") {
+            return especie;
+        }
+        else {
+            return "exótica";
+        }
+    }
+    asignarID(id) {
+        if (id > 0 && this.duenios?.find(duenio => duenio.getId() == id)) {
+            this.idDuenio = id;
+        }
+        else {
+            console.log("No se encontró un cliente con ese ID.");
+        }
+    }
+    agregarDuenio(duenio) {
+        if (duenio != undefined) {
+            this.duenios.push(duenio);
+        }
+    }
+    modificarDatos(nombre, especie) {
         this.nombre = nombre;
         this.especie = especie;
-        console.log("datos modificados satisactoriamente, nombre: ".concat(this.nombre, ", especie: ").concat(this.especie, ". "));
-    };
-    Paciente.prototype.darDeBaja = function () {
-        console.log("Paciente ".concat(this.nombre, " ha sido dado de baja."));
-    };
-    //getters & setters
-    Paciente.prototype.getNombre = function () {
+        console.log(`datos modificados satisactoriamente, nombre: ${this.nombre}, especie: ${this.especie}. `);
+    }
+    darDeBaja() {
+        console.log(`Paciente ${this.nombre} ha sido dado de baja.`);
+    }
+    getNombre() {
         return this.nombre;
-    };
-    Paciente.prototype.setNombre = function (nombre) {
+    }
+    setNombre(nombre) {
         this.nombre = nombre;
-    };
-    Paciente.prototype.getEspecie = function () {
+    }
+    getEspecie() {
         return this.especie;
-    };
-    Paciente.prototype.setEspecie = function (especie) {
+    }
+    setEspecie(especie) {
         this.especie = especie;
-    };
-    Paciente.prototype.getIdDueno = function () {
-        return this.idDueno;
-    };
-    Paciente.prototype.setIdDueno = function (idDueno) {
-        this.idDueno = idDueno;
-    };
-    Paciente.prototype.getId = function () {
+    }
+    getIdDuenio() {
+        return this.idDuenio;
+    }
+    setIdDuenio(idDuenio) {
+        this.idDuenio = idDuenio;
+    }
+    getId() {
         return this.id;
-    };
-    return Paciente;
-}());
+    }
+}
 exports.Paciente = Paciente;

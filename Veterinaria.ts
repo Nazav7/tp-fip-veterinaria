@@ -186,7 +186,8 @@ export class Veterinaria {
 
     listarClientes() {
         this.clientes.forEach(cliente => {
-            console.log(`${cliente.getId()}, ${cliente.getNombre()}, ${cliente.getTelefono()}, ${cliente.getEsVIP()}`);
+            
+            console.log(`${cliente.getId()}, ${cliente.getNombre()}, ${cliente.getTelefono()}, ${cliente.getEsVIP() ? "vip" : "No vip"}`);
         });
     }
 

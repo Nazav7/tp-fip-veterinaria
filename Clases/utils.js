@@ -1,20 +1,42 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generarID = exports.leerTXT = void 0;
-var fs = require("fs");
-///URLS///
-var url_cliente = '../bbdd/clientes.txt';
-var url_pacientes = '../bbdd/pacientes.txt';
-var url_proveedores = '../bbdd/proveedores.txt';
-var url_sucursales = '../bbdd/sucursales.txt';
-//////////////////LEER ARCHIVO TXT COMO BASE DE DATOS Y CONVERTIRLO EN JASON////////////////////////
+exports.leerTXT = leerTXT;
+exports.generarID = generarID;
+const fs = __importStar(require("fs"));
+const url_cliente = '../bbdd/clientes.txt';
+const url_pacientes = '../bbdd/pacientes.txt';
+const url_proveedores = '../bbdd/proveedores.txt';
+const url_sucursales = '../bbdd/sucursales.txt';
 function leerTXT(ruta) {
     try {
-        var archivoTexto = fs.readFileSync(ruta, 'utf8');
-        var lineas = archivoTexto.trim().split('\n');
+        const archivoTexto = fs.readFileSync(ruta, 'utf8');
+        const lineas = archivoTexto.trim().split('\n');
         if (ruta.includes("clientes")) {
-            return lineas.map(function (linea) {
-                var _a = linea.split(','), id = _a[0], nombre = _a[1], telefono = _a[2], visitas = _a[3], vip = _a[4];
+            return lineas.map(linea => {
+                const [id, nombre, telefono, visitas, vip] = linea.split(',');
                 return {
                     ID: id.trim(),
                     Nombre: nombre.trim(),
@@ -25,8 +47,8 @@ function leerTXT(ruta) {
             });
         }
         else if (ruta.includes("pacientes")) {
-            return lineas.map(function (linea) {
-                var _a = linea.split(','), id = _a[0], nombre = _a[1], raza = _a[2], idCliente = _a[3];
+            return lineas.map(linea => {
+                const [id, nombre, raza, idCliente] = linea.split(',');
                 return {
                     ID: id.trim(),
                     Nombre: nombre.trim(),
@@ -36,8 +58,8 @@ function leerTXT(ruta) {
             });
         }
         else if (ruta.includes("proveedores")) {
-            return lineas.map(function (linea) {
-                var _a = linea.split(','), id = _a[0], nombre = _a[1], telefono = _a[2];
+            return lineas.map(linea => {
+                const [id, nombre, telefono] = linea.split(',');
                 return {
                     ID: id.trim(),
                     Nombre: nombre.trim(),
@@ -46,8 +68,8 @@ function leerTXT(ruta) {
             });
         }
         else if (ruta.includes("sucursales")) {
-            return lineas.map(function (linea) {
-                var _a = linea.split(','), id = _a[0], nombre = _a[1], direccion = _a[2];
+            return lineas.map(linea => {
+                const [id, nombre, direccion] = linea.split(',');
                 return {
                     ID: id.trim(),
                     Nombre: nombre.trim(),
@@ -66,38 +88,14 @@ function leerTXT(ruta) {
     }
     return [];
 }
-exports.leerTXT = leerTXT;
-//TEST DE CODIGO//
-/*
-
-let clientes = leerTXT(url_cliente);
-console.log(clientes);
-let pacientes = leerTXT(url_pacientes);
-console.log(clientes);
-let proveedores = leerTXT(url_proveedores);
-console.log(clientes);
-let sucursales = leerTXT(url_sucursales);
-console.log(clientes);
-
-*/
-///////////////////GENERAR ID AUTOMATICO////////////////////////////
 function generarID(url) {
-    var max_id = 0;
-    var arreglo = leerTXT(url);
-    for (var _i = 0, arreglo_1 = arreglo; _i < arreglo_1.length; _i++) {
-        var elemento = arreglo_1[_i];
-        var id = parseInt(elemento.ID);
+    let max_id = 0;
+    const arreglo = leerTXT(url);
+    for (const elemento of arreglo) {
+        const id = parseInt(elemento.ID);
         if (id > max_id) {
             max_id = id;
         }
     }
     return max_id + 1;
 }
-exports.generarID = generarID;
-//TEST DE CODIGO//
-/*
-
-let id = generarID(url_cliente);
-console.log(id);
-
-*/ 

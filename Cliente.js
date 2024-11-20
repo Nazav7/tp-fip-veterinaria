@@ -1,55 +1,61 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Cliente = void 0;
-var utils_1 = require("./Clases/utils");
-var Cliente = /** @class */ (function () {
-    function Cliente(nombre, telefono) {
-        this.id = (0, utils_1.generarID)('../bbdd/clientes.txt');
+const generarId_1 = require("./generarId");
+class Cliente {
+    id;
+    nombre;
+    telefono;
+    visitas;
+    esVIP;
+    mascotas;
+    constructor(nombre, telefono) {
+        this.id = (0, generarId_1.generarIDAleatorio)();
         this.nombre = nombre;
         this.telefono = telefono;
         this.visitas = 1;
         this.esVIP = false;
+        this.mascotas = [];
     }
-    Cliente.prototype.registrarVisita = function () {
-        this.visitas += 1;
-        this.esVIP = this.visitas >= 5;
-    };
-    Cliente.prototype.modificarDatos = function (nombre, telefono) {
+    modificarDatos(nombre, telefono) {
         this.nombre = nombre;
         this.telefono = telefono;
-        console.log("datos modificados satisactoriamente, nombre: ".concat(this.nombre, ", telefono: ").concat(this.telefono, ". "));
-    };
-    Cliente.prototype.darDeBaja = function () {
-        console.log("Cliente ".concat(this.nombre, " ha sido dado de baja."));
-    };
-    // getters & setters
-    Cliente.prototype.getId = function () {
+        console.log(`datos modificados satisactoriamente, nombre: ${this.nombre}, telefono: ${this.telefono}. `);
+    }
+    darDeBaja() {
+        console.log(`Cliente ${this.nombre} ha sido dado de baja.`);
+    }
+    getId() {
         return this.id;
-    };
-    Cliente.prototype.getNombre = function () {
+    }
+    getNombre() {
         return this.nombre;
-    };
-    Cliente.prototype.setNombre = function (nombre) {
+    }
+    setNombre(nombre) {
         this.nombre = nombre;
-    };
-    Cliente.prototype.getTelefono = function () {
+    }
+    getTelefono() {
         return this.telefono;
-    };
-    Cliente.prototype.setTelefono = function (telefono) {
+    }
+    setTelefono(telefono) {
         this.telefono = telefono;
-    };
-    Cliente.prototype.getVisitas = function () {
+    }
+    getVisitas() {
         return this.visitas;
-    };
-    Cliente.prototype.setVisitas = function (visitas) {
+    }
+    setVisitas(visitas) {
         this.visitas = visitas;
-    };
-    Cliente.prototype.getEsVIP = function () {
+    }
+    getEsVIP() {
         return this.esVIP;
-    };
-    Cliente.prototype.setEsVIP = function (esVIP) {
+    }
+    setEsVIP(esVIP) {
         this.esVIP = esVIP;
-    };
-    return Cliente;
-}());
+    }
+    agregarMascota(mascota) {
+        if (mascota != undefined && !this.mascotas.includes(mascota)) {
+            this.mascotas.push(mascota);
+        }
+    }
+}
 exports.Cliente = Cliente;
