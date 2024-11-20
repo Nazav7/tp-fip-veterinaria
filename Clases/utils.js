@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.generarID = exports.leerTXT = void 0;
 var fs = require("fs");
 ///URLS///
 var url_cliente = '../bbdd/clientes.txt';
@@ -65,6 +66,7 @@ function leerTXT(ruta) {
     }
     return [];
 }
+exports.leerTXT = leerTXT;
 //TEST DE CODIGO//
 /*
 
@@ -84,12 +86,18 @@ function generarID(url) {
     var arreglo = leerTXT(url);
     for (var _i = 0, arreglo_1 = arreglo; _i < arreglo_1.length; _i++) {
         var elemento = arreglo_1[_i];
-        var id_1 = parseInt(elemento.ID);
-        if (id_1 > max_id) {
-            max_id = id_1;
+        var id = parseInt(elemento.ID);
+        if (id > max_id) {
+            max_id = id;
         }
     }
     return max_id + 1;
 }
-var id = generarID(url_cliente);
+exports.generarID = generarID;
+//TEST DE CODIGO//
+/*
+
+let id = generarID(url_cliente);
 console.log(id);
+
+*/ 
