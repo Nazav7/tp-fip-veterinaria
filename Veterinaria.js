@@ -12,10 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Veterinaria = void 0;
 var Cliente_1 = require("./Cliente");
 var Paciente_1 = require("./Paciente");
-var utils_1 = require("./Clases/utils");
 var Veterinaria = /** @class */ (function () {
-    function Veterinaria(nombre, direccion) {
-        this.id = (0, utils_1.generarID)('./bbdd/sucursales.txt');
+    function Veterinaria(nombre, direccion, id) {
+        this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.pacientes = [];
@@ -23,10 +22,10 @@ var Veterinaria = /** @class */ (function () {
     }
     //Métodos
     Veterinaria.prototype.agregarCliente = function (nombre, telefono) {
-        console.log(this.clientes);
+        var id = this.generarID('cliente');
         var cliente = this.clientes.find(function (c) { return c.getNombre() == nombre && c.getTelefono() == telefono; });
         if (!cliente) {
-            var nuevoCliente = new Cliente_1.Cliente(nombre, telefono);
+            var nuevoCliente = new Cliente_1.Cliente(nombre, telefono, id);
             this.clientes.push(nuevoCliente);
             console.log('El cliente ha sido agregado');
         }
@@ -35,9 +34,10 @@ var Veterinaria = /** @class */ (function () {
         }
     };
     Veterinaria.prototype.agregarPaciente = function (nombre, especie, id_duenio) {
+        var id = this.generarID('paciente');
         var paciente = this.pacientes.find(function (p) { return p.getNombre() === nombre && p.getEspecie() === especie; });
         if (!paciente) {
-            var nuevoPaciente = new Paciente_1.Paciente(nombre, especie, id_duenio);
+            var nuevoPaciente = new Paciente_1.Paciente(nombre, especie, id_duenio, id);
             this.pacientes.push(nuevoPaciente);
             console.log('El paciente ha sido agregado');
         }
@@ -117,6 +117,33 @@ var Veterinaria = /** @class */ (function () {
     };
     Veterinaria.prototype.setDireccion = function (nuevaDireccion) {
         this.direccion = nuevaDireccion;
+    };
+    Veterinaria.prototype.generarID = function (tipo) {
+        switch (tipo) {
+            case 'cliente':
+                var id_c = 0;
+                for (var _i = 0, _a = this.clientes; _i < _a.length; _i++) {
+                    var cliente = _a[_i];
+                    var id_cliente = cliente.getId();
+                    if (id_cliente > id_c) {
+                        id_c = id_cliente;
+                    }
+                }
+                return id_c = id_c + 1;
+            case 'paciente':
+                var id_p = 0;
+                for (var _b = 0, _c = this.pacientes; _b < _c.length; _b++) {
+                    var paciente = _c[_b];
+                    var id_paciente = paciente.getId();
+                    if (id_paciente > id_p) {
+                        id_p = id_paciente;
+                    }
+                }
+                return id_p = id_p + 1;
+            default:
+                console.log("Error al crear id");
+                return 0;
+        }
     };
     return Veterinaria;
 }());

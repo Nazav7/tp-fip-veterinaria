@@ -23,7 +23,8 @@ export class RedDeVeterinarias {
     agregarVeterinaria(nombre: string, direccion: string) {
         const veterinaria = this.veterinarias.find(v => v.getNombre() === nombre && v.getDireccion() === direccion);
         if (!veterinaria) {
-            const nuevaVeterinaria = new Veterinaria(nombre, direccion);
+            const id = this.generarID('veterinaria'); 
+            const nuevaVeterinaria = new Veterinaria(nombre, direccion, id);
             this.veterinarias.push(nuevaVeterinaria);
             console.log('La veterinaria ha sido agregada');
         } else {
@@ -34,7 +35,8 @@ export class RedDeVeterinarias {
     agregarProveedor(nombre: string, telefono: number) {
         const proveedor = this.proveedores.find(p => p.getNombre() === nombre && p.getTelefono() === telefono);
         if (!proveedor) {
-            const nuevoProveedor = new Proveedor(nombre, telefono);
+            const id = this.generarID('proveedor'); 
+            const nuevoProveedor = new Proveedor(nombre, telefono, id);
             this.proveedores.push(nuevoProveedor);
             console.log('El proveedor ha sido agregado');
         } else {
@@ -86,6 +88,32 @@ export class RedDeVeterinarias {
         }
     }
 
+    generarID(tipo): number{
+        switch(tipo){
+            case 'veterinaria':
+                let id_v:number= 0;
+                for(let veterinaria of this.veterinarias){
+                    let id_veterinaria =veterinaria.getId();
+                    if(id_veterinaria > id_v){
+                        id_v = id_veterinaria; 
+                    }
+                }   
+                return id_v = id_v +1;
+            case 'proveedor' :
+                let id_prov:number= 0;
+                for(let proveedor of this.proveedores){
+                    let id_proveedor =proveedor.getId();
+                    if(id_proveedor > id_prov){
+                        id_prov = id_proveedor; 
+                    }
+                }   
+                return id_prov = id_prov +1;
+            default:
+                console.log("Error al crear id");
+                return 0;
+        }
+    }
+
     //Getters
     getClientes(): Cliente[] {
         return [...this.clientes];
@@ -116,9 +144,12 @@ export class RedDeVeterinarias {
 
     //listar
     listarVeterinarias() {
-        this.veterinarias.forEach(veterinaria => {
-            console.log(`${veterinaria.getId()}, ${veterinaria.getNombre()}, ${veterinaria.getDireccion()}`);
-        });
+        if(this.veterinarias != null){
+            this.veterinarias.forEach(veterinaria => {
+                console.log(`${veterinaria.getId()}, ${veterinaria.getNombre()}, ${veterinaria.getDireccion()}`);
+            });
+        }
+        
     }
     listarClientes() {
         this.clientes.forEach(cliente => {

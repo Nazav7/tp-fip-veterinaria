@@ -1,7 +1,5 @@
-
 import {Cliente} from "./Cliente";
 import {Paciente} from "./Paciente";
-import { generarID } from "./Clases/utils";
 
 export class Veterinaria {
     private id: number;
@@ -10,8 +8,8 @@ export class Veterinaria {
     private clientes: Cliente[];
     private pacientes: Paciente[]
 
-    constructor(nombre: string, direccion:string) {
-        this.id=generarID('./bbdd/sucursales.txt');
+    constructor(nombre: string, direccion:string, id:number) {
+        this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.pacientes = [];
@@ -21,10 +19,10 @@ export class Veterinaria {
     //Métodos
 
     agregarCliente(nombre: string, telefono: number) {
-        console.log(this.clientes);
+        const id = this.generarID('cliente');
         const cliente = this.clientes.find(c => c.getNombre() == nombre && c.getTelefono() == telefono);
         if (!cliente) {
-            const nuevoCliente = new Cliente(nombre, telefono);
+            const nuevoCliente = new Cliente(nombre, telefono, id);
             this.clientes.push(nuevoCliente);
             console.log('El cliente ha sido agregado');
         } else {
@@ -33,9 +31,10 @@ export class Veterinaria {
     }
     
     agregarPaciente(nombre: string, especie: string, id_duenio:number) {
+        const id = this.generarID('paciente');
         const paciente = this.pacientes.find(p => p.getNombre() === nombre && p.getEspecie() === especie);
         if (!paciente) {
-            const nuevoPaciente = new Paciente(nombre, especie, id_duenio);
+            const nuevoPaciente = new Paciente(nombre, especie, id_duenio, id);
             this.pacientes.push(nuevoPaciente);
             console.log('El paciente ha sido agregado');
         } else {
@@ -120,6 +119,33 @@ export class Veterinaria {
     setDireccion(nuevaDireccion: string): void {
         this.direccion = nuevaDireccion;
     }
+
+    generarID(tipo): number{
+        switch(tipo){
+            case 'cliente':
+                let id_c:number= 0;
+                for(let cliente of this.clientes){
+                    let id_cliente =cliente.getId();
+                    if(id_cliente > id_c){
+                        id_c = id_cliente; 
+                    }
+                }   
+                return id_c = id_c +1;
+            case 'paciente' :
+                let id_p:number= 0;
+                for(let paciente of this.pacientes){
+                    let id_paciente =paciente.getId();
+                    if(id_paciente > id_p){
+                    id_p = id_paciente; 
+                    }
+                }   
+                return id_p = id_p +1;
+            default:
+                console.log("Error al crear id");
+                return 0;
+        }
+    }
+
 
 }
 

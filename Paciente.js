@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Paciente = void 0;
-var utils_1 = require("./Clases/utils");
 var Paciente = /** @class */ (function () {
-    function Paciente(nombre, especie, idDueno) {
-        this.id = (0, utils_1.generarID)('../bbdd/pacientes.txt');
+    function Paciente(nombre, especie, idDueno, id) {
+        this.id = id;
         this.nombre = nombre;
         this.especie = especie;
         this.idDueno = idDueno;

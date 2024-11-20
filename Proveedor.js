@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Proveedor = void 0;
-var utils_1 = require("./Clases/utils");
 var Proveedor = /** @class */ (function () {
-    function Proveedor(nombre, telefono) {
+    function Proveedor(nombre, telefono, id) {
         this.nombre = nombre;
         this.telefono = telefono;
-        this.id = (0, utils_1.generarID)('./bbdd/proveedores.txt');
+        this.id = id;
     }
     //Getters
     Proveedor.prototype.getNombre = function () {

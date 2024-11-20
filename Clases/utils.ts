@@ -68,22 +68,26 @@ try{
 
 //TEST DE CODIGO//
 
-
 /* 
 
 let clientes = leerTXT(url_cliente);
 console.log(clientes);
 let pacientes = leerTXT(url_pacientes);
-console.log(clientes);
+console.log(pacientes);
 let proveedores = leerTXT(url_proveedores);
-console.log(clientes);
+console.log(proveedores);
 let sucursales = leerTXT(url_sucursales);
-console.log(clientes);
+console.log(sucursales);
 
 */
 
 
 ///////////////////GENERAR ID AUTOMATICO////////////////////////////
+
+
+
+
+/*
 export function generarID(url){
   let max_id = 0;
   const arreglo = leerTXT(url);
@@ -92,12 +96,15 @@ export function generarID(url){
           if(id > max_id){
             max_id = id;
           }
+          else{
+            max_id = 1;
+          }
         }
         return max_id + 1;
   }
 
 //TEST DE CODIGO//
-/*
+
 
 let id = generarID(url_cliente);
 console.log(id);

@@ -1,6 +1,3 @@
-import { generarID } from "./Clases/utils";
-
-
 export class Paciente {
     private id: number;
     private nombre: string;
@@ -9,8 +6,8 @@ export class Paciente {
 
 
 
-    constructor(nombre: string, especie: string, idDueno: number) {
-        this.id = generarID('../bbdd/pacientes.txt');
+    constructor(nombre: string, especie: string, idDueno: number, id:number) {
+        this.id = id;
         this.nombre = nombre;
         this.especie = especie;
         this.idDueno = idDueno;

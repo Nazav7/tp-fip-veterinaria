@@ -23,7 +23,8 @@ var RedDeVeterinarias = /** @class */ (function () {
     RedDeVeterinarias.prototype.agregarVeterinaria = function (nombre, direccion) {
         var veterinaria = this.veterinarias.find(function (v) { return v.getNombre() === nombre && v.getDireccion() === direccion; });
         if (!veterinaria) {
-            var nuevaVeterinaria = new Veterinaria_1.Veterinaria(nombre, direccion);
+            var id = this.generarID('veterinaria');
+            var nuevaVeterinaria = new Veterinaria_1.Veterinaria(nombre, direccion, id);
             this.veterinarias.push(nuevaVeterinaria);
             console.log('La veterinaria ha sido agregada');
         }
@@ -34,7 +35,8 @@ var RedDeVeterinarias = /** @class */ (function () {
     RedDeVeterinarias.prototype.agregarProveedor = function (nombre, telefono) {
         var proveedor = this.proveedores.find(function (p) { return p.getNombre() === nombre && p.getTelefono() === telefono; });
         if (!proveedor) {
-            var nuevoProveedor = new Proveedor_1.Proveedor(nombre, telefono);
+            var id = this.generarID('proveedor');
+            var nuevoProveedor = new Proveedor_1.Proveedor(nombre, telefono, id);
             this.proveedores.push(nuevoProveedor);
             console.log('El proveedor ha sido agregado');
         }
@@ -86,6 +88,33 @@ var RedDeVeterinarias = /** @class */ (function () {
             console.log('No se encontró ID');
         }
     };
+    RedDeVeterinarias.prototype.generarID = function (tipo) {
+        switch (tipo) {
+            case 'veterinaria':
+                var id_v = 0;
+                for (var _i = 0, _a = this.veterinarias; _i < _a.length; _i++) {
+                    var veterinaria = _a[_i];
+                    var id_veterinaria = veterinaria.getId();
+                    if (id_veterinaria > id_v) {
+                        id_v = id_veterinaria;
+                    }
+                }
+                return id_v = id_v + 1;
+            case 'proveedor':
+                var id_prov = 0;
+                for (var _b = 0, _c = this.proveedores; _b < _c.length; _b++) {
+                    var proveedor = _c[_b];
+                    var id_proveedor = proveedor.getId();
+                    if (id_proveedor > id_prov) {
+                        id_prov = id_proveedor;
+                    }
+                }
+                return id_prov = id_prov + 1;
+            default:
+                console.log("Error al crear id");
+                return 0;
+        }
+    };
     //Getters
     RedDeVeterinarias.prototype.getClientes = function () {
         return __spreadArray([], this.clientes, true);
@@ -114,9 +143,11 @@ var RedDeVeterinarias = /** @class */ (function () {
     };
     //listar
     RedDeVeterinarias.prototype.listarVeterinarias = function () {
-        this.veterinarias.forEach(function (veterinaria) {
-            console.log("".concat(veterinaria.getId(), ", ").concat(veterinaria.getNombre(), ", ").concat(veterinaria.getDireccion()));
-        });
+        if (this.veterinarias != null) {
+            this.veterinarias.forEach(function (veterinaria) {
+                console.log("".concat(veterinaria.getId(), ", ").concat(veterinaria.getNombre(), ", ").concat(veterinaria.getDireccion()));
+            });
+        }
     };
     RedDeVeterinarias.prototype.listarClientes = function () {
         this.clientes.forEach(function (cliente) {

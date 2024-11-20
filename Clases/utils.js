@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.leerTXT = leerTXT;
-exports.generarID = generarID;
+exports.leerTXT = void 0;
 var fs = require("fs");
 ///URLS///
 var url_cliente = '../bbdd/clientes.txt';
@@ -67,34 +66,39 @@ function leerTXT(ruta) {
     }
     return [];
 }
+exports.leerTXT = leerTXT;
 //TEST DE CODIGO//
 /*
 
 let clientes = leerTXT(url_cliente);
 console.log(clientes);
 let pacientes = leerTXT(url_pacientes);
-console.log(clientes);
+console.log(pacientes);
 let proveedores = leerTXT(url_proveedores);
-console.log(clientes);
+console.log(proveedores);
 let sucursales = leerTXT(url_sucursales);
-console.log(clientes);
+console.log(sucursales);
 
 */
 ///////////////////GENERAR ID AUTOMATICO////////////////////////////
-function generarID(url) {
-    var max_id = 0;
-    var arreglo = leerTXT(url);
-    for (var _i = 0, arreglo_1 = arreglo; _i < arreglo_1.length; _i++) {
-        var elemento = arreglo_1[_i];
-        var id = parseInt(elemento.ID);
-        if (id > max_id) {
-            max_id = id;
-        }
-    }
-    return max_id + 1;
-}
-//TEST DE CODIGO//
 /*
+export function generarID(url){
+  let max_id = 0;
+  const arreglo = leerTXT(url);
+        for(const elemento of arreglo){
+          const id = parseInt(elemento.ID);
+          if(id > max_id){
+            max_id = id;
+          }
+          else{
+            max_id = 1;
+          }
+        }
+        return max_id + 1;
+  }
+
+//TEST DE CODIGO//
+
 
 let id = generarID(url_cliente);
 console.log(id);

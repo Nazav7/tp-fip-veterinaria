@@ -1,5 +1,3 @@
-import { generarID } from "./Clases/utils";
-
 export class Cliente {
     private id: number;
     private nombre: string;
@@ -7,8 +5,8 @@ export class Cliente {
     private visitas: number;
     private esVIP: boolean;
 
-    constructor(nombre: string, telefono: number) {
-        this.id = generarID('./bbdd/clientes.txt');
+    constructor(nombre: string, telefono: number, id :number) {
+        this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
         this.visitas = 1;
