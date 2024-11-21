@@ -1,4 +1,4 @@
-
+/*
 
 
 import * as readline from 'readline';
@@ -149,10 +149,10 @@ mostrarMenu();
 
 
 
-
+*/
 //++++++++++++++++++++++++++  OPCION 2  +++++++++++++++++++++++++++
 
-/*
+
 
 
 import * as readline from 'readline';
@@ -438,14 +438,69 @@ function menuProveedores() {
     5. Atras
     ***********************
     `);
+
     rl.question('Seleccione una opción: ', (opcion) => {
         switch (opcion) {
+            case '1':
+                listarProveedores();
+                break;
+            case '2':
+                agregarProveedor();
+                break;
+            case '3':
+                modificarProveedor();
+                break;
+            case '4':
+                eliminarProveedor();
+                break;
+            case '5':
+                menuRed();
+                break;
             default:
-                console.log('Opción no implementada.');
+                console.log('Opción inválida. Intente de nuevo.');
                 menuProveedores();
+                break;
         }
     });
 }
+
+function listarProveedores() {
+    console.log('*** Listado de Proveedores ***');
+    const proveedores = sistemaRed.getProveedor(); 
+    console.table(proveedores); 
+    menuProveedores();
+}
+
+function agregarProveedor() {
+    rl.question('Ingrese el nombre del proveedor: ', (nombre) => {
+        rl.question('Ingrese el teléfono del proveedor: ', (telefono) => {
+            sistemaRed.agregarProveedor(nombre, Number(telefono)); 
+            console.log('Proveedor agregado exitosamente.');
+            menuProveedores();
+        });
+    });
+}
+
+function modificarProveedor() {
+    rl.question('Ingrese el ID del proveedor a modificar: ', (id) => {
+        rl.question('Ingrese el nuevo nombre del proveedor: ', (nuevoNombre) => {
+            rl.question('Ingrese el nuevo teléfono del proveedor: ', (nuevoTelefono) => {
+                sistemaRed.modificarProveedor(Number(id), nuevoNombre, Number(nuevoTelefono)); 
+                console.log('Proveedor modificado exitosamente.');
+                menuProveedores();
+            });
+        });
+    });
+}
+
+function eliminarProveedor() {
+    rl.question('Ingrese el ID del proveedor a eliminar: ', (id) => {
+        sistemaRed.eliminarProveedor(Number(id)); 
+        console.log('Proveedor eliminado exitosamente.');
+        menuProveedores();
+    });
+}
+
 
 function menuSucursales() {
     console.log(`
@@ -457,16 +512,70 @@ function menuSucursales() {
     5. Atras
     ***********************
     `);
+
     rl.question('Seleccione una opción: ', (opcion) => {
         switch (opcion) {
+            case '1':
+                listarSucursales();
+                break;
+            case '2':
+                agregarSucursal();
+                break;
+            case '3':
+                modificarSucursal();
+                break;
+            case '4':
+                eliminarSucursal();
+                break;
+            case '5':
+                menuRed();
+                break;
             default:
-                console.log('Opción no implementada.');
+                console.log('Opción inválida. Intente de nuevo.');
                 menuSucursales();
+                break;
         }
+    });
+}
+
+function listarSucursales() {
+    console.log('*** Listado de Sucursales ***');
+    const sucursales = sistemaRed.getVeterinaria(); 
+    console.table(sucursales); 
+    menuSucursales();
+}
+
+function agregarSucursal() {
+    rl.question('Ingrese el nombre de la nueva sucursal: ', (nombre) => {
+        rl.question('Ingrese la dirección de la sucursal: ', (direccion) => {
+            sistemaRed.agregarVeterinaria(nombre, direccion); 
+            console.log('Sucursal agregada exitosamente.');
+            menuSucursales();
+        });
+    });
+}
+
+function modificarSucursal() {
+    rl.question('Ingrese el ID de la sucursal a modificar: ', (id) => {
+        rl.question('Ingrese el nuevo nombre de la sucursal: ', (nuevoNombre) => {
+            rl.question('Ingrese la nueva dirección de la sucursal: ', (nuevaDireccion) => {
+                sistemaRed.modificarVeterinaria(Number(id), nuevoNombre, nuevaDireccion); 
+                console.log('Sucursal modificada exitosamente.');
+                menuSucursales();
+            });
+        });
+    });
+}
+
+function eliminarSucursal() {
+    rl.question('Ingrese el ID de la sucursal a eliminar: ', (id) => {
+        sistemaRed.eliminarVeterinaria(Number(id)); 
+        console.log('Sucursal eliminada exitosamente.');
+        menuSucursales();
     });
 }
 
 
 
+
 mostrarMenuPrincipal();
-*/

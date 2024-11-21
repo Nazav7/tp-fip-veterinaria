@@ -1,17 +1,35 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var readline = require("readline");
-var RedDeVeterinarias_1 = require("./RedDeVeterinarias");
-var rl = readline.createInterface({
+/*
+
+
+import * as readline from 'readline';
+import { RedDeVeterinarias } from './RedDeVeterinarias';
+
+const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-var sistema = new RedDeVeterinarias_1.RedDeVeterinarias();
+
+const sistema = new RedDeVeterinarias();
+
 function mostrarMenu() {
-    console.log("\n    ********** MENU PRINCIPAL **********\n    1. Listar veterinarias\n    2. Agregar veterinaria\n    3. Modificar veterinaria\n    4. Eliminar veterinaria\n    5. Listar proveedores\n    6. Agregar proveedor\n    7. Modificar proveedor\n    8. Eliminar proveedor\n    9. Salir\n    *************************************\n    ");
+    console.log(`
+    ********** MENU PRINCIPAL **********
+    1. Listar veterinarias
+    2. Agregar veterinaria
+    3. Modificar veterinaria
+    4. Eliminar veterinaria
+    5. Listar proveedores
+    6. Agregar proveedor
+    7. Modificar proveedor
+    8. Eliminar proveedor
+    9. Salir
+    *************************************
+    `);
     rl.question('Seleccione una opción: ', manejarOpcion);
 }
-function manejarOpcion(opcion) {
+
+function manejarOpcion(opcion: string) {
     switch (opcion) {
         case '1':
             listarVeterinarias();
@@ -47,97 +65,107 @@ function manejarOpcion(opcion) {
             break;
     }
 }
+
+
+
+
+
 function listarVeterinarias() {
     console.log('*** Veterinarias ***');
     sistema.listarVeterinarias();
     mostrarMenu();
 }
+
 function agregarVeterinaria() {
-    rl.question('Ingrese el nombre de la veterinaria: ', function (nombre) {
-        rl.question('Ingrese la dirección de la veterinaria: ', function (direccion) {
+    rl.question('Ingrese el nombre de la veterinaria: ', (nombre) => {
+        rl.question('Ingrese la dirección de la veterinaria: ', (direccion) => {
             sistema.agregarVeterinaria(nombre, direccion);
             mostrarMenu();
         });
     });
 }
+
 function modificarVeterinaria() {
-    rl.question('Ingrese el ID de la veterinaria a modificar: ', function (id) {
-        rl.question('Ingrese el nuevo nombre de la veterinaria: ', function (nuevoNombre) {
-            rl.question('Ingrese la nueva dirección de la veterinaria: ', function (nuevaDireccion) {
+    rl.question('Ingrese el ID de la veterinaria a modificar: ', (id) => {
+        rl.question('Ingrese el nuevo nombre de la veterinaria: ', (nuevoNombre) => {
+            rl.question('Ingrese la nueva dirección de la veterinaria: ', (nuevaDireccion) => {
                 sistema.modificarVeterinaria(Number(id), nuevoNombre, nuevaDireccion);
                 mostrarMenu();
             });
         });
     });
 }
+
 function eliminarVeterinaria() {
-    rl.question('Ingrese el nombre de la veterinaria a eliminar: ', function (nombre) {
-        rl.question('Ingrese la dirección de la veterinaria a eliminar: ', function (direccion) {
+    rl.question('Ingrese el nombre de la veterinaria a eliminar: ', (nombre) => {
+        rl.question('Ingrese la dirección de la veterinaria a eliminar: ', (direccion) => {
             sistema.eliminarVeterinaria(nombre, direccion);
             mostrarMenu();
         });
     });
 }
+
+
+
+
 function listarProveedores() {
     console.log('*** Proveedores ***');
     sistema.listarProveedores();
     mostrarMenu();
 }
+
 function agregarProveedor() {
-    rl.question('Ingrese el nombre del proveedor: ', function (nombre) {
-        rl.question('Ingrese el teléfono del proveedor: ', function (telefono) {
+    rl.question('Ingrese el nombre del proveedor: ', (nombre) => {
+        rl.question('Ingrese el teléfono del proveedor: ', (telefono) => {
             sistema.agregarProveedor(nombre, Number(telefono));
             mostrarMenu();
         });
     });
 }
+
 function modificarProveedor() {
-    rl.question('Ingrese el ID del proveedor a modificar: ', function (id) {
-        rl.question('Ingrese el nuevo nombre del proveedor: ', function (nuevoNombre) {
-            rl.question('Ingrese el nuevo teléfono del proveedor: ', function (nuevoTelefono) {
+    rl.question('Ingrese el ID del proveedor a modificar: ', (id) => {
+        rl.question('Ingrese el nuevo nombre del proveedor: ', (nuevoNombre) => {
+            rl.question('Ingrese el nuevo teléfono del proveedor: ', (nuevoTelefono) => {
                 sistema.modificarProveedor(Number(id), nuevoNombre, Number(nuevoTelefono));
                 mostrarMenu();
             });
         });
     });
 }
+
 function eliminarProveedor() {
-    rl.question('Ingrese el nombre del proveedor a eliminar: ', function (nombre) {
-        rl.question('Ingrese el teléfono del proveedor a eliminar: ', function (telefono) {
+    rl.question('Ingrese el nombre del proveedor a eliminar: ', (nombre) => {
+        rl.question('Ingrese el teléfono del proveedor a eliminar: ', (telefono) => {
             sistema.eliminarProveedor(nombre, Number(telefono));
             mostrarMenu();
         });
     });
 }
+
+
+
+
 mostrarMenu();
+
+
+
+*/
 //++++++++++++++++++++++++++  OPCION 2  +++++++++++++++++++++++++++
-/*
-
-
-import * as readline from 'readline';
-import { RedDeVeterinarias } from './RedDeVeterinarias';
-import { Veterinaria } from './Veterinaria';
-
-const rl = readline.createInterface({
+Object.defineProperty(exports, "__esModule", { value: true });
+var readline = require("readline");
+var RedDeVeterinarias_1 = require("./RedDeVeterinarias");
+var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-
-const sistemaRed = new RedDeVeterinarias(); // para la red de veterinarias
-let veterinariaActual: Veterinaria | null = null; // para manejar la veterinaria seleccionada
-
+var sistemaRed = new RedDeVeterinarias_1.RedDeVeterinarias(); // para la red de veterinarias
+var veterinariaActual = null; // para manejar la veterinaria seleccionada
 function mostrarMenuPrincipal() {
-    console.log(`
-    ********** MENU PRINCIPAL **********
-    1. Soy Sucursal
-    2. Soy Red
-    3. Salir
-    *************************************
-    `);
+    console.log("\n    ********** MENU PRINCIPAL **********\n    1. Soy Sucursal\n    2. Soy Red\n    3. Salir\n    *************************************\n    ");
     rl.question('Seleccione una opción: ', manejarOpcionPrincipal);
 }
-
-function manejarOpcionPrincipal(opcion: string) {
+function manejarOpcionPrincipal(opcion) {
     switch (opcion) {
         case '1':
             seleccionarSucursal();
@@ -155,45 +183,36 @@ function manejarOpcionPrincipal(opcion: string) {
             break;
     }
 }
-
 function seleccionarSucursal() {
     console.log('*** Seleccionar Sucursal ***');
     sistemaRed.listarVeterinarias();
-    rl.question('Ingrese el ID de la sucursal o escriba "atras" para volver: ', (id) => {
+    rl.question('Ingrese el ID de la sucursal o escriba "atras" para volver: ', function (id) {
         if (id.toLowerCase() === 'atras') {
             mostrarMenuPrincipal();
-        } else {
-            const sucursal = sistemaRed.getVeterinaria().find(v => v.getId() === Number(id));
+        }
+        else {
+            var sucursal = sistemaRed.getVeterinaria().find(function (v) { return v.getId() === Number(id); });
             if (sucursal) {
                 veterinariaActual = sucursal;
                 menuSucursal();
-            } else {
+            }
+            else {
                 console.log('ID inválido. Intente de nuevo.');
                 seleccionarSucursal();
             }
         }
     });
 }
-
 function menuSucursal() {
     if (!veterinariaActual) {
         console.log('No se seleccionó ninguna sucursal.');
         mostrarMenuPrincipal();
         return;
     }
-
-    console.log(`
-    ********** MENU SUCURSAL **********
-    1. Clientes
-    2. Pacientes
-    3. Atras
-    4. Salir
-    ***********************************
-    `);
+    console.log("\n    ********** MENU SUCURSAL **********\n    1. Clientes\n    2. Pacientes\n    3. Atras\n    4. Salir\n    ***********************************\n    ");
     rl.question('Seleccione una opción: ', manejarOpcionSucursal);
 }
-
-function manejarOpcionSucursal(opcion: string) {
+function manejarOpcionSucursal(opcion) {
     switch (opcion) {
         case '1':
             menuClientes();
@@ -215,22 +234,11 @@ function manejarOpcionSucursal(opcion: string) {
             break;
     }
 }
-
 function menuClientes() {
-    if (!veterinariaActual) return;
-
-    console.log(`
-    ****** MENU CLIENTES ******
-    1. Listar
-    2. Agregar
-    3. Modificar
-    4. Eliminar
-    5. Registrar Visita
-    6. Atras
-    7. Salir
-    ***************************
-    `);
-    rl.question('Seleccione una opción: ', (opcion) => {
+    if (!veterinariaActual)
+        return;
+    console.log("\n    ****** MENU CLIENTES ******\n    1. Listar\n    2. Agregar\n    3. Modificar\n    4. Eliminar\n    5. Registrar Visita\n    6. Atras\n    7. Salir\n    ***************************\n    ");
+    rl.question('Seleccione una opción: ', function (opcion) {
         switch (opcion) {
             case '1':
                 console.log('*** Clientes ***');
@@ -238,24 +246,24 @@ function menuClientes() {
                 menuClientes();
                 break;
             case '2':
-                rl.question('Ingrese el nombre del cliente: ', (nombre) => {
-                    rl.question('Ingrese el teléfono del cliente: ', (telefono) => {
+                rl.question('Ingrese el nombre del cliente: ', function (nombre) {
+                    rl.question('Ingrese el teléfono del cliente: ', function (telefono) {
                         veterinariaActual.agregarCliente(nombre, Number(telefono));
                         menuClientes();
                     });
                 });
                 break;
             case '3':
-                rl.question('Ingrese el nombre del cliente a modificar: ', (nombre) => {
-                    rl.question('Ingrese el nuevo teléfono: ', (telefono) => {
+                rl.question('Ingrese el nombre del cliente a modificar: ', function (nombre) {
+                    rl.question('Ingrese el nuevo teléfono: ', function (telefono) {
                         veterinariaActual.modificarCliente(nombre, Number(telefono));
                         menuClientes();
                     });
                 });
                 break;
             case '4':
-                rl.question('Ingrese el nombre del cliente a eliminar: ', (nombre) => {
-                    rl.question('Ingrese el teléfono del cliente: ', (telefono) => {
+                rl.question('Ingrese el nombre del cliente a eliminar: ', function (nombre) {
+                    rl.question('Ingrese el teléfono del cliente: ', function (telefono) {
                         veterinariaActual.eliminarCliente(nombre, Number(telefono));
                         menuClientes();
                     });
@@ -279,21 +287,11 @@ function menuClientes() {
         }
     });
 }
-
 function menuPacientes() {
-    if (!veterinariaActual) return;
-
-    console.log(`
-    ****** MENU PACIENTES ******
-    1. Listar
-    2. Agregar
-    3. Modificar
-    4. Eliminar
-    5. Atras
-    6. Salir
-    ****************************
-    `);
-    rl.question('Seleccione una opción: ', (opcion) => {
+    if (!veterinariaActual)
+        return;
+    console.log("\n    ****** MENU PACIENTES ******\n    1. Listar\n    2. Agregar\n    3. Modificar\n    4. Eliminar\n    5. Atras\n    6. Salir\n    ****************************\n    ");
+    rl.question('Seleccione una opción: ', function (opcion) {
         switch (opcion) {
             case '1':
                 console.log('*** Pacientes ***');
@@ -301,9 +299,9 @@ function menuPacientes() {
                 menuPacientes();
                 break;
             case '2':
-                rl.question('Ingrese el nombre del paciente: ', (nombre) => {
-                    rl.question('Ingrese la especie del paciente: ', (especie) => {
-                        rl.question('Ingrese el ID del dueño: ', (idDueño) => {
+                rl.question('Ingrese el nombre del paciente: ', function (nombre) {
+                    rl.question('Ingrese la especie del paciente: ', function (especie) {
+                        rl.question('Ingrese el ID del dueño: ', function (idDueño) {
                             veterinariaActual.agregarPaciente(nombre, especie, Number(idDueño));
                             menuPacientes();
                         });
@@ -311,16 +309,16 @@ function menuPacientes() {
                 });
                 break;
             case '3':
-                rl.question('Ingrese el nombre del paciente a modificar: ', (nombre) => {
-                    rl.question('Ingrese la nueva especie: ', (especie) => {
+                rl.question('Ingrese el nombre del paciente a modificar: ', function (nombre) {
+                    rl.question('Ingrese la nueva especie: ', function (especie) {
                         veterinariaActual.modificarPaciente(nombre, especie);
                         menuPacientes();
                     });
                 });
                 break;
             case '4':
-                rl.question('Ingrese el nombre del paciente a eliminar: ', (nombre) => {
-                    rl.question('Ingrese la especie del paciente: ', (especie) => {
+                rl.question('Ingrese el nombre del paciente a eliminar: ', function (nombre) {
+                    rl.question('Ingrese la especie del paciente: ', function (especie) {
                         veterinariaActual.eliminarPaciente(nombre, especie);
                         menuPacientes();
                     });
@@ -340,22 +338,11 @@ function menuPacientes() {
         }
     });
 }
-
 function menuRed() {
-    console.log(`
-    ****** MENU RED ******
-    1. Proveedores
-    2. Sucursales
-    3. Ver Clientes
-    4. Ver Pacientes
-    5. Atras
-    6. Salir
-    **********************
-    `);
+    console.log("\n    ****** MENU RED ******\n    1. Proveedores\n    2. Sucursales\n    3. Ver Clientes\n    4. Ver Pacientes\n    5. Atras\n    6. Salir\n    **********************\n    ");
     rl.question('Seleccione una opción: ', manejarOpcionRed);
 }
-
-function manejarOpcionRed(opcion: string) {
+function manejarOpcionRed(opcion) {
     switch (opcion) {
         case '1':
             menuProveedores();
@@ -386,46 +373,122 @@ function manejarOpcionRed(opcion: string) {
             break;
     }
 }
-
 function menuProveedores() {
-    console.log(`
-    *** MENU PROVEEDORES ***
-    1. Listar
-    2. Agregar
-    3. Modificar
-    4. Eliminar
-    5. Atras
-    ***********************
-    `);
-    rl.question('Seleccione una opción: ', (opcion) => {
+    console.log("\n    *** MENU PROVEEDORES ***\n    1. Listar\n    2. Agregar\n    3. Modificar\n    4. Eliminar\n    5. Atras\n    ***********************\n    ");
+    rl.question('Seleccione una opción: ', function (opcion) {
         switch (opcion) {
+            case '1':
+                listarProveedores();
+                break;
+            case '2':
+                agregarProveedor();
+                break;
+            case '3':
+                modificarProveedor();
+                break;
+            case '4':
+                eliminarProveedor();
+                break;
+            case '5':
+                menuRed();
+                break;
             default:
-                console.log('Opción no implementada.');
+                console.log('Opción inválida. Intente de nuevo.');
                 menuProveedores();
+                break;
         }
     });
 }
-
+function listarProveedores() {
+    console.log('*** Listado de Proveedores ***');
+    var proveedores = sistemaRed.getProveedor();
+    console.table(proveedores);
+    menuProveedores();
+}
+function agregarProveedor() {
+    rl.question('Ingrese el nombre del proveedor: ', function (nombre) {
+        rl.question('Ingrese el teléfono del proveedor: ', function (telefono) {
+            sistemaRed.agregarProveedor(nombre, Number(telefono));
+            console.log('Proveedor agregado exitosamente.');
+            menuProveedores();
+        });
+    });
+}
+function modificarProveedor() {
+    rl.question('Ingrese el ID del proveedor a modificar: ', function (id) {
+        rl.question('Ingrese el nuevo nombre del proveedor: ', function (nuevoNombre) {
+            rl.question('Ingrese el nuevo teléfono del proveedor: ', function (nuevoTelefono) {
+                sistemaRed.modificarProveedor(Number(id), nuevoNombre, Number(nuevoTelefono));
+                console.log('Proveedor modificado exitosamente.');
+                menuProveedores();
+            });
+        });
+    });
+}
+function eliminarProveedor() {
+    rl.question('Ingrese el ID del proveedor a eliminar: ', function (id) {
+        sistemaRed.eliminarProveedor(Number(id));
+        console.log('Proveedor eliminado exitosamente.');
+        menuProveedores();
+    });
+}
 function menuSucursales() {
-    console.log(`
-    *** MENU SUCURSALES ***
-    1. Listar
-    2. Agregar
-    3. Modificar
-    4. Eliminar
-    5. Atras
-    ***********************
-    `);
-    rl.question('Seleccione una opción: ', (opcion) => {
+    console.log("\n    *** MENU SUCURSALES ***\n    1. Listar\n    2. Agregar\n    3. Modificar\n    4. Eliminar\n    5. Atras\n    ***********************\n    ");
+    rl.question('Seleccione una opción: ', function (opcion) {
         switch (opcion) {
+            case '1':
+                listarSucursales();
+                break;
+            case '2':
+                agregarSucursal();
+                break;
+            case '3':
+                modificarSucursal();
+                break;
+            case '4':
+                eliminarSucursal();
+                break;
+            case '5':
+                menuRed();
+                break;
             default:
-                console.log('Opción no implementada.');
+                console.log('Opción inválida. Intente de nuevo.');
                 menuSucursales();
+                break;
         }
     });
 }
-
-
-
+function listarSucursales() {
+    console.log('*** Listado de Sucursales ***');
+    var sucursales = sistemaRed.getVeterinaria();
+    console.table(sucursales);
+    menuSucursales();
+}
+function agregarSucursal() {
+    rl.question('Ingrese el nombre de la nueva sucursal: ', function (nombre) {
+        rl.question('Ingrese la dirección de la sucursal: ', function (direccion) {
+            sistemaRed.agregarVeterinaria(nombre, direccion);
+            console.log('Sucursal agregada exitosamente.');
+            menuSucursales();
+        });
+    });
+}
+function modificarSucursal() {
+    rl.question('Ingrese el ID de la sucursal a modificar: ', function (id) {
+        rl.question('Ingrese el nuevo nombre de la sucursal: ', function (nuevoNombre) {
+            rl.question('Ingrese la nueva dirección de la sucursal: ', function (nuevaDireccion) {
+                sistemaRed.modificarVeterinaria(Number(id), nuevoNombre, nuevaDireccion);
+                console.log('Sucursal modificada exitosamente.');
+                menuSucursales();
+            });
+        });
+    });
+}
+function eliminarSucursal() {
+    rl.question('Ingrese el ID de la sucursal a eliminar: ', function (id) {
+        sistemaRed.eliminarVeterinaria(Number(id));
+        console.log('Sucursal eliminada exitosamente.');
+        menuSucursales();
+    });
+}
 mostrarMenuPrincipal();
-*/ 
