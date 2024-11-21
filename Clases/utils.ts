@@ -68,6 +68,9 @@ try{
 
 //TEST DE CODIGO//
 
+let pacientes = leerTXT(url_pacientes);
+console.log(pacientes);
+
 /* 
 
 let clientes = leerTXT(url_cliente);

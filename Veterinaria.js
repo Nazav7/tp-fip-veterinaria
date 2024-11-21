@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Veterinaria = void 0;
 var Cliente_1 = require("./Cliente");
 var Paciente_1 = require("./Paciente");
+var inicio_1 = require("./inicio");
+var inicio_2 = require("./inicio");
 var Veterinaria = /** @class */ (function () {
     function Veterinaria(nombre, direccion, id) {
         this.id = id;
@@ -19,6 +21,8 @@ var Veterinaria = /** @class */ (function () {
         this.direccion = direccion;
         this.pacientes = [];
         this.clientes = [];
+        (0, inicio_1.cargarClientes)(this);
+        (0, inicio_2.cargarPacientes)(this);
     }
     //Métodos
     Veterinaria.prototype.agregarCliente = function (nombre, telefono) {

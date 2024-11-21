@@ -67,6 +67,8 @@ function leerTXT(ruta) {
     return [];
 }
 //TEST DE CODIGO//
+var pacientes = leerTXT(url_pacientes);
+console.log(pacientes);
 /*
 
 let clientes = leerTXT(url_cliente);
