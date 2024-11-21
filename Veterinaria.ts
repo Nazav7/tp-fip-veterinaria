@@ -93,6 +93,18 @@ export class Veterinaria {
         }
     }
 
+    listarClientes() {
+        this.clientes.forEach(cliente => {
+            console.log(cliente.getId(), cliente.getNombre(), cliente.getTelefono(), cliente.getEsVIP());
+        });
+    }
+
+    listarPacientes() {
+        this.pacientes.forEach(paciente => {
+            console.log(paciente.getId(), paciente.getIdDueno(), paciente.getNombre(), paciente.getEspecie());
+        });
+    }
+
     //Getters
     getNombre(): string {
         return this.nombre;

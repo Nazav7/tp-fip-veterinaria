@@ -93,6 +93,16 @@ var Veterinaria = /** @class */ (function () {
             console.log('No se encontró paciente');
         }
     };
+    Veterinaria.prototype.listarClientes = function () {
+        this.clientes.forEach(function (cliente) {
+            console.log(cliente.getId(), cliente.getNombre(), cliente.getTelefono(), cliente.getEsVIP());
+        });
+    };
+    Veterinaria.prototype.listarPacientes = function () {
+        this.pacientes.forEach(function (paciente) {
+            console.log(paciente.getId(), paciente.getIdDueno(), paciente.getNombre(), paciente.getEspecie());
+        });
+    };
     //Getters
     Veterinaria.prototype.getNombre = function () {
         return this.nombre;
