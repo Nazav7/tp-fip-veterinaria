@@ -1,5 +1,5 @@
-1,Pepito,Cotorra Argentina,3
-2,Firulais,Dogo,5
-3,Misha,Ragdoll,2
-4,Falucho,Border Collie,1
-5,Flash,Tortuga de Cumberland,4
+1,Pepito,exotico,3
+2,Firulais,perro,5
+3,Misha,gato,2
+4,Falucho,perro,1
+5,Flash,exotico,4
