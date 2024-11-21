@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generarSucursales = void 0;
+exports.generarSucursales = generarSucursales;
 var utils_1 = require("./Clases/utils");
 var url_cliente = '../bbdd/clientes.txt';
 var url_pacientes = '../bbdd/pacientes.txt';
@@ -14,4 +14,3 @@ function generarSucursales(redDeVeterinaria) {
         redDeVeterinaria.agregarVeterinaria(nombre, direccion);
     }
 }
-exports.generarSucursales = generarSucursales;
