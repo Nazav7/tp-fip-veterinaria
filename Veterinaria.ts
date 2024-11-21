@@ -1,5 +1,7 @@
 import {Cliente} from "./Cliente";
 import {Paciente} from "./Paciente";
+import { cargarClientes } from "./inicio";
+import { cargarPacientes } from "./inicio";
 
 export class Veterinaria {
     private id: number;
@@ -14,6 +16,9 @@ export class Veterinaria {
         this.direccion = direccion;
         this.pacientes = [];
         this.clientes = [];
+
+        cargarClientes(this);
+        cargarPacientes(this);
     }
 
     //Métodos
