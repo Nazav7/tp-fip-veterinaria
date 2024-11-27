@@ -36,7 +36,7 @@ export class RedDeVeterinarias {
         const proveedor = this.proveedores.find(p => p.getNombre() === nombre && p.getTelefono() === telefono);
         if (!proveedor) {
             const id = this.generarID('proveedor'); 
-            const nuevoProveedor = new Proveedor(nombre, telefono);
+            const nuevoProveedor = new Proveedor(nombre, telefono, id);
             this.proveedores.push(nuevoProveedor);
             console.log('El proveedor ha sido agregado');
         } else {
@@ -55,13 +55,8 @@ export class RedDeVeterinarias {
         }
     }
 
-<<<<<<< HEAD
     eliminarVeterinaria(id:number) {
         const veterinaria = this.veterinarias.find(v => v.getId() === id);
-=======
-    eliminarVeterinaria(id:number, nombre: string, direccion: string) {
-        const veterinaria = this.veterinarias.find(p => p.getNombre() === nombre && p.getDireccion() === direccion);
->>>>>>> 48da0ede7928a3f6e331b9dd2e0489cc2a84b26b
         if (veterinaria) {
             const index = this.veterinarias.indexOf(veterinaria);
             this.veterinarias.splice(index, 1);
