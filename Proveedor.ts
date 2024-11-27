@@ -5,7 +5,7 @@ export class Proveedor {
     private telefono: number;
     private id: number;
 
-    constructor(nombre: string, telefono: number) {
+    constructor(nombre: string, telefono: number, id:number) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.id = generarID('../bbdd/proveedores.txt');
