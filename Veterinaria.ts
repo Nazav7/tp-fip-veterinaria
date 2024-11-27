@@ -93,6 +93,16 @@ export class Veterinaria {
         }
     }
 
+    registrarVisita(nombre : string){
+        const cliente = this.clientes.find(p => p.getNombre() === nombre);
+        cliente?.registrarVisita();
+        console.log("Se ha registrado la visita de " + nombre);
+    }
+
+
+
+
+
     listarClientes() {
         this.clientes.forEach(cliente => {
             console.log(cliente.getId(), cliente.getNombre(), cliente.getTelefono(), cliente.getEsVIP());

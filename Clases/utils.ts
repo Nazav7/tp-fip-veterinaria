@@ -83,33 +83,3 @@ let sucursales = leerTXT(url_sucursales);
 console.log(sucursales);
 
 */
-
-
-///////////////////GENERAR ID AUTOMATICO////////////////////////////
-
-
-
-
-/*
-export function generarID(url){
-  let max_id = 0;
-  const arreglo = leerTXT(url);
-        for(const elemento of arreglo){
-          const id = parseInt(elemento.ID);
-          if(id > max_id){
-            max_id = id;
-          }
-          else{
-            max_id = 1;
-          }
-        }
-        return max_id + 1;
-  }
-
-//TEST DE CODIGO//
-
-
-let id = generarID(url_cliente);
-console.log(id);
-
-*/

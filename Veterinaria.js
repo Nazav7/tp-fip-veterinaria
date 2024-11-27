@@ -93,6 +93,11 @@ var Veterinaria = /** @class */ (function () {
             console.log('No se encontró paciente');
         }
     };
+    Veterinaria.prototype.registrarVisita = function (nombre) {
+        var cliente = this.clientes.find(function (p) { return p.getNombre() === nombre; });
+        cliente === null || cliente === void 0 ? void 0 : cliente.registrarVisita();
+        console.log("Se ha registrado la visita de " + nombre);
+    };
     Veterinaria.prototype.listarClientes = function () {
         this.clientes.forEach(function (cliente) {
             console.log(cliente.getId(), cliente.getNombre(), cliente.getTelefono(), cliente.getEsVIP());

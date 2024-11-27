@@ -44,8 +44,8 @@ export class RedDeVeterinarias {
         }
     }
 
-    eliminarProveedor(nombre: string, telefono: number) {
-        const proveedor = this.proveedores.find(p => p.getNombre() === nombre && p.getTelefono() === telefono);
+    eliminarProveedor(id:number) {
+        const proveedor = this.proveedores.find(v => v.getId() === id);
         if (proveedor) {
             const index = this.proveedores.indexOf(proveedor);
             this.proveedores.splice(index, 1);
@@ -55,8 +55,8 @@ export class RedDeVeterinarias {
         }
     }
 
-    eliminarVeterinaria(nombre: string, direccion: string) {
-        const veterinaria = this.veterinarias.find(p => p.getNombre() === nombre && p.getDireccion() === direccion);
+    eliminarVeterinaria(id:number) {
+        const veterinaria = this.veterinarias.find(v => v.getId() === id);
         if (veterinaria) {
             const index = this.veterinarias.indexOf(veterinaria);
             this.veterinarias.splice(index, 1);

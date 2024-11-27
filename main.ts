@@ -192,51 +192,56 @@ function menuPacientes() {
     ****************************
     `);
     rl.question('Seleccione una opción: ', (opcion) => {
-        switch (opcion) {
-            case '1':
-                console.log('*** Pacientes ***');
-                veterinariaActual.listarPacientes();
-                menuPacientes();
-                break;
-            case '2':
-                rl.question('Ingrese el nombre del paciente: ', (nombre) => {
-                    rl.question('Ingrese la especie del paciente: ', (especie) => {
-                        rl.question('Ingrese el ID del dueño: ', (idDueño) => {
-                            veterinariaActual.agregarPaciente(nombre, especie, Number(idDueño));
+        if(veterinariaActual){
+            switch (opcion) {
+                case '1':
+                    console.log('*** Pacientes ***');
+                    veterinariaActual.listarPacientes();
+                    menuPacientes();
+                    break;
+                case '2':
+                    rl.question('Ingrese el nombre del paciente: ', (nombre) => {
+                        rl.question('Ingrese la especie del paciente: ', (especie) => {
+                            rl.question('Ingrese el ID del dueño: ', (idDueño) => {
+                                veterinariaActual.agregarPaciente(nombre, especie, Number(idDueño));
+                                menuPacientes();
+                            });
+                        });
+                    });
+                    break;
+                case '3':
+                    rl.question('Ingrese el nombre del paciente a modificar: ', (nombre) => {
+                        rl.question('Ingrese la nueva especie: ', (especie) => {
+                            veterinariaActual.modificarPaciente(nombre, especie);
                             menuPacientes();
                         });
                     });
-                });
-                break;
-            case '3':
-                rl.question('Ingrese el nombre del paciente a modificar: ', (nombre) => {
-                    rl.question('Ingrese la nueva especie: ', (especie) => {
-                        veterinariaActual.modificarPaciente(nombre, especie);
-                        menuPacientes();
+                    break;
+                case '4':
+                    rl.question('Ingrese el nombre del paciente a eliminar: ', (nombre) => {
+                        rl.question('Ingrese la especie del paciente: ', (especie) => {
+                            veterinariaActual.eliminarPaciente(nombre, especie);
+                            menuPacientes();
+                        });
                     });
-                });
-                break;
-            case '4':
-                rl.question('Ingrese el nombre del paciente a eliminar: ', (nombre) => {
-                    rl.question('Ingrese la especie del paciente: ', (especie) => {
-                        veterinariaActual.eliminarPaciente(nombre, especie);
-                        menuPacientes();
-                    });
-                });
-                break;
-            case '5':
-                menuSucursal();
-                break;
-            case '6':
-                console.log('¡Gracias por usar el sistema!');
-                rl.close();
-                break;
-            default:
-                console.log('Opción inválida. Intente de nuevo.');
-                menuPacientes();
-                break;
+                    break;
+                case '5':
+                    menuSucursal();
+                    break;
+                case '6':
+                    console.log('¡Gracias por usar el sistema!');
+                    rl.close();
+                    break;
+                default:
+                    console.log('Opción inválida. Intente de nuevo.');
+                    menuPacientes();
+                    break;
+            }
         }
-    });
+        
+    }
+
+);
 }
 
 function menuRed() {

@@ -44,8 +44,8 @@ var RedDeVeterinarias = /** @class */ (function () {
             console.log('No se puede agregar proveedor porque ya existe');
         }
     };
-    RedDeVeterinarias.prototype.eliminarProveedor = function (nombre, telefono) {
-        var proveedor = this.proveedores.find(function (p) { return p.getNombre() === nombre && p.getTelefono() === telefono; });
+    RedDeVeterinarias.prototype.eliminarProveedor = function (id) {
+        var proveedor = this.proveedores.find(function (v) { return v.getId() === id; });
         if (proveedor) {
             var index = this.proveedores.indexOf(proveedor);
             this.proveedores.splice(index, 1);
@@ -55,8 +55,8 @@ var RedDeVeterinarias = /** @class */ (function () {
             console.log('El proveedor no se encuentra en la base de datos');
         }
     };
-    RedDeVeterinarias.prototype.eliminarVeterinaria = function (nombre, direccion) {
-        var veterinaria = this.veterinarias.find(function (p) { return p.getNombre() === nombre && p.getDireccion() === direccion; });
+    RedDeVeterinarias.prototype.eliminarVeterinaria = function (id) {
+        var veterinaria = this.veterinarias.find(function (v) { return v.getId() === id; });
         if (veterinaria) {
             var index = this.veterinarias.indexOf(veterinaria);
             this.veterinarias.splice(index, 1);

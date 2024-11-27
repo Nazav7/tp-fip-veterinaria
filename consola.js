@@ -119,8 +119,10 @@ function menuClientes() {
                 });
                 break;
             case '5':
-                console.log('Funcionalidad "Registrar Visita" no implementada aún.');
-                menuClientes();
+                rl.question('Indique nombre del cliente para registrar la visita: ', function (nombre) {
+                    veterinariaActual.registrarVisita(nombre);
+                    menuClientes();
+                });
                 break;
             case '6':
                 menuSucursal();

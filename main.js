@@ -144,49 +144,51 @@ function menuPacientes() {
         return;
     console.log("\n    ****** MENU PACIENTES ******\n    1. Listar\n    2. Agregar\n    3. Modificar\n    4. Eliminar\n    5. Atras\n    6. Salir\n    ****************************\n    ");
     rl.question('Seleccione una opción: ', function (opcion) {
-        switch (opcion) {
-            case '1':
-                console.log('*** Pacientes ***');
-                veterinariaActual.listarPacientes();
-                menuPacientes();
-                break;
-            case '2':
-                rl.question('Ingrese el nombre del paciente: ', function (nombre) {
-                    rl.question('Ingrese la especie del paciente: ', function (especie) {
-                        rl.question('Ingrese el ID del dueño: ', function (idDueño) {
-                            veterinariaActual.agregarPaciente(nombre, especie, Number(idDueño));
+        if (veterinariaActual) {
+            switch (opcion) {
+                case '1':
+                    console.log('*** Pacientes ***');
+                    veterinariaActual.listarPacientes();
+                    menuPacientes();
+                    break;
+                case '2':
+                    rl.question('Ingrese el nombre del paciente: ', function (nombre) {
+                        rl.question('Ingrese la especie del paciente: ', function (especie) {
+                            rl.question('Ingrese el ID del dueño: ', function (idDueño) {
+                                veterinariaActual.agregarPaciente(nombre, especie, Number(idDueño));
+                                menuPacientes();
+                            });
+                        });
+                    });
+                    break;
+                case '3':
+                    rl.question('Ingrese el nombre del paciente a modificar: ', function (nombre) {
+                        rl.question('Ingrese la nueva especie: ', function (especie) {
+                            veterinariaActual.modificarPaciente(nombre, especie);
                             menuPacientes();
                         });
                     });
-                });
-                break;
-            case '3':
-                rl.question('Ingrese el nombre del paciente a modificar: ', function (nombre) {
-                    rl.question('Ingrese la nueva especie: ', function (especie) {
-                        veterinariaActual.modificarPaciente(nombre, especie);
-                        menuPacientes();
+                    break;
+                case '4':
+                    rl.question('Ingrese el nombre del paciente a eliminar: ', function (nombre) {
+                        rl.question('Ingrese la especie del paciente: ', function (especie) {
+                            veterinariaActual.eliminarPaciente(nombre, especie);
+                            menuPacientes();
+                        });
                     });
-                });
-                break;
-            case '4':
-                rl.question('Ingrese el nombre del paciente a eliminar: ', function (nombre) {
-                    rl.question('Ingrese la especie del paciente: ', function (especie) {
-                        veterinariaActual.eliminarPaciente(nombre, especie);
-                        menuPacientes();
-                    });
-                });
-                break;
-            case '5':
-                menuSucursal();
-                break;
-            case '6':
-                console.log('¡Gracias por usar el sistema!');
-                rl.close();
-                break;
-            default:
-                console.log('Opción inválida. Intente de nuevo.');
-                menuPacientes();
-                break;
+                    break;
+                case '5':
+                    menuSucursal();
+                    break;
+                case '6':
+                    console.log('¡Gracias por usar el sistema!');
+                    rl.close();
+                    break;
+                default:
+                    console.log('Opción inválida. Intente de nuevo.');
+                    menuPacientes();
+                    break;
+            }
         }
     });
 }
