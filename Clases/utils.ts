@@ -1,10 +1,10 @@
 import * as fs from 'fs';
 
 ///URLS///
-const url_cliente = '../bbdd/clientes.txt';
-const url_pacientes = '../bbdd/pacientes.txt';
-const url_proveedores = '../bbdd/proveedores.txt';
-const url_sucursales = '../bbdd/sucursales.txt';
+const url_cliente = './bbdd/clientes.txt';
+const url_pacientes = './bbdd/pacientes.txt';
+const url_proveedores = './bbdd/proveedores.txt';
+const url_sucursales = './bbdd/sucursales.txt';
 
 
 //////////////////LEER ARCHIVO TXT COMO BASE DE DATOS Y CONVERTIRLO EN JASON////////////////////////
@@ -69,7 +69,7 @@ try{
 //TEST DE CODIGO//
 
 let pacientes = leerTXT(url_pacientes);
-console.log(pacientes);
+console.table(pacientes);
 
 /* 
 

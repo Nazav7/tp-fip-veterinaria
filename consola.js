@@ -276,11 +276,25 @@ function modificarProveedor() {
         });
     });
 }
+/*
+esta es la funcion para elimnar por id, quedo obsoleta cuando cambiamos la generacion de id
+
+
 function eliminarProveedor() {
-    rl.question('Ingrese el ID del proveedor a eliminar: ', function (id) {
+    rl.question('Ingrese el ID del proveedor a eliminar: ', (id) => {
         sistemaRed.eliminarProveedor(Number(id));
         console.log('Proveedor eliminado exitosamente.');
         menuProveedores();
+    });
+}
+*/
+function eliminarProveedor() {
+    rl.question('Ingrese el nombre del proveedor a eliminar: ', function (nombre) {
+        rl.question('Ingrese el teléfono del proveedor a eliminar: ', function (telefono) {
+            sistemaRed.eliminarProveedor(nombre, Number(telefono));
+            console.log('Proveedor eliminado exitosamente.');
+            menuProveedores();
+        });
     });
 }
 function menuSucursales() {
@@ -336,10 +350,20 @@ function modificarSucursal() {
     });
 }
 function eliminarSucursal() {
-    rl.question('Ingrese el ID de la sucursal a eliminar: ', function (id) {
-        sistemaRed.eliminarVeterinaria(Number(id));
-        console.log('Sucursal eliminada exitosamente.');
-        menuSucursales();
+    rl.question('Ingrese el nombre de la sucursal a eliminar: ', function (nombre) {
+        rl.question('Ingrese el ID de la sucursal a eliminar: ', function (id) {
+            rl.question('Ingrese dirección de la sucursal a eliminar: ', function (direccion) {
+                var idNumber = Number(id); // lo converti a la fuerza, poruqe no paraba de fallarme. 
+                if (isNaN(idNumber)) { // hice esta validacion, por si alguien responde con algo que  no pueda pasar a numero.
+                    console.log('El ID ingresado no es un número válido.');
+                    menuSucursales();
+                    return;
+                }
+                sistemaRed.eliminarVeterinaria(idNumber, nombre, direccion);
+                console.log('Sucursal eliminada exitosamente.');
+                menuSucursales();
+            });
+        });
     });
 }
 mostrarMenuPrincipal();

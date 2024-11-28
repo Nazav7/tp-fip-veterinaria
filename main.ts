@@ -56,7 +56,8 @@ function manejarOpcionPrincipal(opcion: string) {
 
 function seleccionarSucursal() {
     console.log('*** Seleccionar Sucursal ***');
-    sistemaRed.listarVeterinarias();
+    const veterinariasListadas = sistemaRed.getVeterinaria();
+    console.table(veterinariasListadas);
     rl.question('Ingrese el ID de la sucursal o escriba "atras" para volver: ', (id) => {
         if (id.toLowerCase() === 'atras') {
             mostrarMenuPrincipal();
@@ -132,7 +133,8 @@ function menuClientes() {
         switch (opcion) {
             case '1':
                 console.log('*** Clientes ***');
-                veterinariaActual.listarClientes();
+                const listaClientes = veterinariaActual?.getClientes();
+                console.table(listaClientes)
                 menuClientes();
                 break;
             case '2':
@@ -144,13 +146,16 @@ function menuClientes() {
                 });
                 break;
             case '3':
-                rl.question('Ingrese el nombre del cliente a modificar: ', (nombre) => {
-                    rl.question('Ingrese el nuevo teléfono: ', (telefono) => {
-                        veterinariaActual.modificarCliente(nombre, Number(telefono));
-                        menuClientes();
+                    rl.question('ingrese el ID del cliente a modificar: ', (id) => {
+                        rl.question('ingrese el nuevo nombre del cliente: ' ,(nuevoNombre) => {
+                            rl.question('ingrese el nuevo telefono del cliente: ' , (nuevoTelefono) =>{
+                                veterinariaActual.modificarCliente(Number(id), nuevoNombre, Number(nuevoTelefono));
+                                menuClientes();
+                            });
+                        });
                     });
-                });
                 break;
+
             case '4':
                 rl.question('Ingrese el nombre del cliente a eliminar: ', (nombre) => {
                     rl.question('Ingrese el teléfono del cliente: ', (telefono) => {
@@ -160,8 +165,10 @@ function menuClientes() {
                 });
                 break;
             case '5':
-                console.log('Funcionalidad "Registrar Visita" no implementada aún.');
-                menuClientes();
+                    rl.question('Indique nombre del cliente para registrar la visita: ', (nombre) =>{
+                        veterinariaActual.registrarVisita(nombre);
+                        menuClientes();
+                    })
                 break;
             case '6':
                 menuSucursal();
@@ -196,8 +203,9 @@ function menuPacientes() {
             switch (opcion) {
                 case '1':
                     console.log('*** Pacientes ***');
-                    veterinariaActual.listarPacientes();
-                    menuPacientes();
+                    const listaPacientes = veterinariaActual.getPacientes();
+                    console.table(listaPacientes);
+                    menuPacientes()
                     break;
                 case '2':
                     rl.question('Ingrese el nombre del paciente: ', (nombre) => {
@@ -210,13 +218,15 @@ function menuPacientes() {
                     });
                     break;
                 case '3':
-                    rl.question('Ingrese el nombre del paciente a modificar: ', (nombre) => {
-                        rl.question('Ingrese la nueva especie: ', (especie) => {
-                            veterinariaActual.modificarPaciente(nombre, especie);
-                            menuPacientes();
+                    rl.question('ingrese el ID del paciente a modificar: ', (id) => {
+                        rl.question('ingrese el nuevo nombre del paciente: ' ,(nuevoNombre) => {
+                            rl.question('ingrese el nueva especie del paciente: ' , (nuevaEspecie) =>{
+                                veterinariaActual?.modificarPaciente(Number(id), nuevoNombre, nuevaEspecie);
+                                menuPacientes();
+                            });
                         });
                     });
-                    break;
+                break;
                 case '4':
                     rl.question('Ingrese el nombre del paciente a eliminar: ', (nombre) => {
                         rl.question('Ingrese la especie del paciente: ', (especie) => {

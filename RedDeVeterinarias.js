@@ -145,25 +145,27 @@ var RedDeVeterinarias = /** @class */ (function () {
     RedDeVeterinarias.prototype.listarVeterinarias = function () {
         if (this.veterinarias != null) {
             this.veterinarias.forEach(function (veterinaria) {
-                console.log("".concat(veterinaria.getId(), ", ").concat(veterinaria.getNombre(), ", ").concat(veterinaria.getDireccion()));
+                console.table("".concat(veterinaria.getId(), ", ").concat(veterinaria.getNombre(), ", ").concat(veterinaria.getDireccion()));
             });
         }
     };
     RedDeVeterinarias.prototype.listarClientes = function () {
         this.clientes.forEach(function (cliente) {
-            console.log("".concat(cliente.getId(), ", ").concat(cliente.getNombre(), ", ").concat(cliente.getTelefono(), ", ").concat(cliente.getEsVIP()));
+            console.table("".concat(cliente.getId(), ", ").concat(cliente.getNombre(), ", ").concat(cliente.getTelefono(), ", ").concat(cliente.getEsVIP()));
         });
     };
     RedDeVeterinarias.prototype.listarPacientes = function () {
         this.pacientes.forEach(function (paciente) {
-            console.log("".concat(paciente.getId(), ", ").concat(paciente.getNombre(), ", ").concat(paciente.getEspecie()));
+            console.table("".concat(paciente.getId(), ", ").concat(paciente.getNombre(), ", ").concat(paciente.getEspecie()));
         });
     };
     RedDeVeterinarias.prototype.listarProveedores = function () {
         this.proveedores.forEach(function (proveedor) {
-            console.log("".concat(proveedor.getId(), ", ").concat(proveedor.getNombre(), ", ").concat(proveedor.getTelefono()));
+            console.table("".concat(proveedor.getId(), ", ").concat(proveedor.getNombre(), ", ").concat(proveedor.getTelefono()));
         });
     };
     return RedDeVeterinarias;
 }());
 exports.RedDeVeterinarias = RedDeVeterinarias;
+var papa = new RedDeVeterinarias();
+papa.listarPacientes();

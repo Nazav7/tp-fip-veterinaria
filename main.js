@@ -37,7 +37,8 @@ function manejarOpcionPrincipal(opcion) {
 }
 function seleccionarSucursal() {
     console.log('*** Seleccionar Sucursal ***');
-    sistemaRed.listarVeterinarias();
+    var veterinariasListadas = sistemaRed.getVeterinaria();
+    console.table(veterinariasListadas);
     rl.question('Ingrese el ID de la sucursal o escriba "atras" para volver: ', function (id) {
         if (id.toLowerCase() === 'atras') {
             mostrarMenuPrincipal();
@@ -94,7 +95,8 @@ function menuClientes() {
         switch (opcion) {
             case '1':
                 console.log('*** Clientes ***');
-                veterinariaActual.listarClientes();
+                var listaClientes = veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.getClientes();
+                console.table(listaClientes);
                 menuClientes();
                 break;
             case '2':
@@ -106,10 +108,12 @@ function menuClientes() {
                 });
                 break;
             case '3':
-                rl.question('Ingrese el nombre del cliente a modificar: ', function (nombre) {
-                    rl.question('Ingrese el nuevo teléfono: ', function (telefono) {
-                        veterinariaActual.modificarCliente(nombre, Number(telefono));
-                        menuClientes();
+                rl.question('ingrese el ID del cliente a modificar: ', function (id) {
+                    rl.question('ingrese el nuevo nombre del cliente: ', function (nuevoNombre) {
+                        rl.question('ingrese el nuevo telefono del cliente: ', function (nuevoTelefono) {
+                            veterinariaActual.modificarCliente(Number(id), nuevoNombre, Number(nuevoTelefono));
+                            menuClientes();
+                        });
                     });
                 });
                 break;
@@ -122,8 +126,10 @@ function menuClientes() {
                 });
                 break;
             case '5':
-                console.log('Funcionalidad "Registrar Visita" no implementada aún.');
-                menuClientes();
+                rl.question('Indique nombre del cliente para registrar la visita: ', function (nombre) {
+                    veterinariaActual.registrarVisita(nombre);
+                    menuClientes();
+                });
                 break;
             case '6':
                 menuSucursal();
@@ -148,7 +154,8 @@ function menuPacientes() {
             switch (opcion) {
                 case '1':
                     console.log('*** Pacientes ***');
-                    veterinariaActual.listarPacientes();
+                    var listaPacientes = veterinariaActual.getPacientes();
+                    console.table(listaPacientes);
                     menuPacientes();
                     break;
                 case '2':
@@ -162,10 +169,12 @@ function menuPacientes() {
                     });
                     break;
                 case '3':
-                    rl.question('Ingrese el nombre del paciente a modificar: ', function (nombre) {
-                        rl.question('Ingrese la nueva especie: ', function (especie) {
-                            veterinariaActual.modificarPaciente(nombre, especie);
-                            menuPacientes();
+                    rl.question('ingrese el ID del paciente a modificar: ', function (id) {
+                        rl.question('ingrese el nuevo nombre del paciente: ', function (nuevoNombre) {
+                            rl.question('ingrese el nueva especie del paciente: ', function (nuevaEspecie) {
+                                veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.modificarPaciente(Number(id), nuevoNombre, nuevaEspecie);
+                                menuClientes();
+                            });
                         });
                     });
                     break;

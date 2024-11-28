@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.leerTXT = void 0;
+exports.leerTXT = leerTXT;
 var fs = require("fs");
 ///URLS///
-var url_cliente = '../bbdd/clientes.txt';
-var url_pacientes = '../bbdd/pacientes.txt';
-var url_proveedores = '../bbdd/proveedores.txt';
-var url_sucursales = '../bbdd/sucursales.txt';
+var url_cliente = './bbdd/clientes.txt';
+var url_pacientes = './bbdd/pacientes.txt';
+var url_proveedores = './bbdd/proveedores.txt';
+var url_sucursales = './bbdd/sucursales.txt';
 //////////////////LEER ARCHIVO TXT COMO BASE DE DATOS Y CONVERTIRLO EN JASON////////////////////////
 function leerTXT(ruta) {
     try {
@@ -66,10 +66,9 @@ function leerTXT(ruta) {
     }
     return [];
 }
-exports.leerTXT = leerTXT;
 //TEST DE CODIGO//
 var pacientes = leerTXT(url_pacientes);
-console.log(pacientes);
+console.table(pacientes);
 /*
 
 let clientes = leerTXT(url_cliente);

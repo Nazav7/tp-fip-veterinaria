@@ -70,7 +70,7 @@ export class Veterinaria {
         }
     }
 
-
+/*
     modificarCliente(nombre: string, telefono: number) {
         const cliente = this.clientes.find(c => c.getNombre() === nombre && c.getTelefono() === telefono);
         if (cliente) {
@@ -81,7 +81,9 @@ export class Veterinaria {
             console.log('No se encontró cliente');
         }
     }
-    
+    */
+   /*
+
     modificarPaciente(nombre: string, especie: string) {
         const paciente = this.pacientes.find(p => p.getNombre() === nombre && p.getEspecie() === especie);
         if (paciente) {
@@ -92,6 +94,7 @@ export class Veterinaria {
             console.log('No se encontró paciente');
         }
     }
+*/
 
     registrarVisita(nombre : string){
         const cliente = this.clientes.find(p => p.getNombre() === nombre);
@@ -172,7 +175,27 @@ export class Veterinaria {
                 return 0;
         }
     }
+    modificarCliente(id: number, nombre: string, telefono: number) {
+        const cliente = this.clientes.find(c => c.getId() === id);
+        if (cliente) {
+            cliente.setNombre(nombre);
+            cliente.setTelefono(telefono);
+            console.log('El cliente ha sido modificado');
+        } else {
+            console.log('No se encontró cliente');
+        }
+    }
 
+    modificarPaciente(id: number, nombre: string, especie: string) {
+        const paciente = this.pacientes.find(p => p.getId() === id);
+        if (paciente) {
+            paciente.setNombre(nombre);
+            paciente.setEspecie(especie);
+            console.log('El paciente ha sido modificado');
+        } else {
+            console.log('No se encontró paciente');
+        }
+    }
 
 }
 

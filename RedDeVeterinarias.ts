@@ -146,27 +146,29 @@ export class RedDeVeterinarias {
     listarVeterinarias() {
         if(this.veterinarias != null){
             this.veterinarias.forEach(veterinaria => {
-                console.log(`${veterinaria.getId()}, ${veterinaria.getNombre()}, ${veterinaria.getDireccion()}`);
+                console.table(`${veterinaria.getId()}, ${veterinaria.getNombre()}, ${veterinaria.getDireccion()}`);
             });
         }
         
     }
     listarClientes() {
         this.clientes.forEach(cliente => {
-            console.log(`${cliente.getId()}, ${cliente.getNombre()}, ${cliente.getTelefono()}, ${cliente.getEsVIP()}`);
+            console.table(`${cliente.getId()}, ${cliente.getNombre()}, ${cliente.getTelefono()}, ${cliente.getEsVIP()}`);
         });
     }
 
     listarPacientes() {
         this.pacientes.forEach(paciente => {
-            console.log(`${paciente.getId()}, ${paciente.getNombre()}, ${paciente.getEspecie()}`);
+            console.table(`${paciente.getId()}, ${paciente.getNombre()}, ${paciente.getEspecie()}`);
         });
     }
 
     listarProveedores() {
         this.proveedores.forEach(proveedor => {
-            console.log(`${proveedor.getId()}, ${proveedor.getNombre()}, ${proveedor.getTelefono()}`);
+            console.table(`${proveedor.getId()}, ${proveedor.getNombre()}, ${proveedor.getTelefono()}`);
         });
     }
 }
 
+const papa = new RedDeVeterinarias()
+papa.listarPacientes()

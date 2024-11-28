@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.cargarPacientes = exports.cargarClientes = exports.cargarProveedores = exports.generarSucursales = void 0;
+exports.generarSucursales = generarSucursales;
+exports.cargarProveedores = cargarProveedores;
+exports.cargarClientes = cargarClientes;
+exports.cargarPacientes = cargarPacientes;
 var utils_1 = require("./Clases/utils");
 var url_cliente = './bbdd/clientes.txt';
 var url_pacientes = './bbdd/pacientes.txt';
@@ -14,7 +17,6 @@ function generarSucursales(redDeVeterinaria) {
         redDeVeterinaria.agregarVeterinaria(nombre, direccion);
     }
 }
-exports.generarSucursales = generarSucursales;
 function cargarProveedores(redDeVeterinaria) {
     var proveedoresJASON = (0, utils_1.leerTXT)(url_proveedores);
     for (var i = 0; i < proveedoresJASON.length; i++) {
@@ -23,7 +25,6 @@ function cargarProveedores(redDeVeterinaria) {
         redDeVeterinaria.agregarProveedor(nombre, telefono);
     }
 }
-exports.cargarProveedores = cargarProveedores;
 function cargarClientes(veterinaria) {
     var clientesJASON = (0, utils_1.leerTXT)(url_cliente);
     for (var i = 0; i < clientesJASON.length; i++) {
@@ -32,7 +33,6 @@ function cargarClientes(veterinaria) {
         veterinaria.agregarCliente(nombre, telefono);
     }
 }
-exports.cargarClientes = cargarClientes;
 function cargarPacientes(veterinaria) {
     var pacientesJASON = (0, utils_1.leerTXT)(url_pacientes);
     for (var i = 0; i < pacientesJASON.length; i++) {
@@ -42,4 +42,3 @@ function cargarPacientes(veterinaria) {
         veterinaria.agregarPaciente(nombre, especie, id_cliente);
     }
 }
-exports.cargarPacientes = cargarPacientes;

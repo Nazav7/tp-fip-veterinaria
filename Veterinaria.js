@@ -71,28 +71,31 @@ var Veterinaria = /** @class */ (function () {
             console.log('El paciente no se encuentra en la base de datos');
         }
     };
-    Veterinaria.prototype.modificarCliente = function (nombre, telefono) {
-        var cliente = this.clientes.find(function (c) { return c.getNombre() === nombre && c.getTelefono() === telefono; });
-        if (cliente) {
-            cliente.setNombre(nombre);
-            cliente.setTelefono(telefono);
-            console.log('El cliente ha sido modificado');
+    /*
+        modificarCliente(nombre: string, telefono: number) {
+            const cliente = this.clientes.find(c => c.getNombre() === nombre && c.getTelefono() === telefono);
+            if (cliente) {
+                cliente.setNombre(nombre);
+                cliente.setTelefono(telefono);
+                console.log('El cliente ha sido modificado');
+            } else {
+                console.log('No se encontró cliente');
+            }
         }
-        else {
-            console.log('No se encontró cliente');
-        }
-    };
-    Veterinaria.prototype.modificarPaciente = function (nombre, especie) {
-        var paciente = this.pacientes.find(function (p) { return p.getNombre() === nombre && p.getEspecie() === especie; });
-        if (paciente) {
-            paciente.setNombre(nombre);
-            paciente.setEspecie(especie);
-            console.log('El paciente ha sido modificado');
-        }
-        else {
-            console.log('No se encontró paciente');
-        }
-    };
+        */
+    /*
+ 
+     modificarPaciente(nombre: string, especie: string) {
+         const paciente = this.pacientes.find(p => p.getNombre() === nombre && p.getEspecie() === especie);
+         if (paciente) {
+             paciente.setNombre(nombre);
+             paciente.setEspecie(especie);
+             console.log('El paciente ha sido modificado');
+         } else {
+             console.log('No se encontró paciente');
+         }
+     }
+ */
     Veterinaria.prototype.registrarVisita = function (nombre) {
         var cliente = this.clientes.find(function (p) { return p.getNombre() === nombre; });
         cliente === null || cliente === void 0 ? void 0 : cliente.registrarVisita();
@@ -162,6 +165,28 @@ var Veterinaria = /** @class */ (function () {
             default:
                 console.log("Error al crear id");
                 return 0;
+        }
+    };
+    Veterinaria.prototype.modificarCliente = function (id, nombre, telefono) {
+        var cliente = this.clientes.find(function (c) { return c.getId() === id; });
+        if (cliente) {
+            cliente.setNombre(nombre);
+            cliente.setTelefono(telefono);
+            console.log('El cliente ha sido modificado');
+        }
+        else {
+            console.log('No se encontró cliente');
+        }
+    };
+    Veterinaria.prototype.modificarPaciente = function (id, nombre, especie) {
+        var paciente = this.pacientes.find(function (p) { return p.getId() === id; });
+        if (paciente) {
+            paciente.setNombre(nombre);
+            paciente.setEspecie(especie);
+            console.log('El paciente ha sido modificado');
+        }
+        else {
+            console.log('No se encontró paciente');
         }
     };
     return Veterinaria;
