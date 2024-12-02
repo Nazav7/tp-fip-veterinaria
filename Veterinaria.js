@@ -140,32 +140,66 @@ var Veterinaria = /** @class */ (function () {
     Veterinaria.prototype.setDireccion = function (nuevaDireccion) {
         this.direccion = nuevaDireccion;
     };
-    Veterinaria.prototype.generarID = function (tipo) {
-        switch (tipo) {
+    /*
+    generarID(tipo): number{
+        let new_id:number = Math.floor(Math.random()* 1000)
+        switch(tipo){
             case 'cliente':
-                var id_c = 0;
-                for (var _i = 0, _a = this.clientes; _i < _a.length; _i++) {
-                    var cliente = _a[_i];
-                    var id_cliente = cliente.getId();
-                    if (id_cliente > id_c) {
-                        id_c = id_cliente;
+                let esDuplicado = false;
+                for (let cliente of this.clientes) {
+                    if (cliente.getId() === new_id) {
+                        esDuplicado = true;
+                        break;
+                     }
+                }
+
+            case 'paciente' :
+                let id_p:number= 0;
+                for(let paciente of this.pacientes){
+                    let id_paciente =paciente.getId();
+                    if(id_paciente > id_p){
+                    id_p = id_paciente;
                     }
                 }
-                return id_c = id_c + 1;
-            case 'paciente':
-                var id_p = 0;
-                for (var _b = 0, _c = this.pacientes; _b < _c.length; _b++) {
-                    var paciente = _c[_b];
-                    var id_paciente = paciente.getId();
-                    if (id_paciente > id_p) {
-                        id_p = id_paciente;
-                    }
-                }
-                return id_p = id_p + 1;
+                return id_p = id_p +1;
             default:
                 console.log("Error al crear id");
                 return 0;
         }
+    }
+
+    */
+    Veterinaria.prototype.generarID = function (tipo) {
+        var estaDuplicado = false;
+        while (!estaDuplicado) {
+            var new_id = Math.floor(Math.random() * 1000);
+            switch (tipo) {
+                case 'cliente':
+                    for (var _i = 0, _a = this.clientes; _i < _a.length; _i++) {
+                        var cliente = _a[_i];
+                        if (new_id === cliente.getId()) {
+                            estaDuplicado = true;
+                            break;
+                        }
+                    }
+                    break;
+                case 'paciente':
+                    for (var _b = 0, _c = this.pacientes; _b < _c.length; _b++) {
+                        var paciente = _c[_b];
+                        if (new_id === paciente.getId()) {
+                            estaDuplicado = true;
+                            break;
+                        }
+                    }
+                    break;
+                default:
+                    throw new Error("Falla de generacion de ID");
+            }
+            if (!estaDuplicado) {
+                return new_id;
+            }
+        }
+        return 0;
     };
     Veterinaria.prototype.modificarCliente = function (id, nombre, telefono) {
         var cliente = this.clientes.find(function (c) { return c.getId() === id; });

@@ -150,17 +150,20 @@ export class Veterinaria {
         this.direccion = nuevaDireccion;
     }
 
+
+    /*
+    GENERADOR VIEJO
     generarID(tipo): number{
+        let new_id:number = Math.floor(Math.random()* 1000)
         switch(tipo){
             case 'cliente':
-                let id_c:number= 0;
-                for(let cliente of this.clientes){
-                    let id_cliente =cliente.getId();
-                    if(id_cliente > id_c){
-                        id_c = id_cliente; 
-                    }
-                }   
-                return id_c = id_c +1;
+                let esDuplicado = false;
+                for (let cliente of this.clientes) {
+                    if (cliente.getId() === new_id) {
+                        esDuplicado = true;
+                        break;
+                     }
+                }
             case 'paciente' :
                 let id_p:number= 0;
                 for(let paciente of this.pacientes){
@@ -175,6 +178,43 @@ export class Veterinaria {
                 return 0;
         }
     }
+    GENERADOR VIEJO
+    */
+
+    generarID(tipo): number{
+        let estaDuplicado = false;
+        while(!estaDuplicado){
+            let new_id:number = Math.floor(Math.random()* 1000);
+            switch(tipo){
+                case 'cliente' :
+                    for (let cliente of this.clientes){
+                        if(new_id === cliente.getId()){
+                            estaDuplicado = true;
+                            break;
+                        }
+                    }
+                    break;
+                case 'paciente':
+                    for (let paciente of this.pacientes){
+                        if(new_id === paciente.getId()){
+                            estaDuplicado = true;
+                            break;
+                        }
+                    }
+                    break;                
+                default:
+                    throw new Error("Falla de generacion de ID");
+            }
+            if(!estaDuplicado){
+                return new_id;
+            }
+        }
+        return 0;
+    }
+
+
+
+
     modificarCliente(id: number, nombre: string, telefono: number) {
         const cliente = this.clientes.find(c => c.getId() === id);
         if (cliente) {

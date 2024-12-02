@@ -173,7 +173,7 @@ function menuPacientes() {
                         rl.question('ingrese el nuevo nombre del paciente: ', function (nuevoNombre) {
                             rl.question('ingrese el nueva especie del paciente: ', function (nuevaEspecie) {
                                 veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.modificarPaciente(Number(id), nuevoNombre, nuevaEspecie);
-                                menuClientes();
+                                menuPacientes();
                             });
                         });
                     });

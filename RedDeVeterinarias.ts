@@ -88,31 +88,39 @@ export class RedDeVeterinarias {
         }
     }
 
-    generarID(tipo): number{
+//veterniaria
+//proveedor
+
+generarID(tipo): number{
+    let estaDuplicado = false;
+    while(!estaDuplicado){
+        let new_id:number = Math.floor(Math.random()* 1000);
         switch(tipo){
-            case 'veterinaria':
-                let id_v:number= 0;
-                for(let veterinaria of this.veterinarias){
-                    let id_veterinaria =veterinaria.getId();
-                    if(id_veterinaria > id_v){
-                        id_v = id_veterinaria; 
+            case 'veterinaria' :
+                for (let veterinaria of this.veterinarias){
+                    if(new_id === veterinaria.getId()){
+                        estaDuplicado = true;
+                        break;
                     }
-                }   
-                return id_v = id_v +1;
-            case 'proveedor' :
-                let id_prov:number= 0;
-                for(let proveedor of this.proveedores){
-                    let id_proveedor =proveedor.getId();
-                    if(id_proveedor > id_prov){
-                        id_prov = id_proveedor; 
+                }
+                break;
+            case 'proveedor':
+                for (let proveedor of this.proveedores){
+                    if(new_id === proveedor.getId()){
+                        estaDuplicado = true;
+                        break;
                     }
-                }   
-                return id_prov = id_prov +1;
+                }
+                break;                
             default:
-                console.log("Error al crear id");
-                return 0;
+                throw new Error("Falla de generacion de ID");
+        }
+        if(!estaDuplicado){
+            return new_id;
         }
     }
+    return 0;
+}
 
     //Getters
     getClientes(): Cliente[] {
