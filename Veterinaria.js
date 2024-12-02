@@ -49,8 +49,8 @@ var Veterinaria = /** @class */ (function () {
             console.log('No se puede agregar paciente porque ya existe');
         }
     };
-    Veterinaria.prototype.eliminarCliente = function (nombre, telefono) {
-        var cliente = this.clientes.find(function (c) { return c.getNombre() === nombre && c.getTelefono() === telefono; });
+    Veterinaria.prototype.eliminarCliente = function (id) {
+        var cliente = this.clientes.find(function (c) { return c.getId() === id; });
         if (cliente) {
             var index = this.clientes.indexOf(cliente);
             this.clientes.splice(index, 1);
@@ -60,8 +60,8 @@ var Veterinaria = /** @class */ (function () {
             console.log('El cliente no se encuentra en la base de datos');
         }
     };
-    Veterinaria.prototype.eliminarPaciente = function (nombre, especie) {
-        var paciente = this.pacientes.find(function (p) { return p.getNombre() === nombre && p.getEspecie() === especie; });
+    Veterinaria.prototype.eliminarPaciente = function (id) {
+        var paciente = this.pacientes.find(function (p) { return p.getId() === id; });
         if (paciente) {
             var index = this.pacientes.indexOf(paciente);
             this.pacientes.splice(index, 1);
@@ -141,6 +141,7 @@ var Veterinaria = /** @class */ (function () {
         this.direccion = nuevaDireccion;
     };
     /*
+    GENERADOR VIEJO
     generarID(tipo): number{
         let new_id:number = Math.floor(Math.random()* 1000)
         switch(tipo){
@@ -152,7 +153,6 @@ var Veterinaria = /** @class */ (function () {
                         break;
                      }
                 }
-
             case 'paciente' :
                 let id_p:number= 0;
                 for(let paciente of this.pacientes){
@@ -167,7 +167,7 @@ var Veterinaria = /** @class */ (function () {
                 return 0;
         }
     }
-
+    GENERADOR VIEJO
     */
     Veterinaria.prototype.generarID = function (tipo) {
         var estaDuplicado = false;

@@ -10,7 +10,7 @@ var Cliente = /** @class */ (function () {
         this.esVIP = false;
     }
     Cliente.prototype.registrarVisita = function () {
-        this.visitas += 1;
+        this.visitas = this.visitas + 1;
         this.esVIP = this.visitas >= 5;
     };
     Cliente.prototype.modificarDatos = function (nombre, telefono) {

@@ -5,7 +5,7 @@ var Paciente = /** @class */ (function () {
     function Paciente(nombre, especie, idDueno, id) {
         this.id = id;
         this.nombre = nombre;
-        this.especie = especie;
+        this.especie = this.verificarEspecie(especie);
         this.idDueno = idDueno;
     }
     Paciente.prototype.modificarDatos = function (nombre, especie) {
@@ -15,6 +15,17 @@ var Paciente = /** @class */ (function () {
     };
     Paciente.prototype.darDeBaja = function () {
         console.log("Paciente ".concat(this.nombre, " ha sido dado de baja."));
+    };
+    Paciente.prototype.verificarEspecie = function (especie) {
+        if (especie.toUpperCase() == 'PERRO') {
+            return 'perro';
+        }
+        else if (especie.toUpperCase() == 'GATO') {
+            return 'gato';
+        }
+        else {
+            return 'exotico';
+        }
     };
     //getters & setters
     Paciente.prototype.getNombre = function () {

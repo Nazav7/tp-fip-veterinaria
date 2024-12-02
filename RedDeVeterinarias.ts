@@ -2,6 +2,7 @@ import { Veterinaria } from "./Veterinaria";
 import { Cliente } from "./Cliente";
 import { Paciente } from "./Paciente";
 import { Proveedor } from "./Proveedor";
+import { cargarProveedores } from "./inicio";
 
 export class RedDeVeterinarias {
     veterinarias: Veterinaria[];
@@ -15,6 +16,8 @@ export class RedDeVeterinarias {
         this.proveedores = []
         this.clientes = []
         this.pacientes = []
+
+        cargarProveedores(this);
     }
 
 
@@ -32,7 +35,7 @@ export class RedDeVeterinarias {
         }
     }
 
-    agregarProveedor(nombre: string, telefono: number) {
+    agregarProveedor(nombre: string, telefono: string) {
         const proveedor = this.proveedores.find(p => p.getNombre() === nombre && p.getTelefono() === telefono);
         if (!proveedor) {
             const id = this.generarID('proveedor'); 
@@ -77,7 +80,7 @@ export class RedDeVeterinarias {
         }
     }
 
-    modificarProveedor(id: number, nuevoNombre: string, nuevoTelefono: number) {
+    modificarProveedor(id: number, nuevoNombre: string, nuevoTelefono: string) {
         const proveedor = this.proveedores.find(p => p.getId() === id);
         if (proveedor) {
             proveedor.setNombre(nuevoNombre)

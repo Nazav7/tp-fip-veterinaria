@@ -16,7 +16,10 @@ function generarSucursales(redDeVeterinaria) {
 }
 exports.generarSucursales = generarSucursales;
 function cargarProveedores(redDeVeterinaria) {
+    console.log("Cargando proveedores");
     var proveedoresJASON = (0, utils_1.leerTXT)(url_proveedores);
+    console.log('proveedores: '
+        + proveedoresJASON);
     for (var i = 0; i < proveedoresJASON.length; i++) {
         var nombre = proveedoresJASON[i].Nombre;
         var telefono = proveedoresJASON[i].Telefono;

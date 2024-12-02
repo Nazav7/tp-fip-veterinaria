@@ -23,7 +23,7 @@ export class Veterinaria {
 
     //Métodos
 
-    agregarCliente(nombre: string, telefono: number) {
+    agregarCliente(nombre: string, telefono: string) {
         const id = this.generarID('cliente');
         const cliente = this.clientes.find(c => c.getNombre() == nombre && c.getTelefono() == telefono);
         if (!cliente) {
@@ -35,7 +35,7 @@ export class Veterinaria {
         }
     }
     
-    agregarPaciente(nombre: string, especie: string, id_duenio:number) {
+    agregarPaciente(nombre: string, especie: string, id_duenio:string) {
         const id = this.generarID('paciente');
         const paciente = this.pacientes.find(p => p.getNombre() === nombre && p.getEspecie() === especie);
         if (!paciente) {
@@ -48,8 +48,8 @@ export class Veterinaria {
     }
 
     
-    eliminarCliente(nombre: string, telefono: number) {
-        const cliente = this.clientes.find(c => c.getNombre() === nombre && c.getTelefono() === telefono);
+    eliminarCliente(id:number) {
+        const cliente = this.clientes.find(c => c.getId() === id);
         if (cliente) {
             const index = this.clientes.indexOf(cliente);
             this.clientes.splice(index, 1);
@@ -59,8 +59,8 @@ export class Veterinaria {
         }
     }
     
-    eliminarPaciente(nombre: string, especie: string) {
-        const paciente = this.pacientes.find(p => p.getNombre() === nombre && p.getEspecie() === especie);
+    eliminarPaciente(id: number) {
+        const paciente = this.pacientes.find(p => p.getId() === id);
         if (paciente) {
             const index = this.pacientes.indexOf(paciente);
             this.pacientes.splice(index, 1);
@@ -215,7 +215,7 @@ export class Veterinaria {
 
 
 
-    modificarCliente(id: number, nombre: string, telefono: number) {
+    modificarCliente(id: number, nombre: string, telefono: string) {
         const cliente = this.clientes.find(c => c.getId() === id);
         if (cliente) {
             cliente.setNombre(nombre);

@@ -102,7 +102,7 @@ function menuClientes() {
             case '2':
                 rl.question('Ingrese el nombre del cliente: ', function (nombre) {
                     rl.question('Ingrese el teléfono del cliente: ', function (telefono) {
-                        veterinariaActual.agregarCliente(nombre, Number(telefono));
+                        veterinariaActual.agregarCliente(nombre, String(telefono));
                         menuClientes();
                     });
                 });
@@ -111,18 +111,16 @@ function menuClientes() {
                 rl.question('ingrese el ID del cliente a modificar: ', function (id) {
                     rl.question('ingrese el nuevo nombre del cliente: ', function (nuevoNombre) {
                         rl.question('ingrese el nuevo telefono del cliente: ', function (nuevoTelefono) {
-                            veterinariaActual.modificarCliente(Number(id), nuevoNombre, Number(nuevoTelefono));
+                            veterinariaActual.modificarCliente(Number(id), nuevoNombre, String(nuevoTelefono));
                             menuClientes();
                         });
                     });
                 });
                 break;
             case '4':
-                rl.question('Ingrese el nombre del cliente a eliminar: ', function (nombre) {
-                    rl.question('Ingrese el teléfono del cliente: ', function (telefono) {
-                        veterinariaActual.eliminarCliente(nombre, Number(telefono));
-                        menuClientes();
-                    });
+                rl.question('Ingrese el ID del cliente a eliminar: ', function (id) {
+                    veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.eliminarCliente(parseInt(id));
+                    menuClientes();
                 });
                 break;
             case '5':
@@ -162,7 +160,7 @@ function menuPacientes() {
                     rl.question('Ingrese el nombre del paciente: ', function (nombre) {
                         rl.question('Ingrese la especie del paciente: ', function (especie) {
                             rl.question('Ingrese el ID del dueño: ', function (idDueño) {
-                                veterinariaActual.agregarPaciente(nombre, especie, Number(idDueño));
+                                veterinariaActual.agregarPaciente(nombre, especie, String(idDueño));
                                 menuPacientes();
                             });
                         });
@@ -179,11 +177,9 @@ function menuPacientes() {
                     });
                     break;
                 case '4':
-                    rl.question('Ingrese el nombre del paciente a eliminar: ', function (nombre) {
-                        rl.question('Ingrese la especie del paciente: ', function (especie) {
-                            veterinariaActual.eliminarPaciente(nombre, especie);
-                            menuPacientes();
-                        });
+                    rl.question('Ingrese el ID del paciente a eliminar: ', function (id) {
+                        veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.eliminarPaciente(parseInt(id));
+                        menuPacientes();
                     });
                     break;
                 case '5':
@@ -271,7 +267,7 @@ function listarProveedores() {
 function agregarProveedor() {
     rl.question('Ingrese el nombre del proveedor: ', function (nombre) {
         rl.question('Ingrese el teléfono del proveedor: ', function (telefono) {
-            sistemaRed.agregarProveedor(nombre, Number(telefono));
+            sistemaRed.agregarProveedor(nombre, String(telefono));
             console.log('Proveedor agregado exitosamente.');
             menuProveedores();
         });
@@ -281,7 +277,7 @@ function modificarProveedor() {
     rl.question('Ingrese el ID del proveedor a modificar: ', function (id) {
         rl.question('Ingrese el nuevo nombre del proveedor: ', function (nuevoNombre) {
             rl.question('Ingrese el nuevo teléfono del proveedor: ', function (nuevoTelefono) {
-                sistemaRed.modificarProveedor(Number(id), nuevoNombre, Number(nuevoTelefono));
+                sistemaRed.modificarProveedor(Number(id), nuevoNombre, String(nuevoTelefono));
                 console.log('Proveedor modificado exitosamente.');
                 menuProveedores();
             });
@@ -350,7 +346,6 @@ function modificarSucursal() {
 function eliminarSucursal() {
     rl.question('Ingrese el ID de la sucursal a eliminar: ', function (id) {
         sistemaRed.eliminarVeterinaria(Number(id));
-        console.log('Sucursal eliminada exitosamente.');
         menuSucursales();
     });
 }

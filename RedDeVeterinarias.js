@@ -12,12 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RedDeVeterinarias = void 0;
 var Veterinaria_1 = require("./Veterinaria");
 var Proveedor_1 = require("./Proveedor");
+var inicio_1 = require("./inicio");
 var RedDeVeterinarias = /** @class */ (function () {
     function RedDeVeterinarias() {
         this.veterinarias = [];
         this.proveedores = [];
         this.clientes = [];
         this.pacientes = [];
+        (0, inicio_1.cargarProveedores)(this);
     }
     //Métodos
     RedDeVeterinarias.prototype.agregarVeterinaria = function (nombre, direccion) {
@@ -88,32 +90,39 @@ var RedDeVeterinarias = /** @class */ (function () {
             console.log('No se encontró ID');
         }
     };
+    //veterniaria
+    //proveedor
     RedDeVeterinarias.prototype.generarID = function (tipo) {
-        switch (tipo) {
-            case 'veterinaria':
-                var id_v = 0;
-                for (var _i = 0, _a = this.veterinarias; _i < _a.length; _i++) {
-                    var veterinaria = _a[_i];
-                    var id_veterinaria = veterinaria.getId();
-                    if (id_veterinaria > id_v) {
-                        id_v = id_veterinaria;
+        var estaDuplicado = false;
+        while (!estaDuplicado) {
+            var new_id = Math.floor(Math.random() * 1000);
+            switch (tipo) {
+                case 'veterinaria':
+                    for (var _i = 0, _a = this.veterinarias; _i < _a.length; _i++) {
+                        var veterinaria = _a[_i];
+                        if (new_id === veterinaria.getId()) {
+                            estaDuplicado = true;
+                            break;
+                        }
                     }
-                }
-                return id_v = id_v + 1;
-            case 'proveedor':
-                var id_prov = 0;
-                for (var _b = 0, _c = this.proveedores; _b < _c.length; _b++) {
-                    var proveedor = _c[_b];
-                    var id_proveedor = proveedor.getId();
-                    if (id_proveedor > id_prov) {
-                        id_prov = id_proveedor;
+                    break;
+                case 'proveedor':
+                    for (var _b = 0, _c = this.proveedores; _b < _c.length; _b++) {
+                        var proveedor = _c[_b];
+                        if (new_id === proveedor.getId()) {
+                            estaDuplicado = true;
+                            break;
+                        }
                     }
-                }
-                return id_prov = id_prov + 1;
-            default:
-                console.log("Error al crear id");
-                return 0;
+                    break;
+                default:
+                    throw new Error("Falla de generacion de ID");
+            }
+            if (!estaDuplicado) {
+                return new_id;
+            }
         }
+        return 0;
     };
     //Getters
     RedDeVeterinarias.prototype.getClientes = function () {

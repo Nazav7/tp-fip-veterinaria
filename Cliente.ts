@@ -1,11 +1,11 @@
 export class Cliente {
     private id: number;
     private nombre: string;
-    private telefono: number;
+    private telefono: string;
     private visitas: number;
     private esVIP: boolean;
 
-    constructor(nombre: string, telefono: number, id :number) {
+    constructor(nombre: string, telefono: string, id :number) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -14,11 +14,11 @@ export class Cliente {
     }
 
     registrarVisita(): void {
-        this.visitas += 1;
+        this.visitas = this.visitas +1;
         this.esVIP = this.visitas >= 5;
     }
 
-    modificarDatos(nombre: string, telefono: number): void {
+    modificarDatos(nombre: string, telefono: string): void {
         this.nombre = nombre;
         this.telefono = telefono;
         console.log(`datos modificados satisactoriamente, nombre: ${this.nombre}, telefono: ${this.telefono}. `)
@@ -40,10 +40,10 @@ export class Cliente {
         this.nombre = nombre;
     }
 
-    public getTelefono(): number {
+    public getTelefono(): string {
         return this.telefono;
     }
-    public setTelefono(telefono: number) {
+    public setTelefono(telefono: string) {
         this.telefono = telefono;
     }
 

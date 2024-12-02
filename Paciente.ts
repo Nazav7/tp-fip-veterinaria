@@ -2,14 +2,14 @@ export class Paciente {
     private id: number;
     private nombre: string;
     private especie: string;
-    private idDueno: number;
+    private idDueno: string;
 
 
 
-    constructor(nombre: string, especie: string, idDueno: number, id:number) {
+    constructor(nombre: string, especie: string, idDueno: string, id:number) {
         this.id = id;
         this.nombre = nombre;
-        this.especie = especie;
+        this.especie = this.verificarEspecie(especie);
         this.idDueno = idDueno;
     }
 
@@ -24,6 +24,17 @@ export class Paciente {
         console.log(`Paciente ${this.nombre} ha sido dado de baja.`);
     }
 
+    verificarEspecie(especie:string):string{
+        if(especie.toUpperCase() == 'PERRO'){
+            return 'perro';
+        }
+        else if(especie.toUpperCase() == 'GATO'){
+            return 'gato';
+        }
+        else{
+            return 'exotico';
+        }
+    }
 
     //getters & setters
 
@@ -39,10 +50,10 @@ export class Paciente {
     public setEspecie(especie: string) {
         this.especie = especie;
     }
-    public getIdDueno(): number {
+    public getIdDueno(): string {
         return this.idDueno;
     }
-    public setIdDueno(idDueno: number) {
+    public setIdDueno(idDueno: string) {
         this.idDueno = idDueno;
     }
     public getId(){
