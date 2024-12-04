@@ -67,11 +67,11 @@ try{
 }
 
 //TEST DE CODIGO//
-
+/*
 let pacientes = leerTXT(url_pacientes);
 console.table(pacientes);
 
-/* 
+ 
 
 let clientes = leerTXT(url_cliente);
 console.log(clientes);

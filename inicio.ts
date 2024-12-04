@@ -19,11 +19,12 @@ for(let i=0; i < sucursalesJASON.length; i++){
 
 
 export function cargarProveedores(redDeVeterinaria){
-    console.log("Cargando proveedores");
+    //console.log("Cargando proveedores");
     const proveedoresJASON = leerTXT(url_proveedores);
-    console.log('proveedores: '
+    /*console.log('proveedores: '
         +proveedoresJASON
     );
+    */
 for(let i=0; i < proveedoresJASON.length; i++){
     const nombre = proveedoresJASON[i].Nombre;
     const telefono = proveedoresJASON[i].Telefono;
