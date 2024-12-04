@@ -114,8 +114,8 @@ generarID(tipo): number{
                         break;
                     }
                 }
-                break;                
-            default:
+                break; 
+                default:
                 throw new Error("Falla de generacion de ID");
         }
         if(!estaDuplicado){
@@ -163,15 +163,15 @@ generarID(tipo): number{
         
     }
     listarClientes() {
-        this.clientes.forEach(cliente => {
-            console.table(`${cliente.getId()}, ${cliente.getNombre()}, ${cliente.getTelefono()}, ${cliente.getEsVIP()}`);
-        });
+        for(let veterinaria of this.veterinarias){
+            veterinaria.listarClientes();
+        }
     }
 
     listarPacientes() {
-        this.pacientes.forEach(paciente => {
-            console.table(`${paciente.getId()}, ${paciente.getNombre()}, ${paciente.getEspecie()}`);
-        });
+        for(let veterinaria of this.veterinarias){
+            veterinaria.listarPacientes();
+        }
     }
 
     listarProveedores() {

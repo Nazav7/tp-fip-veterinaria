@@ -159,14 +159,16 @@ var RedDeVeterinarias = /** @class */ (function () {
         }
     };
     RedDeVeterinarias.prototype.listarClientes = function () {
-        this.clientes.forEach(function (cliente) {
-            console.table("".concat(cliente.getId(), ", ").concat(cliente.getNombre(), ", ").concat(cliente.getTelefono(), ", ").concat(cliente.getEsVIP()));
-        });
+        for (var _i = 0, _a = this.veterinarias; _i < _a.length; _i++) {
+            var veterinaria = _a[_i];
+            veterinaria.listarClientes();
+        }
     };
     RedDeVeterinarias.prototype.listarPacientes = function () {
-        this.pacientes.forEach(function (paciente) {
-            console.table("".concat(paciente.getId(), ", ").concat(paciente.getNombre(), ", ").concat(paciente.getEspecie()));
-        });
+        for (var _i = 0, _a = this.veterinarias; _i < _a.length; _i++) {
+            var veterinaria = _a[_i];
+            veterinaria.listarPacientes();
+        }
     };
     RedDeVeterinarias.prototype.listarProveedores = function () {
         this.proveedores.forEach(function (proveedor) {

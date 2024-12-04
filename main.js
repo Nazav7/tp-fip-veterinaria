@@ -3,9 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var readline = require("readline");
 var RedDeVeterinarias_1 = require("./RedDeVeterinarias");
 var inicio_1 = require("./inicio");
-var redDeVeterinaria = new RedDeVeterinarias_1.RedDeVeterinarias();
-(0, inicio_1.generarSucursales)(redDeVeterinaria);
-redDeVeterinaria.listarVeterinarias();
 var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -211,12 +208,12 @@ function manejarOpcionRed(opcion) {
             break;
         case '3':
             console.log('*** Clientes ***');
-            console.table(sistemaRed.getClientes());
+            sistemaRed.listarClientes();
             menuRed();
             break;
         case '4':
             console.log('*** Pacientes ***');
-            console.table(sistemaRed.getPacientes());
+            sistemaRed.listarPacientes();
             menuRed();
             break;
         case '5':

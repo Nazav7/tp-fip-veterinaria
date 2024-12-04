@@ -7,12 +7,6 @@ import { Proveedor } from "./Proveedor";
 import { leerTXT } from './Clases/utils';
 import { generarSucursales } from './inicio';
 
-const redDeVeterinaria = new RedDeVeterinarias()
-
-generarSucursales(redDeVeterinaria);
-redDeVeterinaria.listarVeterinarias();
-
-
 
 
 const rl = readline.createInterface({
@@ -274,12 +268,12 @@ function manejarOpcionRed(opcion: string) {
             break;
         case '3':
             console.log('*** Clientes ***');
-            console.table(sistemaRed.getClientes());
+            sistemaRed.listarClientes();
             menuRed();
             break;
         case '4':
             console.log('*** Pacientes ***');
-            console.table(sistemaRed.getPacientes());
+            sistemaRed.listarPacientes();
             menuRed();
             break;
         case '5':
