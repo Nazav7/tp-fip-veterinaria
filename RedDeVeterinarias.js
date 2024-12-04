@@ -34,6 +34,14 @@ var RedDeVeterinarias = /** @class */ (function () {
             console.log('No se puede agregar veterinaria porque ya existe');
         }
     };
+    RedDeVeterinarias.prototype.agregarVeterinariaInicio = function (nombre, direccion) {
+        var veterinaria = this.veterinarias.find(function (v) { return v.getNombre() === nombre && v.getDireccion() === direccion; });
+        if (!veterinaria) {
+            var id = this.generarID('veterinaria');
+            var nuevaVeterinaria = new Veterinaria_1.Veterinaria(nombre, direccion, id);
+            this.veterinarias.push(nuevaVeterinaria);
+        }
+    };
     RedDeVeterinarias.prototype.agregarProveedor = function (nombre, telefono) {
         var proveedor = this.proveedores.find(function (p) { return p.getNombre() === nombre && p.getTelefono() === telefono; });
         if (!proveedor) {
@@ -44,6 +52,14 @@ var RedDeVeterinarias = /** @class */ (function () {
         }
         else {
             console.log('No se puede agregar proveedor porque ya existe');
+        }
+    };
+    RedDeVeterinarias.prototype.agregarProveedorInicio = function (nombre, telefono) {
+        var proveedor = this.proveedores.find(function (p) { return p.getNombre() === nombre && p.getTelefono() === telefono; });
+        if (!proveedor) {
+            var id = this.generarID('proveedor');
+            var nuevoProveedor = new Proveedor_1.Proveedor(nombre, telefono, id);
+            this.proveedores.push(nuevoProveedor);
         }
     };
     RedDeVeterinarias.prototype.eliminarProveedor = function (id) {

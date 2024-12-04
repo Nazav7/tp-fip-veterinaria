@@ -37,6 +37,14 @@ var Veterinaria = /** @class */ (function () {
             console.log('No se puede agregar cliente porque ya existe');
         }
     };
+    Veterinaria.prototype.agregarClienteInicio = function (nombre, telefono) {
+        var id = this.generarID('cliente');
+        var cliente = this.clientes.find(function (c) { return c.getNombre() == nombre && c.getTelefono() == telefono; });
+        if (!cliente) {
+            var nuevoCliente = new Cliente_1.Cliente(nombre, telefono, id);
+            this.clientes.push(nuevoCliente);
+        }
+    };
     Veterinaria.prototype.agregarPaciente = function (nombre, especie, id_duenio) {
         var id = this.generarID('paciente');
         var paciente = this.pacientes.find(function (p) { return p.getNombre() === nombre && p.getEspecie() === especie; });
@@ -47,6 +55,14 @@ var Veterinaria = /** @class */ (function () {
         }
         else {
             console.log('No se puede agregar paciente porque ya existe');
+        }
+    };
+    Veterinaria.prototype.agregarPacienteInicio = function (nombre, especie, id_duenio) {
+        var id = this.generarID('paciente');
+        var paciente = this.pacientes.find(function (p) { return p.getNombre() === nombre && p.getEspecie() === especie; });
+        if (!paciente) {
+            var nuevoPaciente = new Paciente_1.Paciente(nombre, especie, id_duenio, id);
+            this.pacientes.push(nuevoPaciente);
         }
     };
     Veterinaria.prototype.eliminarCliente = function (id) {
@@ -71,31 +87,6 @@ var Veterinaria = /** @class */ (function () {
             console.log('El paciente no se encuentra en la base de datos');
         }
     };
-    /*
-        modificarCliente(nombre: string, telefono: number) {
-            const cliente = this.clientes.find(c => c.getNombre() === nombre && c.getTelefono() === telefono);
-            if (cliente) {
-                cliente.setNombre(nombre);
-                cliente.setTelefono(telefono);
-                console.log('El cliente ha sido modificado');
-            } else {
-                console.log('No se encontró cliente');
-            }
-        }
-        */
-    /*
- 
-     modificarPaciente(nombre: string, especie: string) {
-         const paciente = this.pacientes.find(p => p.getNombre() === nombre && p.getEspecie() === especie);
-         if (paciente) {
-             paciente.setNombre(nombre);
-             paciente.setEspecie(especie);
-             console.log('El paciente ha sido modificado');
-         } else {
-             console.log('No se encontró paciente');
-         }
-     }
- */
     Veterinaria.prototype.registrarVisita = function (nombre) {
         var cliente = this.clientes.find(function (p) { return p.getNombre() === nombre; });
         cliente === null || cliente === void 0 ? void 0 : cliente.registrarVisita();

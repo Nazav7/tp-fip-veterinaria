@@ -34,6 +34,15 @@ export class Veterinaria {
             console.log('No se puede agregar cliente porque ya existe');
         }
     }
+
+    agregarClienteInicio(nombre: string, telefono: string) {
+        const id = this.generarID('cliente');
+        const cliente = this.clientes.find(c => c.getNombre() == nombre && c.getTelefono() == telefono);
+        if (!cliente) {
+            const nuevoCliente = new Cliente(nombre, telefono, id);
+            this.clientes.push(nuevoCliente);
+        }
+    }
     
     agregarPaciente(nombre: string, especie: string, id_duenio:string) {
         const id = this.generarID('paciente');
@@ -47,6 +56,14 @@ export class Veterinaria {
         }
     }
 
+    agregarPacienteInicio(nombre: string, especie: string, id_duenio:string) {
+        const id = this.generarID('paciente');
+        const paciente = this.pacientes.find(p => p.getNombre() === nombre && p.getEspecie() === especie);
+        if (!paciente) {
+            const nuevoPaciente = new Paciente(nombre, especie, id_duenio, id);
+            this.pacientes.push(nuevoPaciente);
+        }
+    }
     
     eliminarCliente(id:number) {
         const cliente = this.clientes.find(c => c.getId() === id);

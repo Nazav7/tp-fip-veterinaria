@@ -99,7 +99,7 @@ function menuClientes() {
             case '2':
                 rl.question('Ingrese el nombre del cliente: ', function (nombre) {
                     rl.question('Ingrese el teléfono del cliente: ', function (telefono) {
-                        veterinariaActual.agregarCliente(nombre, String(telefono));
+                        veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.agregarCliente(nombre, String(telefono));
                         menuClientes();
                     });
                 });
@@ -108,7 +108,7 @@ function menuClientes() {
                 rl.question('ingrese el ID del cliente a modificar: ', function (id) {
                     rl.question('ingrese el nuevo nombre del cliente: ', function (nuevoNombre) {
                         rl.question('ingrese el nuevo telefono del cliente: ', function (nuevoTelefono) {
-                            veterinariaActual.modificarCliente(Number(id), nuevoNombre, String(nuevoTelefono));
+                            veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.modificarCliente(Number(id), nuevoNombre, String(nuevoTelefono));
                             menuClientes();
                         });
                     });
@@ -122,7 +122,7 @@ function menuClientes() {
                 break;
             case '5':
                 rl.question('Indique nombre del cliente para registrar la visita: ', function (nombre) {
-                    veterinariaActual.registrarVisita(nombre);
+                    veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.registrarVisita(nombre);
                     menuClientes();
                 });
                 break;
@@ -157,7 +157,7 @@ function menuPacientes() {
                     rl.question('Ingrese el nombre del paciente: ', function (nombre) {
                         rl.question('Ingrese la especie del paciente: ', function (especie) {
                             rl.question('Ingrese el ID del dueño: ', function (idDueño) {
-                                veterinariaActual.agregarPaciente(nombre, especie, String(idDueño));
+                                veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.agregarPaciente(nombre, especie, String(idDueño));
                                 menuPacientes();
                             });
                         });

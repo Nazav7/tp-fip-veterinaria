@@ -13,7 +13,7 @@ const sucursalesJASON = leerTXT(url_sucursales);
 for(let i=0; i < sucursalesJASON.length; i++){
     const nombre = sucursalesJASON[i].Nombre;
     const direccion = sucursalesJASON[i].Direccion;
-    redDeVeterinaria.agregarVeterinaria(nombre, direccion);
+    redDeVeterinaria.agregarVeterinariaInicio(nombre, direccion);
 }
 }
 
@@ -27,7 +27,7 @@ export function cargarProveedores(redDeVeterinaria){
 for(let i=0; i < proveedoresJASON.length; i++){
     const nombre = proveedoresJASON[i].Nombre;
     const telefono = proveedoresJASON[i].Telefono;
-    redDeVeterinaria.agregarProveedor(nombre, telefono);
+    redDeVeterinaria.agregarProveedorInicio(nombre, telefono);
 }
 }
 
@@ -36,7 +36,7 @@ export function cargarClientes(veterinaria){
     for(let i=0; i < clientesJASON.length; i++){
         const nombre = clientesJASON[i].Nombre;
         const telefono = clientesJASON[i].Telefono;
-        veterinaria.agregarCliente(nombre, telefono);
+        veterinaria.agregarClienteInicio(nombre, telefono);
     }
 
 }
@@ -47,6 +47,6 @@ export function cargarPacientes(veterinaria){
         const nombre = pacientesJASON[i].Nombre;
         const especie = pacientesJASON[i].Raza;
         const id_cliente = pacientesJASON[i].IDcliente;
-        veterinaria.agregarPaciente(nombre, especie, id_cliente)
+        veterinaria.agregarPacienteInicio(nombre, especie, id_cliente)
     }
 }

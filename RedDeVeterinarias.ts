@@ -35,6 +35,15 @@ export class RedDeVeterinarias {
         }
     }
 
+    agregarVeterinariaInicio(nombre: string, direccion: string) {
+        const veterinaria = this.veterinarias.find(v => v.getNombre() === nombre && v.getDireccion() === direccion);
+        if (!veterinaria) {
+            const id = this.generarID('veterinaria');
+            const nuevaVeterinaria = new Veterinaria(nombre, direccion, id);
+            this.veterinarias.push(nuevaVeterinaria);
+        }
+    }
+
     agregarProveedor(nombre: string, telefono: string) {
         const proveedor = this.proveedores.find(p => p.getNombre() === nombre && p.getTelefono() === telefono);
         if (!proveedor) {
@@ -44,6 +53,15 @@ export class RedDeVeterinarias {
             console.log('El proveedor ha sido agregado');
         } else {
             console.log('No se puede agregar proveedor porque ya existe');
+        }
+    }
+
+    agregarProveedorInicio(nombre: string, telefono: string) {
+        const proveedor = this.proveedores.find(p => p.getNombre() === nombre && p.getTelefono() === telefono);
+        if (!proveedor) {
+            const id = this.generarID('proveedor');
+            const nuevoProveedor = new Proveedor(nombre, telefono, id);
+            this.proveedores.push(nuevoProveedor);
         }
     }
 

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.leerTXT = void 0;
+exports.leerTXT = leerTXT;
 var fs = require("fs");
 ///URLS///
 var url_cliente = './bbdd/clientes.txt';
@@ -66,7 +66,6 @@ function leerTXT(ruta) {
     }
     return [];
 }
-exports.leerTXT = leerTXT;
 //TEST DE CODIGO//
 var pacientes = leerTXT(url_pacientes);
 console.table(pacientes);
