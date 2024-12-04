@@ -134,7 +134,7 @@ function menuClientes() {
             case '2':
                 rl.question('Ingrese el nombre del cliente: ', (nombre) => {
                     rl.question('Ingrese el teléfono del cliente: ', (telefono) => {
-                        veterinariaActual.agregarCliente(nombre, String(telefono));
+                        veterinariaActual?.agregarCliente(nombre, String(telefono));
                         menuClientes();
                     });
                 });
@@ -143,7 +143,7 @@ function menuClientes() {
                     rl.question('ingrese el ID del cliente a modificar: ', (id) => {
                         rl.question('ingrese el nuevo nombre del cliente: ' ,(nuevoNombre) => {
                             rl.question('ingrese el nuevo telefono del cliente: ' , (nuevoTelefono) =>{
-                                veterinariaActual.modificarCliente(Number(id), nuevoNombre, String(nuevoTelefono));
+                                veterinariaActual?.modificarCliente(Number(id), nuevoNombre, String(nuevoTelefono));
                                 menuClientes();
                             });
                         });
@@ -158,7 +158,7 @@ function menuClientes() {
                 break;
             case '5':
                     rl.question('Indique nombre del cliente para registrar la visita: ', (nombre) =>{
-                        veterinariaActual.registrarVisita(nombre);
+                        veterinariaActual?.registrarVisita(nombre);
                         menuClientes();
                     })
                 break;
@@ -203,7 +203,7 @@ function menuPacientes() {
                     rl.question('Ingrese el nombre del paciente: ', (nombre) => {
                         rl.question('Ingrese la especie del paciente: ', (especie) => {
                             rl.question('Ingrese el ID del dueño: ', (idDueño) => {
-                                veterinariaActual.agregarPaciente(nombre, especie, String(idDueño));
+                                veterinariaActual?.agregarPaciente(nombre, especie, String(idDueño));
                                 menuPacientes();
                             });
                         });
