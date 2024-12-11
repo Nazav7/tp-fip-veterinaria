@@ -2,13 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var readline = require("readline");
 var RedDeVeterinarias_1 = require("./RedDeVeterinarias");
-var inicio_1 = require("./inicio");
 var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 var sistemaRed = new RedDeVeterinarias_1.RedDeVeterinarias(); // para la red de veterinarias
-(0, inicio_1.generarSucursales)(sistemaRed);
 var veterinariaActual = null; // para manejar la veterinaria seleccionada
 function mostrarMenuPrincipal() {
     console.log("\n    ********** MENU PRINCIPAL **********\n    1. Soy Sucursal\n    2. Soy Red\n    3. Salir\n    *************************************\n    ");
@@ -97,22 +95,10 @@ function menuClientes() {
                 menuClientes();
                 break;
             case '2':
-                rl.question('Ingrese el nombre del cliente: ', function (nombre) {
-                    rl.question('Ingrese el teléfono del cliente: ', function (telefono) {
-                        veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.agregarCliente(nombre, String(telefono));
-                        menuClientes();
-                    });
-                });
+                agregarCliente();
                 break;
             case '3':
-                rl.question('ingrese el ID del cliente a modificar: ', function (id) {
-                    rl.question('ingrese el nuevo nombre del cliente: ', function (nuevoNombre) {
-                        rl.question('ingrese el nuevo telefono del cliente: ', function (nuevoTelefono) {
-                            veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.modificarCliente(Number(id), nuevoNombre, String(nuevoTelefono));
-                            menuClientes();
-                        });
-                    });
-                });
+                modificarCliente();
                 break;
             case '4':
                 rl.question('Ingrese el ID del cliente a eliminar: ', function (id) {
@@ -121,8 +107,8 @@ function menuClientes() {
                 });
                 break;
             case '5':
-                rl.question('Indique nombre del cliente para registrar la visita: ', function (nombre) {
-                    veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.registrarVisita(nombre);
+                rl.question('Indique ID del cliente para registrar la visita: ', function (id) {
+                    veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.registrarVisita(parseInt(id));
                     menuClientes();
                 });
                 break;
@@ -138,6 +124,36 @@ function menuClientes() {
                 menuClientes();
                 break;
         }
+    });
+}
+function agregarCliente() {
+    rl.question('Ingrese el nombre del cliente: ', function (nombre) {
+        if (!isNaN(parseInt(nombre))) {
+            console.log("El nombre no puede contener numeros. Volver a intentar");
+            agregarCliente();
+        }
+        else {
+            rl.question('Ingrese el telefono del cliente: ', function (telefono) {
+                veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.agregarCliente(nombre, String(telefono));
+                menuClientes();
+            });
+        }
+    });
+}
+function modificarCliente() {
+    rl.question('ingrese el ID del cliente a modificar: ', function (id) {
+        rl.question('ingrese el nuevo nombre del cliente: ', function (nuevoNombre) {
+            if (!isNaN(parseInt(nuevoNombre))) {
+                console.log("El nombre no puede contener numeros. Volver a intentar");
+                modificarCliente();
+            }
+            else {
+                rl.question('ingrese el nuevo telefono del cliente: ', function (nuevoTelefono) {
+                    veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.modificarCliente(Number(id), nuevoNombre, String(nuevoTelefono));
+                    menuClientes();
+                });
+            }
+        });
     });
 }
 function menuPacientes() {
@@ -157,7 +173,7 @@ function menuPacientes() {
                     rl.question('Ingrese el nombre del paciente: ', function (nombre) {
                         rl.question('Ingrese la especie del paciente: ', function (especie) {
                             rl.question('Ingrese el ID del dueño: ', function (idDueño) {
-                                veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.agregarPaciente(nombre, especie, String(idDueño));
+                                veterinariaActual === null || veterinariaActual === void 0 ? void 0 : veterinariaActual.agregarPaciente(nombre, especie, parseInt(idDueño));
                                 menuPacientes();
                             });
                         });
@@ -263,28 +279,37 @@ function listarProveedores() {
 }
 function agregarProveedor() {
     rl.question('Ingrese el nombre del proveedor: ', function (nombre) {
-        rl.question('Ingrese el teléfono del proveedor: ', function (telefono) {
-            sistemaRed.agregarProveedor(nombre, String(telefono));
-            console.log('Proveedor agregado exitosamente.');
-            menuProveedores();
-        });
+        if (!isNaN(parseInt(nombre))) {
+            console.log("El nombre no puede contener numeros. Volver a intentar");
+            agregarProveedor();
+        }
+        else {
+            rl.question('Ingrese el teléfono del proveedor: ', function (telefono) {
+                sistemaRed.agregarProveedor(nombre, String(telefono));
+                menuProveedores();
+            });
+        }
     });
 }
 function modificarProveedor() {
     rl.question('Ingrese el ID del proveedor a modificar: ', function (id) {
         rl.question('Ingrese el nuevo nombre del proveedor: ', function (nuevoNombre) {
-            rl.question('Ingrese el nuevo teléfono del proveedor: ', function (nuevoTelefono) {
-                sistemaRed.modificarProveedor(Number(id), nuevoNombre, String(nuevoTelefono));
-                console.log('Proveedor modificado exitosamente.');
-                menuProveedores();
-            });
+            if (!isNaN(parseInt(nuevoNombre))) {
+                console.log("El nombre no puede contener numeros. Volver a intentar");
+                modificarProveedor();
+            }
+            else {
+                rl.question('Ingrese el nuevo teléfono del proveedor: ', function (nuevoTelefono) {
+                    sistemaRed.modificarProveedor(Number(id), nuevoNombre, String(nuevoTelefono));
+                    menuProveedores();
+                });
+            }
         });
     });
 }
 function eliminarProveedor() {
     rl.question('Ingrese el ID del proveedor a eliminar: ', function (id) {
         sistemaRed.eliminarProveedor(Number(id));
-        console.log('Proveedor eliminado exitosamente.');
         menuProveedores();
     });
 }
@@ -324,7 +349,6 @@ function agregarSucursal() {
     rl.question('Ingrese el nombre de la nueva sucursal: ', function (nombre) {
         rl.question('Ingrese la dirección de la sucursal: ', function (direccion) {
             sistemaRed.agregarVeterinaria(nombre, direccion);
-            console.log('Sucursal agregada exitosamente.');
             menuSucursales();
         });
     });
@@ -334,7 +358,6 @@ function modificarSucursal() {
         rl.question('Ingrese el nuevo nombre de la sucursal: ', function (nuevoNombre) {
             rl.question('Ingrese la nueva dirección de la sucursal: ', function (nuevaDireccion) {
                 sistemaRed.modificarVeterinaria(Number(id), nuevoNombre, nuevaDireccion);
-                console.log('Sucursal modificada exitosamente.');
                 menuSucursales();
             });
         });

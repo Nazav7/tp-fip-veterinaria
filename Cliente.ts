@@ -5,7 +5,7 @@ export class Cliente {
     private visitas: number;
     private esVIP: boolean;
 
-    constructor(nombre: string, telefono: string, id :number) {
+    constructor(nombre: string, telefono: string, id: number) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -14,7 +14,7 @@ export class Cliente {
     }
 
     registrarVisita(): void {
-        this.visitas = this.visitas +1;
+        this.visitas = this.visitas + 1;
         this.esVIP = this.visitas >= 5;
     }
 
@@ -35,8 +35,7 @@ export class Cliente {
     public getNombre(): string {
         return this.nombre;
     }
-    public setNombre(nombre: string
-    ) {
+    public setNombre(nombre: string) {
         this.nombre = nombre;
     }
 

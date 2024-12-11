@@ -37,8 +37,7 @@ var Veterinaria = /** @class */ (function () {
             console.log('No se puede agregar cliente porque ya existe');
         }
     };
-    Veterinaria.prototype.agregarClienteInicio = function (nombre, telefono) {
-        var id = this.generarID('cliente');
+    Veterinaria.prototype.agregarClienteInicio = function (id, nombre, telefono) {
         var cliente = this.clientes.find(function (c) { return c.getNombre() == nombre && c.getTelefono() == telefono; });
         if (!cliente) {
             var nuevoCliente = new Cliente_1.Cliente(nombre, telefono, id);
@@ -47,6 +46,13 @@ var Veterinaria = /** @class */ (function () {
     };
     Veterinaria.prototype.agregarPaciente = function (nombre, especie, id_duenio) {
         var id = this.generarID('paciente');
+        //Verificar si el ID del dueño existe
+        var duenio = this.clientes.find(function (c) { return c.getId() === id_duenio; });
+        if (!duenio) {
+            console.log('El ID del dueño no existe.');
+            return;
+        }
+        // Verificar si el paciente existe
         var paciente = this.pacientes.find(function (p) { return p.getNombre() === nombre && p.getEspecie() === especie; });
         if (!paciente) {
             var nuevoPaciente = new Paciente_1.Paciente(nombre, especie, id_duenio, id);
@@ -70,7 +76,9 @@ var Veterinaria = /** @class */ (function () {
         if (cliente) {
             var index = this.clientes.indexOf(cliente);
             this.clientes.splice(index, 1);
-            console.log('El cliente ha sido eliminado');
+            // Eliminar las mascotas del cliente
+            this.pacientes = this.pacientes.filter(function (paciente) { return paciente.getIdDueno() !== id; });
+            console.log('El cliente y sus mascotas han sido eliminados');
         }
         else {
             console.log('El cliente no se encuentra en la base de datos');
@@ -87,10 +95,15 @@ var Veterinaria = /** @class */ (function () {
             console.log('El paciente no se encuentra en la base de datos');
         }
     };
-    Veterinaria.prototype.registrarVisita = function (nombre) {
-        var cliente = this.clientes.find(function (p) { return p.getNombre() === nombre; });
-        cliente === null || cliente === void 0 ? void 0 : cliente.registrarVisita();
-        console.log("Se ha registrado la visita de " + nombre);
+    Veterinaria.prototype.registrarVisita = function (id) {
+        var cliente = this.clientes.find(function (p) { return p.getId() === id; });
+        if (cliente) {
+            cliente === null || cliente === void 0 ? void 0 : cliente.registrarVisita();
+            console.log("Se ha registrado la visita");
+        }
+        else {
+            console.log("No se encuentra id");
+        }
     };
     Veterinaria.prototype.listarClientes = function () {
         this.clientes.forEach(function (cliente) {
@@ -131,35 +144,6 @@ var Veterinaria = /** @class */ (function () {
     Veterinaria.prototype.setDireccion = function (nuevaDireccion) {
         this.direccion = nuevaDireccion;
     };
-    /*
-    GENERADOR VIEJO
-    generarID(tipo): number{
-        let new_id:number = Math.floor(Math.random()* 1000)
-        switch(tipo){
-            case 'cliente':
-                let esDuplicado = false;
-                for (let cliente of this.clientes) {
-                    if (cliente.getId() === new_id) {
-                        esDuplicado = true;
-                        break;
-                     }
-                }
-            case 'paciente' :
-                let id_p:number= 0;
-                for(let paciente of this.pacientes){
-                    let id_paciente =paciente.getId();
-                    if(id_paciente > id_p){
-                    id_p = id_paciente;
-                    }
-                }
-                return id_p = id_p +1;
-            default:
-                console.log("Error al crear id");
-                return 0;
-        }
-    }
-    GENERADOR VIEJO
-    */
     Veterinaria.prototype.generarID = function (tipo) {
         var estaDuplicado = false;
         while (!estaDuplicado) {
@@ -217,3 +201,61 @@ var Veterinaria = /** @class */ (function () {
     return Veterinaria;
 }());
 exports.Veterinaria = Veterinaria;
+// agregarClienteInicio(nombre: string, telefono: string) {
+//     const id = this.generarID('cliente');
+//     const cliente = this.clientes.find(c => c.getNombre() == nombre && c.getTelefono() == telefono);
+//     if (!cliente) {
+//         const nuevoCliente = new Cliente(nombre, telefono, id);
+//         this.clientes.push(nuevoCliente);
+//     }
+// }
+// agregarPaciente(nombre: string, especie: string, id_duenio:string) {
+//     const id = this.generarID('paciente');
+//     const paciente = this.pacientes.find(p => p.getNombre() === nombre && p.getEspecie() === especie);
+//     if (!paciente) {
+//         const nuevoPaciente = new Paciente(nombre, especie, id_duenio, id);
+//         this.pacientes.push(nuevoPaciente);
+//         console.log('El paciente ha sido agregado');
+//     } else {
+//         console.log('No se puede agregar paciente porque ya existe');
+//     }
+// }
+// eliminarCliente(id:number) {
+//     const cliente = this.clientes.find(c => c.getId() === id);
+//     if (cliente) {
+//         const index = this.clientes.indexOf(cliente);
+//         this.clientes.splice(index, 1);
+//         console.log('El cliente ha sido eliminado');
+//     } else {
+//         console.log('El cliente no se encuentra en la base de datos');
+//     }
+// }
+/*
+GENERADOR VIEJO
+generarID(tipo): number{
+let new_id:number = Math.floor(Math.random()* 1000)
+switch(tipo){
+    case 'cliente':
+        let esDuplicado = false;
+        for (let cliente of this.clientes) {
+            if (cliente.getId() === new_id) {
+                esDuplicado = true;
+                break;
+             }
+             }
+             case 'paciente' :
+        let id_p:number= 0;
+        for(let paciente of this.pacientes){
+            let id_paciente =paciente.getId();
+            if(id_paciente > id_p){
+            id_p = id_paciente;
+            }
+        }
+        return id_p = id_p +1;
+    default:
+        console.log("Error al crear id");
+        return 0;
+}
+}
+GENERADOR VIEJO
+*/ 

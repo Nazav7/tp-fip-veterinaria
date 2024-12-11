@@ -18,12 +18,7 @@ function generarSucursales(redDeVeterinaria) {
     }
 }
 function cargarProveedores(redDeVeterinaria) {
-    //console.log("Cargando proveedores");
     var proveedoresJASON = (0, utils_1.leerTXT)(url_proveedores);
-    /*console.log('proveedores: '
-        +proveedoresJASON
-    );
-    */
     for (var i = 0; i < proveedoresJASON.length; i++) {
         var nombre = proveedoresJASON[i].Nombre;
         var telefono = proveedoresJASON[i].Telefono;
@@ -33,9 +28,10 @@ function cargarProveedores(redDeVeterinaria) {
 function cargarClientes(veterinaria) {
     var clientesJASON = (0, utils_1.leerTXT)(url_cliente);
     for (var i = 0; i < clientesJASON.length; i++) {
+        var id = Number(clientesJASON[i].ID);
         var nombre = clientesJASON[i].Nombre;
         var telefono = clientesJASON[i].Telefono;
-        veterinaria.agregarClienteInicio(nombre, telefono);
+        veterinaria.agregarClienteInicio(id, nombre, telefono);
     }
 }
 function cargarPacientes(veterinaria) {
@@ -43,7 +39,33 @@ function cargarPacientes(veterinaria) {
     for (var i = 0; i < pacientesJASON.length; i++) {
         var nombre = pacientesJASON[i].Nombre;
         var especie = pacientesJASON[i].Raza;
-        var id_cliente = pacientesJASON[i].IDcliente;
+        var id_cliente = Number(pacientesJASON[i].IDcliente);
         veterinaria.agregarPacienteInicio(nombre, especie, id_cliente);
     }
 }
+// export function cargarProveedores(redDeVeterinaria: RedDeVeterinarias){
+//     const proveedoresJASON = leerTXT(url_proveedores);
+// for(let i=0; i < proveedoresJASON.length; i++){
+//     const id = Number(proveedoresJASON[i].ID);
+//     const nombre = proveedoresJASON[i].Nombre;
+//     const telefono = proveedoresJASON[i].Telefono;
+//     redDeVeterinaria.agregarProveedorInicio(id, nombre, telefono);
+// }
+// }
+// export function cargarClientes(veterinaria){
+//     const clientesJASON = leerTXT(url_cliente);
+//     for(let i=0; i < clientesJASON.length; i++){
+//         const nombre = clientesJASON[i].Nombre;
+//         const telefono = clientesJASON[i].Telefono;
+//         veterinaria.agregarClienteInicio(nombre, telefono);
+//     }
+// }
+// export function generarSucursales(redDeVeterinaria: RedDeVeterinarias){
+//     const sucursalesJASON = leerTXT(url_sucursales);
+//     for(let i=0; i < sucursalesJASON.length; i++){
+//         const id = Number(sucursalesJASON[i].ID);
+//         const nombre = sucursalesJASON[i].Nombre;
+//         const direccion = sucursalesJASON[i].Direccion;
+//         redDeVeterinaria.agregarVeterinariaInicio(id, nombre, direccion);
+//     }
+//     }

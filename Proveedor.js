@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Proveedor = void 0;
 var Proveedor = /** @class */ (function () {
-    function Proveedor(nombre, telefono, id) {
+    function Proveedor(id, nombre, telefono) {
+        this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
-        this.id = id;
     }
     //Getters
     Proveedor.prototype.getNombre = function () {
