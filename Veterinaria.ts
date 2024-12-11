@@ -16,9 +16,6 @@ export class Veterinaria {
         this.direccion = direccion;
         this.pacientes = [];
         this.clientes = [];
-
-        cargarClientes(this);
-        cargarPacientes(this);
     }
 
     //Métodos
