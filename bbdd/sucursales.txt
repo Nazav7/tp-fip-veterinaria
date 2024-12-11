@@ -1,3 +1,2 @@
 1,Veterinaria del parque,Riobamba 3013
 2,Veterinaria Oasis,Sarmiento 2154
-3,Veterinaria de Pedro,Pellegrini 1120

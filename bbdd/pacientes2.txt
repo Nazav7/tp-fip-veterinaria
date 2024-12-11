@@ -1,0 +1,5 @@
+6,Pepi,exotico,6
+7,Canela,perro,6
+8,Negra,gato,7
+9,Mondongo,perro,8
+10,Calo,exotico,9
