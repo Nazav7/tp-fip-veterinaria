@@ -2,12 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var readline = require("readline");
 var RedDeVeterinarias_1 = require("./RedDeVeterinarias");
+var inicio_1 = require("./inicio");
 var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 var sistemaRed = new RedDeVeterinarias_1.RedDeVeterinarias(); // para la red de veterinarias
 var veterinariaActual = null; // para manejar la veterinaria seleccionada
+sistemaRed.getVeterinaria().forEach(function (v) {
+    (0, inicio_1.cargarClientes)(v);
+    (0, inicio_1.cargarPacientes)(v);
+});
 function mostrarMenuPrincipal() {
     console.log("\n    ********** MENU PRINCIPAL **********\n    1. Soy Sucursal\n    2. Soy Red\n    3. Salir\n    *************************************\n    ");
     rl.question('Seleccione una opción: ', manejarOpcionPrincipal);

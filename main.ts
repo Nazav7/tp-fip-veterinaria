@@ -5,7 +5,7 @@ import { Cliente } from "./Cliente";
 import { Paciente } from "./Paciente";
 import { Proveedor } from "./Proveedor";
 import { leerTXT } from './Clases/utils';
-import { generarSucursales } from './inicio';
+import { cargarClientes, cargarPacientes, generarSucursales } from './inicio';
 
 
 
@@ -17,6 +17,11 @@ const rl = readline.createInterface({
 const sistemaRed = new RedDeVeterinarias(); // para la red de veterinarias
 
 let veterinariaActual: Veterinaria | null = null; // para manejar la veterinaria seleccionada
+
+sistemaRed.getVeterinaria().forEach(v => {
+    cargarClientes(v)
+    cargarPacientes(v)
+});
 
 function mostrarMenuPrincipal() {
     console.log(`
