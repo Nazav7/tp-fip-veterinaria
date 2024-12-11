@@ -1,14 +1,14 @@
 
 
 export class Proveedor {
+    private id: number;
     private nombre: string;
     private telefono: string;
-    private id: number;
 
-    constructor(nombre: string, telefono: string, id:number) {
+    constructor(id:number, nombre: string, telefono: string) {
+        this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
-        this.id = id;
     }
 
     //Getters

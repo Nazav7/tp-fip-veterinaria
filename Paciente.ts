@@ -2,11 +2,11 @@ export class Paciente {
     private id: number;
     private nombre: string;
     private especie: string;
-    private idDueno: string;
+    private idDueno: number;
 
 
 
-    constructor(nombre: string, especie: string, idDueno: string, id:number) {
+    constructor(nombre: string, especie: string, idDueno: number, id:number) {
         this.id = id;
         this.nombre = nombre;
         this.especie = this.verificarEspecie(especie);
@@ -50,10 +50,10 @@ export class Paciente {
     public setEspecie(especie: string) {
         this.especie = especie;
     }
-    public getIdDueno(): string {
+    public getIdDueno(): number {
         return this.idDueno;
     }
-    public setIdDueno(idDueno: string) {
+    public setIdDueno(idDueno: number) {
         this.idDueno = idDueno;
     }
     public getId(){
