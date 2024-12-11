@@ -9,10 +9,11 @@ var rl = readline.createInterface({
 });
 var sistemaRed = new RedDeVeterinarias_1.RedDeVeterinarias(); // para la red de veterinarias
 var veterinariaActual = null; // para manejar la veterinaria seleccionada
-sistemaRed.getVeterinaria().forEach(function (v) {
-    (0, inicio_1.cargarClientes)(v);
-    (0, inicio_1.cargarPacientes)(v);
-});
+var veterinarias = sistemaRed.getVeterinaria();
+(0, inicio_1.cargarClientes)(veterinarias[0], './bbdd/clientes1.txt');
+(0, inicio_1.cargarClientes)(veterinarias[1], './bbdd/clientes2.txt');
+(0, inicio_1.cargarPacientes)(veterinarias[0], './bbdd/pacientes1.txt');
+(0, inicio_1.cargarPacientes)(veterinarias[1], './bbdd/pacientes2.txt');
 function mostrarMenuPrincipal() {
     console.log("\n    ********** MENU PRINCIPAL **********\n    1. Soy Sucursal\n    2. Soy Red\n    3. Salir\n    *************************************\n    ");
     rl.question('Seleccione una opción: ', manejarOpcionPrincipal);

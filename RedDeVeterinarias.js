@@ -205,13 +205,3 @@ var RedDeVeterinarias = /** @class */ (function () {
     return RedDeVeterinarias;
 }());
 exports.RedDeVeterinarias = RedDeVeterinarias;
-// eliminarVeterinaria(id:number) {
-//     const veterinaria = this.veterinarias.find(v => v.getId() === id);
-//     if (veterinaria) {
-//         const index = this.veterinarias.indexOf(veterinaria);
-//         this.veterinarias.splice(index, 1);
-//         console.log('La veterinaria ha sido eliminada');
-//     } else {
-//         console.log('La veterinaria no se encuentra en la base de datos');
-//     }
-// }

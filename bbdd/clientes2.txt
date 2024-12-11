@@ -1,0 +1,4 @@
+6,Eva Duran,5401147562411,5,true
+7,Juan Dominguez,5403414576151,10,true
+8,Ramiro Carlos,5401147559521,3,false
+9,Paz Lopez,5401147592341,4,false

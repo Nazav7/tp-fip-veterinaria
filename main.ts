@@ -18,10 +18,11 @@ const sistemaRed = new RedDeVeterinarias(); // para la red de veterinarias
 
 let veterinariaActual: Veterinaria | null = null; // para manejar la veterinaria seleccionada
 
-sistemaRed.getVeterinaria().forEach(v => {
-    cargarClientes(v)
-    cargarPacientes(v)
-});
+const veterinarias = sistemaRed.getVeterinaria();
+cargarClientes(veterinarias[0], './bbdd/clientes1.txt' );
+cargarClientes(veterinarias[1], './bbdd/clientes2.txt');
+cargarPacientes(veterinarias[0], './bbdd/pacientes1.txt');
+cargarPacientes(veterinarias[1], './bbdd/pacientes2.txt');
 
 function mostrarMenuPrincipal() {
     console.log(`

@@ -2,8 +2,6 @@ import { Veterinaria } from './Veterinaria';
 import { leerTXT } from './Clases/utils';
 import { RedDeVeterinarias } from './RedDeVeterinarias';
 
-const url_cliente = './bbdd/clientes.txt';
-const url_pacientes = './bbdd/pacientes.txt';
 const url_proveedores = './bbdd/proveedores.txt';
 const url_sucursales = './bbdd/sucursales.txt';
 
@@ -27,8 +25,8 @@ export function cargarProveedores(redDeVeterinaria: RedDeVeterinarias) {
     }
 }
 
-export function cargarClientes(veterinaria: Veterinaria) {
-    const clientesJASON = leerTXT(url_cliente);
+export function cargarClientes(veterinaria: Veterinaria, url: string) {
+    const clientesJASON = leerTXT(url);
     for (let i = 0; i < clientesJASON.length; i++) {
         const id = Number(clientesJASON[i].ID);
         const nombre = clientesJASON[i].Nombre;
@@ -37,8 +35,8 @@ export function cargarClientes(veterinaria: Veterinaria) {
     }
 }
 
-export function cargarPacientes(veterinaria: Veterinaria) {
-    const pacientesJASON = leerTXT(url_pacientes);
+export function cargarPacientes(veterinaria: Veterinaria, url: string) {
+    const pacientesJASON = leerTXT(url);
     for (let i = 0; i < pacientesJASON.length; i++) {
         const nombre = pacientesJASON[i].Nombre;
         const especie = pacientesJASON[i].Raza;
